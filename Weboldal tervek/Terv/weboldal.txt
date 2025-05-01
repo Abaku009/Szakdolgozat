@@ -1,0 +1,115 @@
+Activity diagram -> visual studio, github repo  -> egyes folyamatok kifejtése külön activity diagramokban 	
+
+Use case diagram -> visual studio, github repo									
+
+szekvencia diagram -> főbb komponensek között kommunikáció 	
+foglalás kezelő és adatbázis között külön szekvencia diagram
+
+
+
+
+visual studio code-ban 
+
+entitás reláció diagramok felvétele  plant uml-ben  (ha nem megy: class diagram)
+
+adatbázis struktúra  (postgre)
+
+3nf forma
+
+plant uml-ben 	
+
+
+
+next js vagy react valami kattintható felület !!!!!!
+
+ajánló rendszer gyakorlatban hogy hogyan működne
+	rendszerterv
+
+átküldeni emailen az eddigi munkát
+
+github repo
+
+
+													
+
+komponensek azonosítása
+
+folyamatok között átfedés(zenék, filmek böngészés, kosár)
+
+react, next js
+
+cloud ready, avs, google cloud
+
+Web mock - látványterv
+
+Irodalomkutatás
+
+Analitika
+
+Szolgáltatások, háttérszolgáltatások -> mikroszolgáltatások -> komponensdiagram 
+
+Piackutatás
+
+Létjogosultság, szaturálódott piac -> use case
+
+
+Szakdoga: 20 oldal
+
+	Bevezető
+
+	Irodalomkutatás, kapcsolódó munka (piackutatás)
+
+	Analízis, architektúra tervezés, használati eset
+
+	Implementáció, saját munka, kódok, megoldások, eredmények (analitika -> milyen gyorsasággal)
+
+	PPT
+
+
+
+
+
+Weboldal:
+
+Vásárlás: zene
+
+- helyben:
+	- spontán látogató: vesz egyet -> csökken a darabszám -> admin módosítja
+	- regisztrált felhasználó: vesz egyet -> csökken a darabszám -> admin módosítja
+
+
+- online:
+	- spontán látogató: kell csinálni fiókot -> regisztrál -> beteszi a kosárba -> rendelés elküldése -> ha elküldi a rendelést akkor kiírja az oldal, hogy rendelését befogadtuk, küldtek egy emailt -> emailben benne lesz a rendelő személy vezetékneve, keresztneve, email címe, meg hogy mit rendelt, továbbá oda lesz írva, hogy a nyitvatartási napokon be tud menni, át tudja venni -> csökken a darabszám -> elmegy -> megmutatja az emailt -> admin odaadja a zenét 
+	- regisztrált felhasználó: ugyanez, csak neki ugye már van fiókja
+
+Emailben benne lesz hogy ha nem megy el átvenni 7 napon belül, akkor törlik a rendelést, és megemelik a darabszámot.
+
+
+
+Foglalás: film és sorozat
+
+- helyben:
+	- spontán látogató: bemegy -> mondja hogy ez meg ez kell neki -> a foglaláshoz kell csinálni fiókot -> ott helyben egy tableten megcsinálja -> beírja vezetéknevét, keresztnevét, az email címet, jelszót, megvan a fiók -> aztán ott a tableten csinálja meg a foglalást is -> bemegy a sorozatokhoz, keres valamit, beteszi a kosárba -> filmeknél ugyanez -> ez egy másik kosár, foglalási kosár, ahova csak a sorozatok, filmek mennek -> kosarat megtekintheti hogy miket tett bele, módosíthatja, törölheti -> ha ezzel megvan, lesz egy foglalás menüpont(*), ahova ha bemegy, látni fogja a kosara tartalmát, hogy ezeknek foglal időpontot -> kiválasztja először hogy hány napra akarja foglalni -> 2 hétre lehet foglalni max -> ez úgy lesz megoldva hogy kiválasztja a kezdő dátumot, majd kiválasztja a vég dátumot, hogy mondjuk január 1től foglal január 5ig -> kiválasztja, hogy január 1, akkor a rendszer automatikusan odaírja, hogy foglalás kezdete: január 1 10:00, tehát a nyitvatartási idő -> aztán kiválasztja a vég dátumot, január 5, akkor a rendszer automatikusan odaírja, hogy foglalás vége: január 5 18:00 tehát a zárási idő -> ha ezzel megvan, megnyomja a foglalás elküldése gombot -> az oldal kiírja, hogy a foglalás rögzítve lett, kap emailt, melyben látja a vezetéknevét, keresztnevét, email címét, amit foglalt, és a foglalási intervallumot. Továbbá ide ki lesz írva, hogy ha nem hozza vissza időben, akkor késedelmi díjat kell fizetnie naponta. Ebben az intervallumban jöhet el érte, tehát január 1 10:00től már mehet érte, és január 5 18:00-ig kell visszavinnie -> darabszám csökkent
+	- regisztrált felhasználó: ugyanez, csak van fiókja
+
+(*): a foglalás úgy lesz megoldva, hogy ha végzett a sorozat, film böngészéssel, akkor rámegy a foglalás gombra, az megkérdezi, hogy helyben vagy online foglal. 
+Ha rámegy a helyben foglal gombra, akkor a kezdődátum az aktuális dátum lesz mindig, a vég dátumot neki kell beállítania
+
+- online: 
+	- spontán látogató: kell fiókot csinálni a foglaláshoz -> megcsinálja, és ugyanaz a folyamat
+	- regisztrált felhasználó: van fiókja, ugyanaz a folyamat
+
+
+Foglaláshoz: 
+Lesz egy saját foglalások menüpont, ahol látja hogy miket foglalt, mettől meddig. Ha leadja a foglalást, ki lesz írva, hogy "Átvételre vár".
+Ha foglal január 1 10:00től január 5 18:00ig: Ebben az intervallumban mehet el átvenni, megmutatja az emailt, melyet kapott a rendelés leadásakor, admin odaadja neki amit kért. Admin módosítja az "Átvételre vár" üzenetet, hogy "Átvéve". Majd ha visszahozta, akkor módosítja a darabszámot, megemeli, és törli a foglalást.
+Ha nem megy el az intervallumban, akkor törlik a foglalást és megemelik a darabszámot.
+Aki nem viszi vissza időbe, az naponta késedelmi díjat fizet. Erről már nem én gondoskodok.
+
+
+
+
+
+
+
+

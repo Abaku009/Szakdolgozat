@@ -1,0 +1,107 @@
+Film és sorozat kölcsönzés:
+
+1. Regisztráció / Bejelentkezés
+A felhasználónak regisztrálnia kell, ha még nincs fiókja, vagy be kell jelentkeznie, ha már van.
+
+2. Böngészés
+A bejelentkezett felhasználó böngészhet a filmek és sorozatok között, szűrők segítségével (műfaj, ár, előadó stb.), és megtekintheti a készleten lévő darabszámokat.
+
+3. Kosárba helyezés
+A felhasználó kiválaszthatja a kívánt filmeket/sorozatokat, és azokat a foglalási kosárba helyezheti. Itt szerkesztheti a darabszámot, törölheti a termékeket, vagy módosíthatja a kosár tartalmát.
+
+4. Kosár kezelése
+A felhasználó a foglalási kosárban megtekintheti, hogy miket tett bele, és később módosíthatja azt, ha szükséges.
+
+5. Foglalás gomb megnyomása
+A felhasználó, amikor véglegesen elhatározza, hogy szeretné lefoglalni a termékeket, a Foglalás gombot megnyomja. Ha megnyomta a foglalás gombot, akkor egy másik lap nyílik meg, felül Foglalás néven. A rendszer ezután megkérdezi, hogy helyben vagy online szeretné-e a foglalást intézni:
+
+Helyben foglalás esetén a rendszer automatikusan a mai napot állítja be kezdő dátumként.
+Online foglalás esetén a felhasználónak kell manuálisan kiválasztania a kezdő dátumot.
+
+6. Foglalás menüpont
+A felhasználó itt tudja kiválasztani a foglalás kezdő és végdátumát:
+A rendszer a kezdeti dátum mellé a bolt nyitvatartásának kezdő időpontját is kiírja, pl. "Foglalás kezdete: március 1 10:00".
+A végdátum mellé a bolt zárási idejét is hozzáadja, pl. "Foglalás vége: március 5 18:00".
+
+7. Foglalás leadása
+A felhasználó véglegesíti a foglalást a Foglalás leadása gombbal. Ekkor:
+A foglalás rögzítésre kerül az adatbázisban.
+A termékek darabszáma csökken, mivel le lettek foglalva.
+A felhasználó kap egy visszaigazoló e-mailt, amely tartalmazza a foglalás részleteit, a késedelmi díjról szóló figyelmeztetést, és az átvétel helyét, idejét.
+
+8. Saját foglalások menüpont
+A felhasználó a Saját foglalások menüpontban nyomon követheti a foglalásait:
+Itt láthatja az aktív foglalásokat, és azok státuszát (pl. "Átvételre vár", "Átvéve").
+A foglalás időintervallumának megfelelően a felhasználó elmehet az átvételi pontra a termékekért.
+
+9. Átvétel
+A felhasználó az átvételi időpontban elmehet a boltba, és megmutathatja a kapott e-mailt az adminnak.
+Az admin átadja a foglalt terméket, és módosítja a foglalás státuszát a "Saját foglalások" menüpontban "Átvéve"-re.
+
+10. Visszavitel
+A felhasználó a foglalási időszak végén visszahozza a termékeket.
+Az admin módosítja a darabszámot: növeli a termékek mennyiségét, és törli a foglalást a rendszerből.
+
+11. Foglalás törlése, ha nem történik átvétel
+Ha a felhasználó nem veszi át a terméket a foglalás időintervalluma alatt, a foglalás törlésre kerül, és a termékek darabszáma visszaáll a készletre.
+
+12. Késedelmi díj
+Ha a felhasználó nem hozza vissza a terméket időben, akkor késedelmi díjat kell fizetnie, ami naponta növekvő díjat jelent.
+
+
+plant uml:
+
+@startuml
+|User|
+start
+:Regisztráció / Bejelentkezés;
+if (Van már fiók?) then (igen)
+  :Bejelentkezés;
+else (nem)
+  :Regisztráció;
+endif
+:Filmek és sorozatok böngészése;
+:Szűrők alkalmazása;
+:Kosárba helyezés;
+:Kosár megtekintése;
+:Kosár szerkesztése;
+:Foglalás gomb megnyomása;
+if (Helyben vagy online foglalás?) then (Helyben)
+  :Automatikus kezdő dátum beállítása;
+else (Online)
+  :Kezdő dátum manuális kiválasztása;
+endif
+:Foglalás kezdő és végdátumának kiválasztása;
+:Foglalás leadása;
+:Visszaigazoló e-mail fogadása;
+
+|Admin|
+:Foglalás rögzítése;
+:Termékek darabszámának csökkentése;
+:Visszaigazoló e-mail küldése;
+:Átvétel időpontjának ellenőrzése;
+
+|User|
+:Átvételi pontra eljutás;
+:Email bemutatása;
+:Termék átvétele;
+
+|Admin|
+:Termék átadása;
+:Foglalás státuszának módosítása "Átvéve"-re;
+
+|User|
+:Termék visszavitele;
+:Adminisztrátornak a termék átadása;
+
+|Admin|
+:Termékek darabszámának növelése;
+:Foglalás törlése (ha nem történt átvétel);
+stop
+@enduml
+
+
+//www.plantuml.com/plantuml/png/VLCzRzim4DtrAmwPd27eRWzD2ZGeaA50FxAVehDCyuC1IGamuQK_mJz1euSEHG1FtGZ_hrBI2L5Zj9jzVE_TUu_KhG_eGgDLiV_koUsBuN-n_4Ary36ur3s9z0Blu0DjIP49ac8w-bKXrh1uH0CwTGxM6IFVNqFOa865gCbS5m3BjnnIdc1XIFUdRrRaKrE9TR6y5qgJX4m0RvsD6Ao4CfrCdKUz3gsAvTTu_kNE1mce92gDCNKUy_p1-kodHDYGsl5M7eAcEf0K9h06Ztqa9yd7QNnlQuKgwq5jTTcppCxgNdyC_IahbsIWnNe7rYXX2DOJXpjW5DTmrmIhCGZPUCXLLES3LAdBfKD9gLCg_Go3FFVpUT0Sc0z_eJMQ9kD5LX5j_e4-Cf6hUxNEQ_eIstIiHu7K6PGNt1bB4LOyV1JUHnGrHglo_TEDHg7wd1EYsDzLMfZzdE_IgOuv3JVvZPnEHqaIAdHO-dn9xE79fvEKn5Vnhsqo_LOL8zAFa8C4KY1oi6ThmdQK8gN8d0-ENmO_unb1G8zsc97Rfi-SrJuE-YNf9k1K0xk5r36HvY5dfrXT5ET3Nx2FeoMTNYhh-LRXQdJIqjMDcnkS5DiXUol6ZSjX8NyNmRfU3o5SRf-i_QzcaqujgOjt7TB93LDOR10CwM6IxyA4r_JNgy87-rpSagaQhOe_
+
+
+

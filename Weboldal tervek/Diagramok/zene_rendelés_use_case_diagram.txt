@@ -1,0 +1,19 @@
+@startuml
+actor "Felhasználó" as User
+actor "Admin" as Admin
+
+rectangle System {
+    User --> (Bejelentkezés / Regisztráció)
+    User --> (Böngészés a zenék között)
+    User --> (Kosárba helyezés)
+    User --> (Rendelés leadása)
+    
+    (Rendelés leadása) ..> (E-mail küldése a felhasználónak) : <<include>>
+    (Rendelés leadása) ..> (Készlet frissítése) : <<include>>
+   
+    Admin --> (Készlet frissítése)
+}
+@enduml
+
+
+//www.plantuml.com/plantuml/png/XP6nJiCm48PtFyMlJdH8sL4L5IHOkXNn04ToJKqkhcIxGuDuc8mTc2fbOhiN8qw5XA8Y1bkM_-__pxvRXKW-7XenLCIzn-o9PKUXTTg9dcUWW9V0_aUzBnlhnjlnP8pd8fAhXF5y394Rl1i0emTPbkFcWTzOsCMQMpq5t6B3bGrjzDeLLi_pAQwzgmPmX0ajEptLgBLljOznIg_tGJl_IjYn7CS2KsB3hcH9OS9KQXVeGgJjgeh5Oh0zPWrPGQrVKWuoWx3ztHX7zHntM2wjA-HGSfx_4xXEVnAEs7eRWdx6b7eb8grBRzFx__AP3xCQAgMncMy0

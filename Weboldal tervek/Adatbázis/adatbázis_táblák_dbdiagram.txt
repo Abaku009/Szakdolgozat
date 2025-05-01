@@ -1,0 +1,107 @@
+Table users {
+  user_id integer [primary key]
+  first_name varchar
+  last_name varchar
+  email varchar
+  hashed_password varchar
+  created_at timestamp
+  updated_at timestamp
+  is_admin bool
+}
+
+Table films {
+  film_id integer [primary key]
+  title varchar
+  price varchar
+  format varchar
+  film_language_id integer [ref: > films_language.film_language_id]
+  film_category_id integer [ref: > films_category.film_category_id]
+  film_storage_id integer [ref: > films_storage.film_storage_id]
+}
+
+Table films_language {
+  film_language_id integer [primary key]
+  language varchar
+
+}
+
+Table films_category {
+  film_category_id integer [primary key]
+  genre varchar
+}
+
+Table films_storage {
+  film_storage_id integer [primary key]
+  quantity integer
+}
+
+
+Table series {
+  series_id integer [primary key]
+  title varchar
+  price varchar
+  format varchar
+  series_language_id integer [ref: > series_language.series_language_id]
+  series_category_id integer [ref: > series_category.series_category_id]
+  series_storage_id integer [ref: > series_storage.series_storage_id]
+}
+
+Table series_language {
+  series_language_id integer [primary key]
+  language varchar
+}
+
+Table series_category {
+  series_category_id integer [primary key]
+  genre varchar
+}
+
+Table series_storage {
+  series_storage_id integer [primary key]
+  quantity integer
+}
+
+Table music {
+  music_id integer [primary key] 
+  price varchar
+  format varchar
+  title varchar
+  performer varchar
+  music_language_id integer [ref: > music_language.music_language_id]
+  music_category_id integer [ref: > music_category.music_category_id]
+  music_storage_id integer [ref: > music_storage.music_storage_id]
+}
+
+Table music_language {
+  music_language_id integer [primary key]
+  language varchar
+}
+
+Table music_category {
+  music_category_id integer [primary key]
+  genre varchar
+}
+
+Table music_storage {
+  music_storage_id integer [primary key]
+  quantity integer
+}
+
+Table messages {
+  message_id integer [primary key]
+  first_name varchar
+  last_name varchar
+  email varchar
+  message varchar
+  time timestamp
+}
+
+Table music_orders {
+  order_id integer [primary key]
+  music_id integer [ref: > music.music_id]
+  quantity integer
+  time timestamp
+  
+}
+
+

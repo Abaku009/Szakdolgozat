@@ -1,0 +1,91 @@
+Zene rendelési folyamat
+
+1️: Bejelentkezés
+A felhasználónak be kell jelentkeznie a rendeléshez.
+Ha nincs fiókja, regisztrálnia kell.
+
+2️: Böngészés a zenék között
+A bejelentkezett felhasználó kereshet és böngészhet a zenék között.
+Szűrők: műfaj, előadó, ár, stb.
+Minden zenénél látható a készleten lévő darabszám.
+Ha egy zene elfogy (0 darab), az nem lesz rendelhető.
+
+3️: Kosárba helyezés
+A felhasználó kosárba rakhatja a kiválasztott zenéket.
+A kosárban lehetősége van:
+Módosítani a darabszámot
+Törölni egy-egy zenét
+Látni az aktuális fizetendő összeget
+
+4️: Rendelés leadása
+Rendelés gomb/lap nem lesz, csak a kosárban lesz egy gomb. ->
+A felhasználó véglegesíti a rendelést egy "Megrendelés leadása" gombbal.
+Mi történik ekkor?
+A rendelés bekerül az adatbázisba.
+A kiválasztott zenék darabszáma csökken az adatbázisban.
+A felhasználó kap egy e-mailt a rendelés részleteivel.
+
+5️: Automatikus rendelési visszaigazoló e-mail
+
+Tartalma:
+
+Rendelési adatok:
+Megrendelő neve (vezetéknév, keresztnév)
+Megrendelő e-mail címe
+Megrendelt zenék listája (név, darabszám, ár)
+Összes fizetendő összeg
+
+Átvételi információk:
+Nyitvatartási napok és órák
+Átvételi helyszín (üzlet címe)
+
+Fontos információ:
+A rendelésedet 7 napon belül át kell venned. Ha nem veszed át, a rendelést töröljük, és a zenék visszakerülnek a készletbe.
+
+6️: Személyes átvétel és fizetés
+A rendelő személy elmegy az átvételi pontra.
+Megmutatja az e-mailt az adminnak (pl. telefonon vagy kinyomtatva).
+Az admin odaadja a rendelt termékeket, a felhasználó fizet és vége a folyamatnak.
+
+
+UML:
+
+@startuml
+|Felhasználó|
+start
+:Bejelentkezés;
+if (Van fiókja?) then (igen)
+  :Bejelentkezik;
+else (nem)
+  :Regisztrál;
+endif
+|Felhasználó|
+:Zene böngészés;
+|Felhasználó|
+:Zene kiválasztása;
+if (Zene elérhető?) then (igen)
+  :Kosárba helyezés;
+else (nem)
+  :Zene nem rendelhető;
+endif
+|Felhasználó|
+:Kosár módosítása;
+|Felhasználó|
+:Rendelés leadása;
+|Rendszer|
+:Adatbázisba mentés;
+:Zene darabszám csökkentése;
+:Automatikus rendelési e-mail küldése;
+|Felhasználó|
+:Email ellenőrzése;
+|Felhasználó|
+:Átvételi pontra megy;
+|Admin|
+:Átvétel visszaigazolása;
+:Termékek átadása;
+:Fizetés;
+stop
+@enduml
+
+//www.plantuml.com/plantuml/png/TO-nRXin38RtUmgEpj0NS8R61PgbMr1qw2PNz9aHfGiasa24B7s4FCAD7ZePoDIDo7kLbJmuCBoT-7_7_-DT4PTb5tbukKVUkbAJpgp7bw45m_8BFY9Zae1L3-Lse0qiVhW46z9ZU7IVRq2sc6118wQR0U3y1mgt0t91M2ICBNp0aKgLR1qM9K-RYzxbJqm8QtrBenMsqYjCeBszRImw5zVLMe2iXxn5UN-zrFis5Ptpsi4M-RdVzD6nxxO7P1D4RdkkolPr4FNexUjFDxd47jegAmD6vq_G_s6fc2rVUIThdIiLCukOf7br5U-oMvUgSuHVHTz2w35Qljh959rGs9MJhGK4-2awOWZwbtqdBuI-DWAPCRs_vdg5qj-oruCW4pnDIRAvuVXiuCf7IkS0xAcKwcXqTU9-t_8xvgY7W05q5kTFqtkgsCyhCZqDTwQzY_mF
+

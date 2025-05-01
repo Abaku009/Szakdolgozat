@@ -1,0 +1,26 @@
+@startuml
+actor "Felhasználó" as User
+actor "Admin" as Admin
+
+rectangle System {
+    User --> (Bejelentkezés / Regisztráció)
+    User --> (Böngészés a filmek/sorozatok között)
+    User --> (Kosárba helyezés)
+    User --> (Foglalás indítása)
+    User --> (Időintervallum kiválasztása)
+    User --> (Foglalás rögzítése)
+    
+    (Foglalás rögzítése) ..> (E-mail küldése a felhasználónak) : <<include>>
+    (Foglalás rögzítése) ..> (Készlet frissítése) : <<include>>
+
+    
+    User --> (Saját foglalások megtekintése)
+
+    Admin --> (Foglalások nyomon követése, törlése)
+    Admin --> (Foglalás státuszának módosítása)
+    Admin --> (Készlet frissítése)
+}
+@enduml
+
+
+//www.plantuml.com/plantuml/png/ZP712XCn48Rl-nH3JnPiUvTIgc11UhFu075tkaqpII2PBNJ5X_0HzkZ1Ks5FtWRVospAWWGANa98llyV_ldtaLNWpbAbQlO15WUaYugzau7aiG0LuKl4CF--Rwns-JNVgYfWpSgrX72wHqOBtoe0o1fOhNRmvWDUaT2nmLv-HjZ0Psnrx3d8K6jvB4jSHjScCCCApfeicatqmVUAlG4ZOoyZSwax-YX3-AhWWdJFeqhYu5jI94C4xHhvnUccIkPJy-U7TepXfeWw2qRVPA2qZf8k78ECRPyyqrXyKjFnae3rEia_hgpIb1BzfcPwdkB-ktodp1BUmNQhNKrTWxlTVvWUfzqHCfo3Zd7-AsooJn7cfAuo9DbixWrOR1cDTa-Fh7hMNiHFgBjxwztKpWqp_XPOna1P-L88aTFCBfKzfB1WvT7uE5TJg5uagxvNUtHDP-al
