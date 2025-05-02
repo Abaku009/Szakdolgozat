@@ -1,5 +1,5 @@
 Table users {
-  user_id integer [primary key]
+  user_id integer [primary key, increment]
   first_name varchar
   last_name varchar
   email varchar
@@ -9,8 +9,17 @@ Table users {
   is_admin bool
 }
 
+Table messages {
+  message_id integer [primary key, increment]
+  first_name varchar
+  last_name varchar
+  email varchar
+  message varchar
+  time timestamp
+}
+
 Table films {
-  film_id integer [primary key]
+  film_id integer [primary key, increment]
   title varchar
   price varchar
   format varchar
@@ -20,24 +29,23 @@ Table films {
 }
 
 Table films_language {
-  film_language_id integer [primary key]
+  film_language_id integer [primary key, increment]
   language varchar
 
 }
 
 Table films_category {
-  film_category_id integer [primary key]
+  film_category_id integer [primary key, increment]
   genre varchar
 }
 
 Table films_storage {
-  film_storage_id integer [primary key]
+  film_storage_id integer [primary key, increment]
   quantity integer
 }
 
-
 Table series {
-  series_id integer [primary key]
+  series_id integer [primary key, increment]
   title varchar
   price varchar
   format varchar
@@ -47,22 +55,41 @@ Table series {
 }
 
 Table series_language {
-  series_language_id integer [primary key]
+  series_language_id integer [primary key, increment]
   language varchar
 }
 
 Table series_category {
-  series_category_id integer [primary key]
+  series_category_id integer [primary key, increment]
   genre varchar
 }
 
 Table series_storage {
-  series_storage_id integer [primary key]
+  series_storage_id integer [primary key, increment]
   quantity integer
 }
 
+Table reservations {
+  reservation_id integer [primary key, increment]
+  user_id integer [ref: > users.user_id]
+  mode enum('on_site', 'online') 
+  reserved_date_from timestamp
+  reserved_date_to timestamp
+  reserved_from timestamp 
+  reserved_to timestamp 
+}
+
+Table reservation_items {
+  reservation_id integer [ref: > reservations.reservation_id]
+  film_id integer [ref: > films.film_id, null]
+  series_id integer [ref: > series.series_id, null]
+  quantity integer
+
+  Note: "Exactly one of film_id or series_id must be NOT NULL"
+}
+
 Table music {
-  music_id integer [primary key] 
+  music_id integer [primary key, increment] 
   price varchar
   format varchar
   title varchar
@@ -73,35 +100,32 @@ Table music {
 }
 
 Table music_language {
-  music_language_id integer [primary key]
+  music_language_id integer [primary key, increment]
   language varchar
 }
 
 Table music_category {
-  music_category_id integer [primary key]
+  music_category_id integer [primary key, increment]
   genre varchar
 }
 
 Table music_storage {
-  music_storage_id integer [primary key]
+  music_storage_id integer [primary key, increment]
   quantity integer
-}
-
-Table messages {
-  message_id integer [primary key]
-  first_name varchar
-  last_name varchar
-  email varchar
-  message varchar
-  time timestamp
 }
 
 Table music_orders {
-  order_id integer [primary key]
+  order_id integer [primary key, increment]
+  user_id integer [ref: > users.user_id]
+  time timestamp
+}
+
+Table music_order_items {
+  order_id integer [ref: > music_orders.order_id]
   music_id integer [ref: > music.music_id]
   quantity integer
-  time timestamp
-  
 }
+
+
 
 
