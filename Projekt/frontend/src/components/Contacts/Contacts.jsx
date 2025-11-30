@@ -11,7 +11,7 @@ function Contacts() {
 
     const POSTMESSAGEAPI = import.meta.env.VITE_API_POST_MESSAGE_URL;
 
-    function fistNameChange(e) {
+    function firstNameChange(e) {
         setFirstName(e.target.value);
     }
 
@@ -112,9 +112,9 @@ function Contacts() {
                         <label htmlFor="vezeteknev">Vezetéknév: </label>
                         <input type="text" name="vezeteknev" id="vezeteknev" required placeholder="Kocsis" value={LastName} onChange={lastNameChange}/>
                         <label htmlFor="keresztnev">Keresztnév: </label>
-                        <input type="email" name="keresztnev" id="keresztnev" required placeholder="András" value={FirstName} onChange={fistNameChange}/>
+                        <input type="text" name="keresztnev" id="keresztnev" required placeholder="András" value={FirstName} onChange={firstNameChange}/>
                         <label htmlFor="email">E-mail cím: </label>
-                        <input type="text" name="email" id="email" required placeholder="valamiemail@gmail.com" value={Email} onChange={emailChange}/>
+                        <input type="email" name="email" id="email" required placeholder="valamiemail@gmail.com" value={Email} onChange={emailChange}/>
                         <label htmlFor="uzenet">Üzenet: </label>
                         <textarea name="uzenet" id="uzenet" placeholder="Írj nekünk!" value={Text} maxLength={300} rows={4} cols={40} onChange={textChange}></textarea>
                         <button type="submit">Küldés</button>
