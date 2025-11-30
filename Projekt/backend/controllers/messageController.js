@@ -1,12 +1,12 @@
 
-const { insertMessage } = require("../queries/messageQuery");
+const { insertMessage } = require("../database/queries/messageQuery");
 const nodemailer = require("nodemailer");
 
 const postNewMessage = async (req, res) => {
   const { vezeteknev, keresztnev, email, uzenet } = req.body;
 
   try {
-    const newMessage = await insertMessage(vezeteknev, keresztnev, email, uzenet);
+    await insertMessage(vezeteknev, keresztnev, email, uzenet);
 
     const transporter = nodemailer.createTransport({
       service: "gmail", 
