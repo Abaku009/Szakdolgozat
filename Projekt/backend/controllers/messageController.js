@@ -19,7 +19,7 @@ const postNewMessage = async (req, res) => {
     const mailOptions = {
       from: process.env.EMAIL,
       to: process.env.EMAIL, 
-      subject: `Új üzenet ${vezeteknev} ${keresztnev}-tól`,
+      subject: "Új üzenet jött egy felhasználótól!",
       text: `Feladó: ${vezeteknev} ${keresztnev} <${email}>\n\nÜzenet:\n${uzenet}`,
     };
 
