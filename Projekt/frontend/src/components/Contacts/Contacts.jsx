@@ -8,6 +8,7 @@ function Contacts() {
     const [LastName, setLastName] = useState("");
     const [Email, setEmail] = useState("");
     const [Text, setText] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const POSTMESSAGEAPI = import.meta.env.VITE_API_POST_MESSAGE_URL;
 
@@ -27,34 +28,35 @@ function Contacts() {
         setText(e.target.value);
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
+        if (loading) return;
+        setLoading(true);
 
-        fetch(POSTMESSAGEAPI, {
-            mode: "cors",
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            }, 
-            body: JSON.stringify({
-                vezeteknev: LastName,
-                keresztnev: FirstName,
-                email: Email,
-                uzenet: Text
-            })
-        })
-        .then(res => res.json())
-        .then(data => {
+        try {
+            const res = await fetch(POSTMESSAGEAPI, {
+                mode: "cors",
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    vezeteknev: LastName,
+                    keresztnev: FirstName,
+                    email: Email,
+                    uzenet: Text
+                })
+            });
+            const data = await res.json();
             alert(data.message);
             setFirstName("");
             setLastName("");
             setEmail("");
             setText("");
-        })
-        .catch(err => {
+        } catch (err) {
             console.error(err);
             alert("Hiba történt az üzenet küldésekor");
-        });
+        } finally {
+            setLoading(false);
+        }
     }
 
 
@@ -117,7 +119,7 @@ function Contacts() {
                         <input type="email" name="email" id="email" required placeholder="valamiemail@gmail.com" value={Email} onChange={emailChange}/>
                         <label htmlFor="uzenet">Üzenet: </label>
                         <textarea name="uzenet" id="uzenet" placeholder="Írj nekünk!" value={Text} maxLength={300} rows={4} cols={40} onChange={textChange}></textarea>
-                        <button type="submit">Küldés</button>
+                        <button type="submit" disabled={loading}>Küldés</button>
                     </form>
                 </div>
             </div>
