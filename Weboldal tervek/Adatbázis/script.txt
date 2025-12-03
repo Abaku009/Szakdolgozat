@@ -1,0 +1,207 @@
+-- =====================================================
+-- ENUM DEFINÍCIÓ
+-- =====================================================
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'reservation_mode') THEN
+        CREATE TYPE reservation_mode AS ENUM ('on_site', 'online');
+    END IF;
+END
+$$;
+
+-- =====================================================
+-- USERS
+-- =====================================================
+CREATE TABLE users (
+    user_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    first_name VARCHAR NOT NULL,
+    last_name VARCHAR NOT NULL,
+    email VARCHAR NOT NULL,
+    hashed_password VARCHAR NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    is_admin BOOLEAN DEFAULT FALSE
+);
+
+-- =====================================================
+-- MESSAGES
+-- =====================================================
+CREATE TABLE messages (
+    message_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    first_name VARCHAR NOT NULL,
+    last_name VARCHAR NOT NULL,
+    email VARCHAR NOT NULL,
+    message TEXT NOT NULL,
+    time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- =====================================================
+-- FILMS LANGUAGE / CATEGORY / STORAGE
+-- =====================================================
+CREATE TABLE films_language (
+    film_language_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    language VARCHAR NOT NULL
+);
+
+CREATE TABLE films_category (
+    film_category_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    genre VARCHAR NOT NULL
+);
+
+CREATE TABLE films_storage (
+    film_storage_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    quantity INTEGER NOT NULL DEFAULT 0
+);
+
+-- =====================================================
+-- FILMS
+-- =====================================================
+CREATE TABLE films (
+    film_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    title VARCHAR NOT NULL,
+    price VARCHAR NOT NULL,
+    format VARCHAR NOT NULL,
+    film_language_id INTEGER NOT NULL,
+    film_category_id INTEGER NOT NULL,
+    film_storage_id INTEGER NOT NULL,
+    CONSTRAINT fk_films_language FOREIGN KEY (film_language_id) 
+        REFERENCES films_language(film_language_id) ON UPDATE CASCADE ON DELETE RESTRICT,
+    CONSTRAINT fk_films_category FOREIGN KEY (film_category_id)
+        REFERENCES films_category(film_category_id) ON UPDATE CASCADE ON DELETE RESTRICT,
+    CONSTRAINT fk_films_storage FOREIGN KEY (film_storage_id)
+        REFERENCES films_storage(film_storage_id) ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+-- =====================================================
+-- SERIES LANGUAGE / CATEGORY / STORAGE
+-- =====================================================
+CREATE TABLE series_language (
+    series_language_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    language VARCHAR NOT NULL
+);
+
+CREATE TABLE series_category (
+    series_category_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    genre VARCHAR NOT NULL
+);
+
+CREATE TABLE series_storage (
+    series_storage_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    quantity INTEGER NOT NULL DEFAULT 0
+);
+
+-- =====================================================
+-- SERIES
+-- =====================================================
+CREATE TABLE series (
+    series_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    title VARCHAR NOT NULL,
+    price VARCHAR NOT NULL,
+    format VARCHAR NOT NULL,
+    series_language_id INTEGER NOT NULL,
+    series_category_id INTEGER NOT NULL,
+    series_storage_id INTEGER NOT NULL,
+    CONSTRAINT fk_series_language FOREIGN KEY (series_language_id)
+        REFERENCES series_language(series_language_id) ON UPDATE CASCADE ON DELETE RESTRICT,
+    CONSTRAINT fk_series_category FOREIGN KEY (series_category_id)
+        REFERENCES series_category(series_category_id) ON UPDATE CASCADE ON DELETE RESTRICT,
+    CONSTRAINT fk_series_storage FOREIGN KEY (series_storage_id)
+        REFERENCES series_storage(series_storage_id) ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+-- =====================================================
+-- RESERVATIONS
+-- =====================================================
+CREATE TABLE reservations (
+    reservation_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    mode reservation_mode NOT NULL,
+    reserved_date_from TIMESTAMP NOT NULL,
+    reserved_date_to TIMESTAMP NOT NULL,
+    reserved_from TIMESTAMP NOT NULL,
+    reserved_to TIMESTAMP NOT NULL,
+    CONSTRAINT fk_reservations_user FOREIGN KEY (user_id)
+        REFERENCES users(user_id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+-- =====================================================
+-- RESERVATION_ITEMS
+-- =====================================================
+CREATE TABLE reservation_items (
+    reservation_id INTEGER NOT NULL,
+    film_id INTEGER,
+    series_id INTEGER,
+    quantity INTEGER NOT NULL,
+    CONSTRAINT fk_reservation_items_reservation FOREIGN KEY (reservation_id)
+        REFERENCES reservations(reservation_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT fk_reservation_items_film FOREIGN KEY (film_id)
+        REFERENCES films(film_id) ON UPDATE CASCADE ON DELETE RESTRICT,
+    CONSTRAINT fk_reservation_items_series FOREIGN KEY (series_id)
+        REFERENCES series(series_id) ON UPDATE CASCADE ON DELETE RESTRICT,
+    CONSTRAINT chk_reservation_items_exclusive CHECK (
+        (film_id IS NOT NULL AND series_id IS NULL) OR
+        (film_id IS NULL AND series_id IS NOT NULL)
+    )
+);
+
+-- =====================================================
+-- MUSIC LANGUAGE / CATEGORY / STORAGE
+-- =====================================================
+CREATE TABLE music_language (
+    music_language_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    language VARCHAR NOT NULL
+);
+
+CREATE TABLE music_category (
+    music_category_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    genre VARCHAR NOT NULL
+);
+
+CREATE TABLE music_storage (
+    music_storage_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    quantity INTEGER NOT NULL DEFAULT 0
+);
+
+-- =====================================================
+-- MUSIC
+-- =====================================================
+CREATE TABLE music (
+    music_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    price VARCHAR NOT NULL,
+    format VARCHAR NOT NULL,
+    title VARCHAR NOT NULL,
+    performer VARCHAR NOT NULL,
+    music_language_id INTEGER NOT NULL,
+    music_category_id INTEGER NOT NULL,
+    music_storage_id INTEGER NOT NULL,
+    CONSTRAINT fk_music_language FOREIGN KEY (music_language_id)
+        REFERENCES music_language(music_language_id) ON UPDATE CASCADE ON DELETE RESTRICT,
+    CONSTRAINT fk_music_category FOREIGN KEY (music_category_id)
+        REFERENCES music_category(music_category_id) ON UPDATE CASCADE ON DELETE RESTRICT,
+    CONSTRAINT fk_music_storage FOREIGN KEY (music_storage_id)
+        REFERENCES music_storage(music_storage_id) ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+-- =====================================================
+-- MUSIC ORDERS
+-- =====================================================
+CREATE TABLE music_orders (
+    order_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_music_orders_user FOREIGN KEY (user_id)
+        REFERENCES users(user_id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+-- =====================================================
+-- MUSIC ORDER ITEMS
+-- =====================================================
+CREATE TABLE music_order_items (
+    order_id INTEGER NOT NULL,
+    music_id INTEGER NOT NULL,
+    quantity INTEGER NOT NULL,
+    CONSTRAINT fk_music_order_items_order FOREIGN KEY (order_id)
+        REFERENCES music_orders(order_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT fk_music_order_items_music FOREIGN KEY (music_id)
+        REFERENCES music(music_id) ON UPDATE CASCADE ON DELETE RESTRICT
+);
