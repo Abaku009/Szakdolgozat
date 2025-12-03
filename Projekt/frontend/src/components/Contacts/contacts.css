@@ -1,0 +1,88 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.kapcsolat, .irjnekunk {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    flex: 1 1 400px;
+}
+
+.kapcsolat p {
+    margin: 8px 0;
+    font-size: 16px;
+}
+
+#nyitvatartas {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+#nyitvatartas th, #nyitvatartas td {
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    text-align: left;
+}
+
+#nyitvatartas th {
+    background-color: #eee;
+}
+
+.irjnekunk form {
+    display: flex;
+    flex-direction: column;
+}
+
+.irjnekunk label {
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+.irjnekunk input,
+.irjnekunk textarea {
+    padding: 8px 10px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.irjnekunk button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.irjnekunk button:hover:enabled {
+    background-color: #555;
+}
+
+.irjnekunk button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        gap: 20px;
+    }
+}

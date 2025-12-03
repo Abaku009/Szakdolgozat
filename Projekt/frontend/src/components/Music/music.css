@@ -1,0 +1,54 @@
+.music-page {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.filters {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.filters select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-size: 15px;
+}
+
+.no-results {
+    margin-top: 30px;
+    font-size: 20px;
+    color: #c0392b;
+    font-weight: bold;
+}
+
+.musicCategory {
+  margin-bottom: 40px;
+}
+
+.musicCategory h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  border-left: 5px solid #007acc;
+  padding-left: 10px;
+}
+
+.musicItem {
+  background: #fafafa;
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  padding: 15px 20px;
+  margin-bottom: 12px;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
+}
+
+.musicItem p {
+  margin: 4px 0;
+}
+
+.musicItem strong {
+  color: #333;
+}
