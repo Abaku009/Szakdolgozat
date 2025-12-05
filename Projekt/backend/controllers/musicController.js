@@ -5,7 +5,7 @@ async function musicGet(req, res) {
     const music = await db.getAllMusic();
     res.status(200).json(music);
   } catch (error) {
-    console.error("Error fetching music:", error);
+    console.error("Error fetching music");
     res.status(500).send("Internal Server Error");
   }
 }

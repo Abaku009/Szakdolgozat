@@ -7,6 +7,8 @@ const port = process.env.PORT || 3000;
 
 const messageRouter = require("./routes/messageRouter");
 const musicRouter = require("./routes/musicRouter");
+const filmRouter = require("./routes/filmRouter");
+const seriesRouter = require("./routes/seriesRouter");
 
 app.use(cors());
 app.use(express.json());
@@ -15,6 +17,10 @@ app.use(express.urlencoded({extended: true}));
 
 app.use("/api/message", messageRouter);
 app.use("/api/music", musicRouter);
+app.use("/api/films", filmRouter);
+app.use("/api/series", seriesRouter);
+
+
 
 app.listen(port, () => {
     console.log("Server is running on port " + port);
