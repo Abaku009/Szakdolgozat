@@ -10,6 +10,10 @@ function MainPage() {
             <div className="mainpage-container">
                 <h1 className="mainpage-title">Üdv a MediaHaven-ben!</h1>
 
+                <img src="/mediahaven.png" 
+                     alt="MediaHaven üdvözlő kép" 
+                     className="mainpage-image" />
+
                 <p className="mainpage-intro">
                     Fedezd fel a <strong>legjobb zenéket</strong> és <strong>filmeket, sorozatokat </strong> 
                     helyben vagy online vásárlás/foglalás formájában. Egyszerűen, gyorsan és átláthatóan intézheted a rendeléseidet és foglalásaidat.
@@ -30,6 +34,9 @@ function MainPage() {
                 <p className="mainpage-footer-text">
                     MediaHaven – minden médiád egy helyen!
                 </p>
+
+                <br />
+                
             </div>
 
             <Footer />

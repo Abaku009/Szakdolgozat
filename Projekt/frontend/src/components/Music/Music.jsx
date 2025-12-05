@@ -91,7 +91,7 @@ function Music() {
 
             {Object.keys(filteredMusic).length === 0 && (
                 <div className="no-results">
-                    <p>A keresett termék nem elérhető.</p>
+                    <p>A keresett termék nem elérhető!</p>
                 </div>
             )}
 
@@ -107,6 +107,7 @@ function Music() {
                                 <p><strong>Formátum:</strong> {mus.format}</p>
                                 <p><strong>Ár:</strong> {mus.price} Ft</p>
                                 <p><strong>Darabszám:</strong> {mus.stock}</p>
+                                <p><button disabled={mus.stock === 0}>Kosárba helyezés</button></p>
                             </div>
                         ))}
                     </div>
