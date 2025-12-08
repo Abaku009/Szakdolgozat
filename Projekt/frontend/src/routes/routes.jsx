@@ -9,6 +9,7 @@ import ReservationCart from "../components/Cart/ReservationCart";
 import Contacts from "../components/Contacts/Contacts";
 import Registration from "../components/Login_Registration/Registration";
 import Login from "../components/Login_Registration/Login";
+import Profil from "../components/Profil/Profil";
 
 const routes = [
     {
@@ -50,6 +51,10 @@ const routes = [
     {
         path: "/bejelentkezes",
         element: <Login />,
+    },
+    {
+        path: "/profil",
+        element: <Profil />,
     },
     {
         path: "*",

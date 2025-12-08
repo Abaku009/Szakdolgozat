@@ -40,8 +40,8 @@ function Contacts() {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    vezeteknev: LastName,
                     keresztnev: FirstName,
+                    vezeteknev: LastName,
                     email: Email,
                     uzenet: Text
                 })

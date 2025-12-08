@@ -1,0 +1,94 @@
+.bejelentkezes {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 25px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.bejelentkezes form {
+    display: flex;
+    flex-direction: column;
+}
+
+.bejelentkezes label {
+    margin: 10px 0 5px;
+    font-weight: 500;
+}
+
+.bejelentkezes input {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.bejelentkezes input:focus {
+    border-color: #333;
+    outline: none;
+    box-shadow: 0 0 5px #555;
+}
+
+.bejelentkezes button {
+    margin-top: 20px;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.bejelentkezes button:hover:not(:disabled) {
+    background-color: #555;
+}
+
+.bejelentkezes button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.log {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 28px;
+}
+
+.linkButton {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.linkButton a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.linkButton a:hover {
+    text-decoration: underline;
+}
+
+.link-but {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    text-align: center;
+}
+
+.link-but:hover {
+    background-color: #555;
+}
+

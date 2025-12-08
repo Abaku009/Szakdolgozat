@@ -1,14 +1,21 @@
 import { Link } from "react-router";
 import Navbar from "../Navbar/Navbar"
 import Footer from "../Footer/Footer"
-import { useState } from "react"
+import { useState, useContext } from "react"
+import { UserContext } from "../../context/UserContext";
+import { useNavigate } from "react-router";
+import "../Login_Registration/login.css";
 
 function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const POSTLOGINAPI = import.meta.env.VITE_API_POST_LOGIN_URL;
+
+    const { setUser } = useContext(UserContext);
+    const navigate = useNavigate();
 
 
     function emailChange(e) {
@@ -23,6 +30,8 @@ function Login() {
         e.preventDefault();
 
         try {
+            setLoading(true);
+
             const res = await fetch(POSTLOGINAPI, {
                 mode: "cors",
                 method: "POST",
@@ -38,12 +47,17 @@ function Login() {
                 alert(data.message);
                 return;
             }
+            setUser(data.user);
+            navigate("/");
             alert(data.message);
+            alert("Üdvözlünk a MediaHaven-ben " + data.user.last_name + " " + data.user.first_name + "!");
             setEmail("");
             setPassword("");
         } catch(err) {
             console.error(err);
             alert("Hiba a bejelentkezés során");
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -53,7 +67,7 @@ function Login() {
 
             <Navbar />
 
-            <h1>Bejelentkezés</h1>
+            <h1 className="log">Bejelentkezés</h1>
 
             <div className="bejelentkezes">
                 <form onSubmit={handleSubmit}>
@@ -61,12 +75,12 @@ function Login() {
                     <input type="email" name="email" id="email" required placeholder="valamiemail@gmail.com" value={email} onChange={emailChange}/>
                     <label htmlFor="jelszo">Jelszó: </label>
                     <input type="password" name="jelszo" id="jelszo" required value={password} onChange={passwordChange}/>
-                    <button type="submit">Bejelentkezés</button>
+                    <button type="submit" disabled={loading}>{loading ? "Feldolgozás..." : "Bejelentkezés"}</button>
                 </form>
 
             </div>
 
-            <h4><Link to="/regisztracio">Még nincs fiókom</Link></h4>
+            <h4 className="linkButton"><Link to="/regisztracio" className="link-but">Még nincs fiókom</Link></h4>
 
             <Footer />
 
