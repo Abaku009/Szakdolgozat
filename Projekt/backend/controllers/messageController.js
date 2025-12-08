@@ -3,10 +3,10 @@ const { insertMessage } = require("../database/queries/messageQuery");
 const nodemailer = require("nodemailer");
 
 const postNewMessage = async (req, res) => {
-  const { vezeteknev, keresztnev, email, uzenet } = req.body;
+  const { keresztnev, vezeteknev, email, uzenet } = req.body;
 
   try {
-    await insertMessage(vezeteknev, keresztnev, email, uzenet);
+    await insertMessage(keresztnev, vezeteknev, email, uzenet);
 
     const transporter = nodemailer.createTransport({
       service: "gmail", 

@@ -72,6 +72,8 @@ const filmRouter = require("./routes/filmRouter");
 const seriesRouter = require("./routes/seriesRouter");
 const registrationRouter = require("./routes/registrationRouter");
 const loginRouter = require("./routes/loginRouter");
+const currentUserRouter = require("./routes/currentUserRouter");
+const logoutRouter = require("./routes/logoutRouter");
 
 
 
@@ -82,6 +84,8 @@ app.use("/api/films", filmRouter);
 app.use("/api/series", seriesRouter);
 app.use("/api/registration", registrationRouter);
 app.use("/api/login", loginRouter);
+app.use("/api/current_user", currentUserRouter);
+app.use("/api/logout", logoutRouter);
 
 
 app.listen(port, () => {
