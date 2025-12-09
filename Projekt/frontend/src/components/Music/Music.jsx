@@ -2,9 +2,18 @@ import { Link } from "react-router";
 import Navbar from "../Navbar/Navbar"
 import Footer from "../Footer/Footer"
 import { useState, useEffect } from "react";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
+import { CartContext } from "../../context/CartContext";
+import { useNavigate } from "react-router";
 import "../Music/music.css";
 
+
 function Music() {
+
+    const { user } = useContext(UserContext);
+    const { addToCart } = useContext(CartContext);
+    const navigate = useNavigate();
 
     const GETMUSICAPI = import.meta.env.VITE_API_GET_MUSIC_URL;
     const GETMUSICGENRESAPI = import.meta.env.VITE_API_GET_MUSIC_GENRES_URL;
@@ -62,6 +71,18 @@ function Music() {
 
 
 
+    function moveToCart(music) {
+        if(!user) {
+            alert("Kérjük jelentkezzen be!");
+            navigate("/regisztracio");
+            return;
+        } 
+
+        addToCart(music);
+    }
+
+
+
     return (
         <>
 
@@ -107,7 +128,7 @@ function Music() {
                                 <p><strong>Formátum:</strong> {mus.format}</p>
                                 <p><strong>Ár:</strong> {mus.price} Ft</p>
                                 <p><strong>Darabszám:</strong> {mus.stock}</p>
-                                <p><button disabled={mus.stock === 0}>Kosárba helyezés</button></p>
+                                <p><button disabled={mus.stock === 0} onClick={() => moveToCart(mus)}>Kosárba helyezés</button></p>
                             </div>
                         ))}
                     </div>

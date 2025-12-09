@@ -2,9 +2,15 @@ import { Link } from "react-router";
 import Navbar from "../Navbar/Navbar"
 import Footer from "../Footer/Footer"
 import { useState, useEffect} from "react"
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
+import { useNavigate } from "react-router";
 import "../Films/films.css";
 
 function Films() {
+
+    const { user } = useContext(UserContext);
+    const navigate = useNavigate();
 
     const GETFILMSAPI = import.meta.env.VITE_API_GET_FILMS_URL;
     const GETFILMSGENRESAPI = import.meta.env.VITE_API_GET_FILMS_GENRES_URL;
@@ -63,6 +69,14 @@ function Films() {
     }, [selectedOrder, selectedGenre, selectedLanguage, selectedFormat, films]);
 
 
+    function moveToCart() {
+        if(!user) {
+            alert("Kérjük jelentkezzen be!");
+            navigate("/regisztracio");
+        }
+    }
+
+
 
     return (
 
@@ -110,7 +124,7 @@ function Films() {
                                 <p><strong>Formátum: </strong>{film.format}</p>
                                 <p><strong>Ár: </strong>{film.price}</p>
                                 <p><strong>Darabszám: </strong>{film.stock}</p>
-                                <p><button disabled={film.stcok === 0}>Kosárba helyezés</button></p>
+                                <p><button disabled={film.stcok === 0} onClick={moveToCart}>Kosárba helyezés</button></p>
                             </div>
                         ))}
                     </div>

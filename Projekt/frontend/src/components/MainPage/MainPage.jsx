@@ -1,15 +1,24 @@
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import "../MainPage/mainpage.css";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 
 function MainPage() {
+
+    const { user } = useContext(UserContext);
+
     return (
         <div>
             <Navbar />
 
             <div className="mainpage-container">
-                <h1 className="mainpage-title">Üdv a MediaHaven-ben!</h1>
-
+                {user ? (
+                    <h1 className="mainpage-title">Üdv a MediaHaven-ben {user.last_name + " " + user.first_name}!</h1>
+                ) : (
+                    <h1 className="mainpage-title">Üdv a MediaHaven-ben!</h1>
+                )}
+                
                 <img src="/mediahaven.png" 
                      alt="MediaHaven üdvözlő kép" 
                      className="mainpage-image" />

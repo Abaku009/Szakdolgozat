@@ -2,10 +2,16 @@ import { Link } from "react-router";
 import Navbar from "../Navbar/Navbar"
 import Footer from "../Footer/Footer"
 import { useState, useEffect } from "react"
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
+import { useNavigate } from "react-router";
 import "../Series/series.css";
 
 
 function Series() {
+
+    const { user } = useContext(UserContext);
+    const navigate = useNavigate();
 
     const GETSERIESAPI = import.meta.env.VITE_API_GET_SERIES_URL;
     const GETSERIESGENRESAPI = import.meta.env.VITE_API_GET_SERIES_GENRES_URL;
@@ -67,6 +73,14 @@ function Series() {
     }, [series, selectedFormat, selectedGenre, selectedLanguage, selectedOrder]);
 
 
+    function moveToCart() {
+        if(!user) {
+            alert("Kérjük jelentkezzen be!");
+            navigate("/regisztracio");
+        }
+    }
+
+
 
 
     return (
@@ -114,7 +128,7 @@ function Series() {
                                 <p><strong>Formátum: </strong>{serie.format}</p>
                                 <p><strong>Ár: </strong>{serie.price}</p>
                                 <p><strong>Darabszám: </strong>{serie.stock}</p>
-                                <p><button disabled={serie.stock === 0}>Kosárba helyezés</button></p>
+                                <p><button disabled={serie.stock === 0} onClick={moveToCart}>Kosárba helyezés</button></p>
                             </div> 
                         ))}
                     </div>
