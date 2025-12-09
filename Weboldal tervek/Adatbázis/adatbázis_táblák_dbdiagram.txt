@@ -5,7 +5,6 @@ Table users {
   email varchar
   hashed_password varchar
   created_at timestamp
-  updated_at timestamp
   is_admin bool
 }
 
