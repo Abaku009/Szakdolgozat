@@ -72,3 +72,35 @@
   font-weight: bold;
 }
 
+.back-toCart {
+    margin-top: 15px;
+}
+
+.back-toCart a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.back-toCart a:hover {
+    text-decoration: underline;
+}
+
+.back-toCartButton {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    text-align: center;
+}
+
+.back-toCartButton:hover {
+    background-color: #555;
+}
+

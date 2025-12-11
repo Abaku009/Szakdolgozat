@@ -1,18 +1,19 @@
 import { Link } from "react-router";
 import Navbar from "../Navbar/Navbar"
 import Footer from "../Footer/Footer"
+import "../Cart/cart.css";
 
 function Cart() {
     return (
-        <div>
+        <>
             <Navbar />
-            <h1>Kosár</h1>
-            <Link to="/kosar/order-cart">Rendelési kosár</Link>
-            <br />
-            <Link to="/kosar/reservation-cart">Foglalási kosár</Link>
-            <br />
+            <h1 className="cart-h1">Kosár</h1>
+            <div className="Cart-links">
+                <Link to="/kosar/order-cart">Rendelési kosár</Link>
+                <Link to="/kosar/reservation-cart">Foglalási kosár</Link>
+            </div>
             <Footer />
-        </div>
+        </>
     );
 }
 

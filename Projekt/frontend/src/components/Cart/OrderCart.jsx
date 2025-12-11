@@ -45,7 +45,7 @@ function OrderCart() {
                 
             )}
 
-            <div><Link to="/kosar">Vissza</Link></div>
+            <h4 className="back-toCart"><Link to="/kosar" className="back-toCartButton">Vissza</Link></h4>
 
             <Footer />
 

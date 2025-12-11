@@ -6,26 +6,26 @@ export function CartProvider({ children }) {
     const [cart, setCart] = useState([]);
 
     function addToCart(music) {
-        setCart(prev => {
-            const existing = prev.find(item => item.music_id === music.music_id);
+        const existing = cart.find(item => item.music_id === music.music_id);
+        let newCart;
 
-            if (existing) {
-                if (existing.qty < existing.stock) {
-                    return prev.map(item =>
-                        item.music_id === music.music_id
-                            ? { ...item, qty: item.qty + 1 }
-                            : item
-                    ); 
-                } else {
-                    alert("Nincs több készleten!");
-                    return prev;
-                }
+        if (existing) {
+            if (existing.qty < existing.stock) {
+                newCart = cart.map(item =>
+                    item.music_id === music.music_id
+                        ? { ...item, qty: item.qty + 1 }
+                        : item
+                );
+                setCart(newCart);
+                alert("A terméket a kosárba helyeztük!");
+            } else {
+                alert("Nincs több készleten!");
             }
-
-            return [...prev, { ...music, qty: 1 }];
-        });
-
-        alert("A terméket a kosárba helyeztük!");
+        } else {
+            newCart = [...cart, { ...music, qty: 1 }];
+            setCart(newCart);
+            alert("A terméket a kosárba helyeztük!");
+        }
     }
 
     function increaseQty(id) {

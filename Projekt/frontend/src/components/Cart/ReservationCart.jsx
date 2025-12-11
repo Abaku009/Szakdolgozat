@@ -4,10 +4,10 @@ import Footer from "../Footer/Footer"
 
 function ReservationCart() {
     return (
-        <div>
+        <div className="reservation-cart">
             <Navbar />
-            <h1>Foglalási kosár</h1>
-            <div><Link to="/kosar">Vissza</Link></div>
+            <h1 className="reserve-cart-h1">Foglalási kosár</h1>
+            <div className="back-to-cart"><Link to="/kosar">Vissza</Link></div>
             <Footer />
         </div>
     );
