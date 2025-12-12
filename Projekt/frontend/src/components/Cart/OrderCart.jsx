@@ -12,6 +12,10 @@ function OrderCart() {
 
     const { cart, increaseQty, decreaseQty, removeItem } = useContext(CartContext);
 
+    const totalPrice = cart.reduce((sum, item) => {
+        return sum + item.price * item.qty;
+    }, 0);
+
     return (
 
         <>
@@ -47,11 +51,18 @@ function OrderCart() {
 
             <h4 className="back-toCart"><Link to="/kosar" className="back-toCartButton">Vissza</Link></h4>
 
+            {cart.length > 0 ? (
+                <p className="totalPrice">Összesen fizetendő: {totalPrice} Ft</p>
+            ) : (
+                null
+            )}
+            
             <Footer />
 
         </>
 
     );
+    
 }
 
 export default OrderCart;

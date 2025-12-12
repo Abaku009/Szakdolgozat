@@ -104,3 +104,10 @@
     background-color: #555;
 }
 
+.totalPrice {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-top: 1.5rem;
+    text-align: right;
+}
+
