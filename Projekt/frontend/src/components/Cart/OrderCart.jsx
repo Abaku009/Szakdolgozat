@@ -3,6 +3,8 @@ import Navbar from "../Navbar/Navbar"
 import Footer from "../Footer/Footer"
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
+import { UserContext } from "../../context/UserContext";
+import { useState } from "react";
 import "../Cart/ordercart.css";
 
 
@@ -10,11 +12,45 @@ import "../Cart/ordercart.css";
 
 function OrderCart() {
 
-    const { cart, increaseQty, decreaseQty, removeItem } = useContext(CartContext);
+    const { cart, setCart, increaseQty, decreaseQty, removeItem } = useContext(CartContext);
+    const { user } = useContext(UserContext);
+    const [loading, setLoading] = useState(false);
+
+    const POSTMUSICORDERAPI = import.meta.env.VITE_API_POST_MUSIC_ORDER_URL;
 
     const totalPrice = cart.reduce((sum, item) => {
         return sum + item.price * item.qty;
     }, 0);
+
+
+    async function handleOrder() {
+
+        setLoading(true);
+        
+        try {
+
+            const res = await fetch(POSTMUSICORDERAPI, {
+                mode: "cors",
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                body: JSON.stringify({
+                    music: cart,
+                    teljesAr: totalPrice,
+                    user: user
+                })
+            });
+            const data = await res.json();
+            alert(data.message);
+            setCart([]);
+        } catch(err) {
+            console.error(err);
+            alert("Hiba a rendelés feldolgozása során!");
+        } finally {
+            setLoading(false);
+        }
+
+    }
 
     return (
 
@@ -49,14 +85,20 @@ function OrderCart() {
                 
             )}
 
-            <h4 className="back-toCart"><Link to="/kosar" className="back-toCartButton">Vissza</Link></h4>
+            <div className="cartHeaderRow">
+                <h4 className="back-toCart">
+                    <Link to="/kosar" className="back-toCartButton">Vissza</Link>
+                </h4>
 
-            {cart.length > 0 ? (
-                <p className="totalPrice">Összesen fizetendő: {totalPrice} Ft</p>
-            ) : (
-                null
+                {cart.length > 0 && (
+                    <p className="totalPrice">Összesen fizetendő: {totalPrice} Ft</p>
+                )}
+            </div>
+
+            {cart.length > 0 && (
+                <button className="rendelesLeadas" onClick={handleOrder} disabled={loading}>Rendelés elküldése</button>
             )}
-            
+
             <Footer />
 
         </>
