@@ -10,7 +10,8 @@ async function getAllMusic() {
       music.format,
       music_category.genre AS categoryname,
       music_language.language AS languagename,
-      music_storage.quantity AS stock
+      music_storage.quantity AS stock,
+      music.music_storage_id
     FROM music
     JOIN music_category ON music.music_category_id = music_category.music_category_id
     JOIN music_language ON music.music_language_id = music_language.music_language_id

@@ -21,6 +21,18 @@ async function insertMusicOrder(userId, cart) {
                  VALUES ($1, $2, $3)`,
                 [orderId, item.music_id, item.qty]
             );
+
+            const stockResult = await client.query(
+                `UPDATE music_storage
+                 SET quantity = quantity - $1
+                 WHERE music_storage_id = $2
+                    AND quantity >= $1`,
+                [item.qty, item.music_storage_id]
+            );
+
+            if (stockResult.rowCount === 0) {
+                throw new Error("Nincs elegendő készlet!");
+            }
         }
 
         await client.query("COMMIT");
