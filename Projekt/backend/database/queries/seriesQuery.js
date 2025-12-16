@@ -9,7 +9,8 @@ async function getAllSeries() {
             series.format,
             series_category.genre AS categoryname,
             series_language.language AS languagename,
-            series_storage.quantity AS stock
+            series_storage.quantity AS stock,
+            series.series_storage_id
         FROM series
         JOIN series_category ON series.series_category_id = series_category.series_category_id
         JOIN series_language ON series.series_language_id = series_language.series_language_id
