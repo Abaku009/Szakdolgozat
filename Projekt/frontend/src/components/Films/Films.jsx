@@ -4,12 +4,14 @@ import Footer from "../Footer/Footer"
 import { useState, useEffect} from "react"
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
+import { ReservationCartContext } from "../../context/ReservationCartContext";
 import { useNavigate } from "react-router";
 import "../Films/films.css";
 
 function Films() {
 
     const { user } = useContext(UserContext);
+    const { addToCart } = useContext(ReservationCartContext);
     const navigate = useNavigate();
 
     const GETFILMSAPI = import.meta.env.VITE_API_GET_FILMS_URL;
@@ -69,11 +71,18 @@ function Films() {
     }, [selectedOrder, selectedGenre, selectedLanguage, selectedFormat, films]);
 
 
-    function moveToCart() {
+    function moveToCart(movie) {
         if(!user) {
             alert("Kérjük jelentkezzen be!");
             navigate("/regisztracio");
+            return;
         }
+
+        addToCart({
+            ...movie,
+            id: movie.film_id,
+            type: "film"
+        });
     }
 
 
@@ -124,7 +133,7 @@ function Films() {
                                 <p><strong>Formátum: </strong>{film.format}</p>
                                 <p><strong>Ár: </strong>{film.price}</p>
                                 <p><strong>Darabszám: </strong>{film.stock}</p>
-                                <p><button disabled={film.stcok === 0} onClick={moveToCart}>Kosárba helyezés</button></p>
+                                <p><button disabled={film.stock === 0} onClick={() => moveToCart(film)}>Kosárba helyezés</button></p>
                             </div>
                         ))}
                     </div>

@@ -1,0 +1,142 @@
+.reserveCartItem {
+  background: #fafafa;
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
+}
+
+.reserveCartItem p {
+  margin: 5px 0;
+}
+
+.reserveCartItem strong {
+  color: #333;
+}
+
+.quantityButtons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.quantityButtons button {
+  padding: 6px 10px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.quantityButtons button:hover {
+  background-color: #555;
+}
+
+.quantityButtons button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.reserveCartItem button.removeFromCart {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #c0392b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.reserveCartItem button.removeFromCart:hover {
+  background-color: #e74c3c;
+}
+
+.reserve-cart-h1 {
+  margin-bottom: 20px;
+  font-size: 26px;
+  border-left: 5px solid #222;
+  padding-left: 10px;
+}
+
+.noResult {
+  margin-top: 30px;
+  font-size: 20px;
+  color: #c0392b;
+  font-weight: bold;
+}
+
+.visszaKosarhoz {
+    margin-top: 15px;
+}
+
+.visszaKosarhoz a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.visszaKosarhoz a:hover {
+    text-decoration: underline;
+}
+
+.visszaKosarhozGomb {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    text-align: center;
+}
+
+.visszaKosarhozGomb:hover {
+    background-color: #555;
+}
+
+.teljesAr {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.cartOsszegzes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0 10px 0;
+}
+
+.foglalasElkuldes  {
+  margin-bottom: 60px;
+  padding: 10px 18px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+  display: block;
+  margin-left: auto;
+}
+
+.foglalasElkuldes:hover:not(:disabled) {
+  background-color: #555;
+}
+
+.foglalasElkuldes:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+

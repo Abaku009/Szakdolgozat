@@ -4,6 +4,7 @@ import Footer from "../Footer/Footer"
 import { useState, useEffect } from "react"
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
+import { ReservationCartContext } from "../../context/ReservationCartContext";
 import { useNavigate } from "react-router";
 import "../Series/series.css";
 
@@ -11,6 +12,7 @@ import "../Series/series.css";
 function Series() {
 
     const { user } = useContext(UserContext);
+    const { addToCart } = useContext(ReservationCartContext);
     const navigate = useNavigate();
 
     const GETSERIESAPI = import.meta.env.VITE_API_GET_SERIES_URL;
@@ -73,11 +75,18 @@ function Series() {
     }, [series, selectedFormat, selectedGenre, selectedLanguage, selectedOrder]);
 
 
-    function moveToCart() {
+    function moveToCart(series) {
         if(!user) {
             alert("Kérjük jelentkezzen be!");
             navigate("/regisztracio");
+            return;
         }
+
+        addToCart({
+            ...series,
+            id: series.series_id,
+            type: "series"
+        });
     }
 
 
@@ -128,7 +137,7 @@ function Series() {
                                 <p><strong>Formátum: </strong>{serie.format}</p>
                                 <p><strong>Ár: </strong>{serie.price}</p>
                                 <p><strong>Darabszám: </strong>{serie.stock}</p>
-                                <p><button disabled={serie.stock === 0} onClick={moveToCart}>Kosárba helyezés</button></p>
+                                <p><button disabled={serie.stock === 0} onClick={() => moveToCart(serie)}>Kosárba helyezés</button></p>
                             </div> 
                         ))}
                     </div>

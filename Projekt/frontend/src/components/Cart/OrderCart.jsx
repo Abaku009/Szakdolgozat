@@ -82,7 +82,6 @@ function OrderCart() {
                 <div className="no-results">
                     <p>A kosár jelenleg üres.</p>
                 </div>
-                
             )}
 
             <div className="cartHeaderRow">
