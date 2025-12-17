@@ -26,6 +26,12 @@ function Navbar() {
                 <Link to="/zenek">Zenék</Link>{" "}
                 <Link to="/filmek">Filmek</Link>{" "}
                 <Link to="/sorozatok">Sorozatok</Link>{" "}
+                {user && (
+                <>
+                    <Link to="/foglalas">Foglalás</Link>{" "}
+                    <Link to="/sajatFoglalasok">Saját foglalások</Link>{" "}
+                </>
+                )}
                 <a href="/kosar" onClick={handleCartClick}>Kosár</a>{" "}
                 <Link to="/kapcsolat">Kapcsolat</Link>{" "}
                 {user ? (

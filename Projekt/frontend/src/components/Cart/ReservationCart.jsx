@@ -1,9 +1,10 @@
 import { Link } from "react-router";
 import Navbar from "../Navbar/Navbar"
 import Footer from "../Footer/Footer"
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { ReservationCartContext } from "../../context/ReservationCartContext";
 import { UserContext } from "../../context/UserContext";
+import { useNavigate } from "react-router";
 import "../Cart/reservationcart.css";
 
 
@@ -12,11 +13,16 @@ function ReservationCart() {
 
     const { cart, setCart, increaseQty, decreaseQty, removeItem } = useContext(ReservationCartContext);
     const { user } = useContext(UserContext);
-    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     const totalPrice = cart.reduce((sum, currentItem) => {
         return sum + currentItem.price * currentItem.qty;
     }, 0);
+
+
+    function handleClick() {
+        navigate("/foglalas")
+    }
 
 
 
@@ -63,7 +69,7 @@ function ReservationCart() {
             </div>
 
             {cart.length > 0 && (
-                <button className="foglalasElkuldes" disabled={loading}>Foglalás</button>
+                <button className="foglalasElkuldes" onClick={handleClick}>Foglalás</button>
             )}
 
             <Footer />

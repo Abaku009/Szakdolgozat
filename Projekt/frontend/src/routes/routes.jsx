@@ -10,6 +10,10 @@ import Contacts from "../components/Contacts/Contacts";
 import Registration from "../components/Login_Registration/Registration";
 import Login from "../components/Login_Registration/Login";
 import Profil from "../components/Profil/Profil";
+import MainReservation from "../components/Reservations/MainReservation";
+import OnSiteReservation from "../components/Reservations/OnSiteReservation";
+import OnlineReservation from "../components/Reservations/OnlineReservation";
+import OwnReservations from "../components/OwnReservations/OwnReservations";
 
 const routes = [
     {
@@ -55,6 +59,22 @@ const routes = [
     {
         path: "/profil",
         element: <Profil />,
+    },
+    {
+        path: "/foglalas",
+        element: <MainReservation />,
+    },
+    {
+        path: "/foglalas/helybenFoglalas",
+        element: <OnSiteReservation />,
+    },
+    {
+        path: "/foglalas/onlineFoglalas",
+        element: <OnlineReservation />,
+    },
+    {
+        path: "/sajatFoglalasok",
+        element: <OwnReservations />,
     },
     {
         path: "*",
