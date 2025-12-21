@@ -115,10 +115,10 @@ CREATE TABLE reservations (
     reservation_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     user_id INTEGER NOT NULL,
     mode reservation_mode NOT NULL,
-    reserved_date_from TIMESTAMP NOT NULL,
-    reserved_date_to TIMESTAMP NOT NULL,
-    reserved_from TIMESTAMP NOT NULL,
-    reserved_to TIMESTAMP NOT NULL,
+    reserved_date_from DATE NOT NULL,
+    reserved_date_to DATE NOT NULL,
+    reserved_from TIME NOT NULL,
+    reserved_to TIME NOT NULL,
     CONSTRAINT fk_reservations_user FOREIGN KEY (user_id)
         REFERENCES users(user_id) ON UPDATE CASCADE ON DELETE CASCADE
 );

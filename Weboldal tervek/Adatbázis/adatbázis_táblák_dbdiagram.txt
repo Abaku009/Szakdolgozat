@@ -72,10 +72,10 @@ Table reservations {
   reservation_id integer [primary key, increment]
   user_id integer [ref: > users.user_id]
   mode enum('on_site', 'online') 
-  reserved_date_from timestamp
-  reserved_date_to timestamp
-  reserved_from timestamp 
-  reserved_to timestamp 
+  reserved_date_from date
+  reserved_date_to date
+  reserved_from time
+  reserved_to time
 }
 
 Table reservation_items {
