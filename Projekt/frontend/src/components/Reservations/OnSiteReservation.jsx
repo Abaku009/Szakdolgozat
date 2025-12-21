@@ -4,15 +4,27 @@ import Footer from "../Footer/Footer";
 import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { ReservationCartContext } from "../../context/ReservationCartContext";
+import { UserContext } from "../../context/UserContext";
+import "../Reservations/onsitereservation.css";
 
 function OnSiteReservation() {
 
-    const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
     const [startTime, setStartTime] = useState("");
     const endTime = "18:00";
 
-    const { cart } = useContext(ReservationCartContext);
+
+    const { cart, setCart } = useContext(ReservationCartContext);
+    const { user } = useContext(UserContext);
+    const [loading, setLoading] = useState(false);
+
+
+    const POSTONSITERESERVATIONAPI = import.meta.env.VITE_API_POST_ON_SITE_RESERVATION_URL;
+
+
+    const totalPrice = cart.reduce((sum, item) => {
+        return sum + item.price * item.qty;
+    }, 0);
 
 
     const today = new Date().toISOString().split("T")[0];
@@ -42,18 +54,46 @@ function OnSiteReservation() {
     }
 
 
-    function handleStartDateChange(e) {
+    function handleEndDateChange(e) {
         const selected = e.target.value;
-        setStartDate(selected);
-
-        if (!endDate || endDate < selected || endDate > getMaxEndDate(selected)) {
-            setEndDate(selected);
-        }
+        setEndDate(selected);
     }
 
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
+
         e.preventDefault();
+
+        setLoading(true);
+
+        try {
+
+            const res = await fetch(POSTONSITERESERVATIONAPI, {
+                mode: "cors",
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                body: JSON.stringify({
+                    termekek: cart,
+                    teljesAr: totalPrice,
+                    user: user,
+                    mode: "on_site",
+                    dateFrom: today,
+                    dateTo: endDate,
+                    timeFrom: startTime,
+                    timeTo: endTime
+                })
+            });
+            const data = await res.json();
+            alert(data.message);
+            setCart([]);
+            setEndDate("");
+        } catch(err) {
+            console.error(err);
+            alert("Hiba a foglalás feldolgozása során!");
+        } finally {
+            setLoading(false);
+        }
     }
 
     
@@ -64,6 +104,9 @@ function OnSiteReservation() {
                 <div className="empty-cart-message">
                     <h2>A foglalási kosarad üres!</h2>
                     <p>Kérjük, tegyél először valamit a foglalási kosaradba, mielőtt foglalnál.</p>
+                    <h4 className="back-to-reservations">
+                        <Link to="/foglalas" className="back-to-reservation-button">Vissza</Link>
+                    </h4>
                 </div>
                 <Footer />
             </>
@@ -77,7 +120,7 @@ function OnSiteReservation() {
 
             <Navbar />
 
-            <div className="on-site-reservation">
+            <div className="on-site-reservation-div">
 
                 <div className="cart-warning">
                     <p>A foglalás a kosaradban lévő termékekre vonatkozik. Megtekintheted a <Link to="/kosar/reservation-cart">foglalási kosárban</Link>.</p>
@@ -87,17 +130,19 @@ function OnSiteReservation() {
 
                 <form onSubmit={handleSubmit} className="on-site-form">
                     <label htmlFor="kezdodatum">Kezdődátum: </label>
-                    <input type="date" name="kezdodatum" id="kezdodatum" required value={startDate} min={today} onChange={handleStartDateChange}/>
+                    <input type="date" name="kezdodatum" id="kezdodatum" value={today} disabled/>
                     <label htmlFor="vegdatum">Végdátum: </label>
-                    <input type="date" name="vegdatum" id="vegdatum" required disabled={!startDate} value={endDate} min={startDate} max={startDate ? getMaxEndDate(startDate) : ""} onChange={e => setEndDate(e.target.value)}/>
+                    <input type="date" name="vegdatum" id="vegdatum" required value={endDate} min={today} max={getMaxEndDate(today)} onChange={handleEndDateChange}/>
                     <label htmlFor="kezdoido">Kezdőidő: </label>
                     <input type="time" name="kezdoido" id="kezdoido" value={startTime} disabled />
                     <label htmlFor="vegido">Végidő: </label>
                     <input type="time" name="vegido" id="vegido" value={endTime} disabled />
-                    <button type="submit" disabled={!startDate || !endDate}>Foglalás elküldése</button>
+                    <button type="submit" disabled={!endDate || loading}>Foglalás elküldése</button>
                 </form>
 
-                <Link to="/foglalas" className="visszaFoglalashoz">Vissza</Link>
+                <h4 className="back-to-reservations">
+                    <Link to="/foglalas" className="back-to-reservation-button">Vissza</Link>
+                </h4>
 
             </div>
 
