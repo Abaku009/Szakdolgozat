@@ -1,9 +1,10 @@
 import { Link } from "react-router";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useContext } from "react";
 import { ReservationCartContext } from "../../context/ReservationCartContext";
+import { UserContext } from "../../context/UserContext";
 import "../Reservations/onlinereservation.css";
 
 function OnlineReservation() {
@@ -13,7 +14,17 @@ function OnlineReservation() {
     const [startTime, setStartTime] = useState("");
     const endTime = "18:00";
 
-    const { cart } = useContext(ReservationCartContext);
+    const { cart, setCart } = useContext(ReservationCartContext);
+    const { user } = useContext(UserContext);
+    const [loading, setLoading] = useState(false);
+
+
+    const totalPrice = cart.reduce((sum, item) => {
+        return sum + item.price * item.qty;
+    }, 0);
+
+
+    const POSTONLINERESERVATIONAPI = import.meta.env.VITE_API_POST_ONLINE_RESERVATION_URL;
 
 
     const today = new Date().toISOString().split("T")[0];
@@ -45,8 +56,42 @@ function OnlineReservation() {
     }
 
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
+
         e.preventDefault();
+
+        setLoading(true);
+
+        try {
+
+            const res = await fetch(POSTONLINERESERVATIONAPI, {
+                mode: "cors",
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                body: JSON.stringify({
+                    termekek: cart,
+                    teljesAr: totalPrice,
+                    user: user,
+                    mode: "online",
+                    dateFrom: startDate,
+                    dateTo: endDate,
+                    timeFrom: startTime,
+                    timeTo: endTime
+                })
+            });
+            const data = await res.json();
+            alert(data.message);
+            setCart([]);
+            setStartDate("");
+            setEndDate("");
+            setStartTime("");
+        } catch(err) {
+            console.error(err);
+            alert("Hiba a foglalás feldolgozása során!");
+        } finally {
+            setLoading(false);
+        }
     }
 
     
@@ -89,7 +134,7 @@ function OnlineReservation() {
                     <input type="time" name="kezdoido" id="kezdoido" required value={startTime} onChange={handleTimeChange}/>
                     <label htmlFor="vegido">Végidő: </label>
                     <input type="time" name="vegido" id="vegido" value={endTime} disabled />
-                    <button type="submit" disabled={!startDate || !endDate || !startTime}>Foglalás elküldése</button>
+                    <button type="submit" disabled={!startDate || !endDate || !startTime || loading}>Foglalás elküldése</button>
                 </form>
 
                 <h4 className="back-to-reservations-header">
