@@ -1,8 +1,8 @@
 const { Router } = require("express");
-const onSiteReservationController = require("../controllers/onSiteReservationController");
+const onSiteReservationController = require("../controllers/reservationsController");
 const router = Router();
 
-router.post("/", onSiteReservationController.postOnSiteReservation);
+router.post("/", onSiteReservationController.postReservations);
 
 module.exports = router;
 

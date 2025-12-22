@@ -77,6 +77,7 @@ const logoutRouter = require("./routes/logoutRouter");
 const profilRouter = require("./routes/profilRouter");
 const musicOrderRouter = require("./routes/musicOrderRouter");
 const onSiteReservationRouter = require("./routes/onSiteReservationRouter");
+const onlineReservationRouter = require("./routes/onlineReservationRouter");
 
 
 
@@ -91,6 +92,7 @@ app.use("/api/logout", logoutRouter);
 app.use("/api/profil", profilRouter);
 app.use("/api/music_order", musicOrderRouter);
 app.use("/api/on_site_reservation", onSiteReservationRouter);
+app.use("/api/online_reservation", onlineReservationRouter);
 
 
 app.listen(port, () => {

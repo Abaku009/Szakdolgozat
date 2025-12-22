@@ -1,6 +1,6 @@
 const pool = require("../pool/pool");
 
-async function insertOnSiteReservation(userId, cart, mode, dateFrom, dateTo, timeFrom, timeTo) {
+async function insertReservations(userId, cart, mode, dateFrom, dateTo, timeFrom, timeTo) {
     const client = await pool.connect();
 
     try {
@@ -73,5 +73,5 @@ async function insertOnSiteReservation(userId, cart, mode, dateFrom, dateTo, tim
     }
 }
 
-module.exports = { insertOnSiteReservation };
+module.exports = { insertReservations };
 

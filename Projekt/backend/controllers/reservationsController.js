@@ -1,12 +1,12 @@
-const db = require("../database/queries/onSiteReservationQuery");
+const db = require("../database/queries/reservationsQuery");
 const nodemailer = require("nodemailer");
 
-async function postOnSiteReservation(req, res) {
+async function postReservations(req, res) {
     
     const { termekek, teljesAr, user, mode, dateFrom, dateTo, timeFrom, timeTo } = req.body;
 
     try {
-        const reservationId = await db.insertOnSiteReservation(user.user_id, termekek, mode, dateFrom, dateTo, timeFrom, timeTo);
+        const reservationId = await db.insertReservations(user.user_id, termekek, mode, dateFrom, dateTo, timeFrom, timeTo);
 
         const reservationItemsText = termekek
             .map(item => 
@@ -66,5 +66,5 @@ MediaHaven
 
 }
 
-module.exports = { postOnSiteReservation };
+module.exports = { postReservations };
 
