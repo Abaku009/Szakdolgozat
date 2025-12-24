@@ -7,12 +7,14 @@ import { ReservationCartContext } from "../../context/ReservationCartContext";
 import { UserContext } from "../../context/UserContext";
 import "../Reservations/onlinereservation.css";
 
+
 function OnlineReservation() {
 
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
     const [startTime, setStartTime] = useState("");
     const endTime = "18:00";
+
 
     const { cart, setCart } = useContext(ReservationCartContext);
     const { user } = useContext(UserContext);
@@ -30,6 +32,7 @@ function OnlineReservation() {
     const today = new Date().toISOString().split("T")[0];
 
 
+
     function getMaxEndDate(start) {
         const d = new Date(start);
         d.setDate(d.getDate() + 14);
@@ -38,22 +41,61 @@ function OnlineReservation() {
     }
 
 
+
     function handleStartDateChange(e) {
         const selected = e.target.value;
-        setStartDate(selected);
 
-        if (!endDate || endDate < selected || endDate > getMaxEndDate(selected)) {
-            setEndDate(selected);
+        if (!isWeekday(selected)) {
+            alert("Csak hétköznapra (hétfő–péntek) lehet foglalni!");
+            setStartDate("");
+            return;
         }
+
+        setStartDate(selected);
     }
+
+
+
+    function handleEndDateChange(e) {
+        const selected = e.target.value;
+
+        if (!isWeekday(selected)) {
+            alert("Csak hétköznapra (hétfő–péntek) lehet foglalni!");
+            setEndDate("");
+            return;
+        }
+
+        setEndDate(selected);
+    }
+
+
+
+    function isWeekday(dateString) {
+        const date = new Date(dateString);
+        const day = date.getDay(); 
+        return day !== 0 && day !== 6;
+    }
+
 
 
     function handleTimeChange(e) {
         const time = e.target.value;
-        if (time < "08:00") e.target.value = "08:00";
-        if (time > "17:00") e.target.value = "17:00";
+
+        if (time < "08:00") {
+            alert("Foglalás kezdete csak 08:00 és 17:00 között lehetséges!")
+            setStartTime("08:00");
+            return;
+        } 
+
+        if (time > "17:00") {
+            alert("Foglalás kezdete csak 08:00 és 17:00 között lehetséges!")
+            setStartTime("17:00");
+            return;
+        } 
+
         setStartTime(e.target.value);
     }
+
 
 
     async function handleSubmit(e) {
@@ -95,6 +137,7 @@ function OnlineReservation() {
     }
 
     
+
     if (cart.length === 0) {
         return (
             <>
@@ -110,6 +153,8 @@ function OnlineReservation() {
             </>
         );
     }
+
+
 
     return (
 
@@ -129,9 +174,9 @@ function OnlineReservation() {
                     <label htmlFor="kezdodatum">Kezdődátum: </label>
                     <input type="date" name="kezdodatum" id="kezdodatum" required value={startDate} min={today} onChange={handleStartDateChange}/>
                     <label htmlFor="vegdatum">Végdátum: </label>
-                    <input type="date" name="vegdatum" id="vegdatum" required disabled={!startDate} value={endDate} min={startDate} max={startDate ? getMaxEndDate(startDate) : ""} onChange={e => setEndDate(e.target.value)}/>
+                    <input type="date" name="vegdatum" id="vegdatum" required disabled={!startDate} value={endDate} min={startDate} max={startDate ? getMaxEndDate(startDate) : ""} onChange={handleEndDateChange}/>
                     <label htmlFor="kezdoido">Kezdőidő: </label>
-                    <input type="time" name="kezdoido" id="kezdoido" required value={startTime} onChange={handleTimeChange}/>
+                    <input type="time" name="kezdoido" id="kezdoido" required value={startTime} onChange={handleTimeChange} min="08:00" max="17:00"/>
                     <label htmlFor="vegido">Végidő: </label>
                     <input type="time" name="vegido" id="vegido" value={endTime} disabled />
                     <button type="submit" disabled={!startDate || !endDate || !startTime || loading}>Foglalás elküldése</button>

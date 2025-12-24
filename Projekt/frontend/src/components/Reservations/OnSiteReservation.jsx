@@ -7,6 +7,7 @@ import { ReservationCartContext } from "../../context/ReservationCartContext";
 import { UserContext } from "../../context/UserContext";
 import "../Reservations/onsitereservation.css";
 
+
 function OnSiteReservation() {
 
     const [endDate, setEndDate] = useState("");
@@ -17,14 +18,15 @@ function OnSiteReservation() {
     const { cart, setCart } = useContext(ReservationCartContext);
     const { user } = useContext(UserContext);
     const [loading, setLoading] = useState(false);
-
-
-    const POSTONSITERESERVATIONAPI = import.meta.env.VITE_API_POST_ON_SITE_RESERVATION_URL;
+    const [shopOpen, setShopOpen] = useState(false);
 
 
     const totalPrice = cart.reduce((sum, item) => {
         return sum + item.price * item.qty;
     }, 0);
+
+
+    const POSTONSITERESERVATIONAPI = import.meta.env.VITE_API_POST_ON_SITE_RESERVATION_URL;
 
 
     const today = new Date().toISOString().split("T")[0];
@@ -46,6 +48,32 @@ function OnSiteReservation() {
 
 
 
+    useEffect(() => {
+        function checkShopStatus() {
+            const now = new Date();
+            const day = now.getDay();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+
+            const currentMinutes = hours * 60 + minutes;
+            const openMinutes = 8 * 60;
+            const closeMinutes = 18 * 60;
+
+            const isWeekday = day >= 1 && day <= 5;
+            const isOpenTime = currentMinutes >= openMinutes && currentMinutes < closeMinutes;
+
+            setShopOpen(isWeekday && isOpenTime);
+        }
+
+        checkShopStatus();
+        const interval = setInterval(checkShopStatus, 60000);
+
+        return () => clearInterval(interval);
+    }, []);
+
+
+
+
     function getMaxEndDate(start) {
         const d = new Date(start);
         d.setDate(d.getDate() + 14);
@@ -54,10 +82,27 @@ function OnSiteReservation() {
     }
 
 
+
     function handleEndDateChange(e) {
         const selected = e.target.value;
+
+        if (!isWeekday(selected)) {
+            alert("Csak hétköznapra lehet végdátumot választani (H–P).");
+            setEndDate("");
+            return;
+        }
+
         setEndDate(selected);
     }
+
+
+
+    function isWeekday(dateString) {
+        const date = new Date(dateString);
+        const day = date.getDay(); 
+        return day !== 0 && day !== 6;
+    }
+
 
 
     async function handleSubmit(e) {
@@ -96,6 +141,32 @@ function OnSiteReservation() {
         }
     }
 
+
+
+
+    if (!shopOpen) {
+        return (
+            <>
+                <Navbar />
+                <div className="empty-cart-message">
+                    <h2>Az üzlet jelenleg zárva van</h2>
+                    <p>
+                        Nyitvatartás: <br />
+                        Hétfő–Péntek 08:00–18:00
+                    </p>
+                    <h4 className="back-to-reservations">
+                        <Link to="/foglalas" className="back-to-reservation-button">
+                            Vissza
+                        </Link>
+                    </h4>
+                </div>
+                <Footer />
+            </>
+        );
+    }
+
+
+
     
     if (cart.length === 0) {
         return (
@@ -112,6 +183,7 @@ function OnSiteReservation() {
             </>
         );
     }
+
 
 
     return (
