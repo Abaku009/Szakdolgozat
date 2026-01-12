@@ -1,10 +1,12 @@
 require("dotenv").config();
 
+
 const db = require("./database/queries/loginQuery");
 const bcrypt = require("bcrypt");
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require('passport-local').Strategy;
+
 
 const express = require("express");
 const app = express();
@@ -17,10 +19,13 @@ app.use(cors({
     credentials: true
 }));
 
+
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+
 app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: false }));
+
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -50,9 +55,11 @@ passport.use(
     })
 );
 
+
 passport.serializeUser((user, done) => {
     done(null, user.user_id)
 });
+
 
 passport.deserializeUser(async (id, done) => {
     try {
@@ -78,7 +85,7 @@ const profilRouter = require("./routes/profilRouter");
 const musicOrderRouter = require("./routes/musicOrderRouter");
 const onSiteReservationRouter = require("./routes/onSiteReservationRouter");
 const onlineReservationRouter = require("./routes/onlineReservationRouter");
-
+const ownReservationsRouter = require("./routes/ownReservationsRouter");
 
 
 app.use("/api/message", messageRouter);
@@ -93,6 +100,7 @@ app.use("/api/profil", profilRouter);
 app.use("/api/music_order", musicOrderRouter);
 app.use("/api/on_site_reservation", onSiteReservationRouter);
 app.use("/api/online_reservation", onlineReservationRouter);
+app.use("/api/own_reservations", ownReservationsRouter);
 
 
 app.listen(port, () => {
