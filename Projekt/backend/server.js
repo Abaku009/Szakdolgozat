@@ -24,7 +24,16 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 
-app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: false }));
+app.use(session({
+    secret: process.env.SESSION_SECRET, 
+    resave: false, 
+    saveUninitialized: false,
+    cookie: {
+        httpOnly: true,
+        sameSite: "lax",
+        secure: false
+    } 
+}));
 
 
 app.use(passport.initialize());
