@@ -32,7 +32,7 @@ function Navbar() {
                     <Link to="/sajatFoglalasok">Saját foglalások</Link>{" "}
                 </>
                 )}
-                <a href="/kosar" onClick={handleCartClick}>Kosár</a>{" "}
+                <Link to="/kosar" onClick={handleCartClick}>Kosár</Link>{" "}
                 <Link to="/kapcsolat">Kapcsolat</Link>{" "}
                 {user ? (
                     <Link to="/profil">Profil</Link>

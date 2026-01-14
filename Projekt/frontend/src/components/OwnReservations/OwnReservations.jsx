@@ -14,6 +14,9 @@ function OwnReservations() {
 
 
     useEffect(() => {
+
+        if (!user) return;
+
         fetch(GETOWNRESERVATIONSAPI, {
             method: "POST",
             headers: {
@@ -28,7 +31,7 @@ function OwnReservations() {
             .then(data => {
                 setReservations(groupReservations(data));
             });
-    }, []);
+    }, [user]);
 
 
     function groupReservations(rows) {

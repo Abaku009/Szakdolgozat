@@ -1,4 +1,3 @@
-import { Link } from "react-router";
 import Navbar from "../Navbar/Navbar"
 import Footer from "../Footer/Footer"
 import { useState, useEffect } from "react";
