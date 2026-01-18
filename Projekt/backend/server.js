@@ -1,3 +1,4 @@
+process.env.DOTENV_CONFIG_QUIET = "true";
 require("dotenv").config();
 
 
@@ -95,6 +96,7 @@ const musicOrderRouter = require("./routes/musicOrderRouter");
 const onSiteReservationRouter = require("./routes/onSiteReservationRouter");
 const onlineReservationRouter = require("./routes/onlineReservationRouter");
 const ownReservationsRouter = require("./routes/ownReservationsRouter");
+const adminReservationsRouter = require("./routes/adminReservationsRouter");
 
 
 app.use("/api/message", messageRouter);
@@ -110,6 +112,7 @@ app.use("/api/music_order", musicOrderRouter);
 app.use("/api/on_site_reservation", onSiteReservationRouter);
 app.use("/api/online_reservation", onlineReservationRouter);
 app.use("/api/own_reservations", ownReservationsRouter);
+app.use("/api/admin_reservations", adminReservationsRouter);
 
 
 app.listen(port, () => {
