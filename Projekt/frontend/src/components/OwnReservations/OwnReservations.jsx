@@ -71,41 +71,43 @@ function OwnReservations() {
 
             <Navbar />
 
-            <h1>Saját foglalások</h1>
+            <div className="own-reservations-page">
+                <h1>Saját foglalások</h1>
 
-            {reservations.length === 0 && (
-                <p className="no-reservations">Nincs még foglalásod.</p>
-            )}
+                {reservations.length === 0 && (
+                    <p className="no-reservations">Nincs még foglalásod.</p>
+                )}
 
-            {reservations.map(reservation => (
-                <div key={reservation.reservation_id} className="reservation-card">
-                    <h3>
-                        Foglalás #{reservation.reservation_id} (
-                        {reservation.mode === "on_site"
-                            ? "Helyben"
-                            : "Online"}
-                        )
-                    </h3>
+                {reservations.map(reservation => (
+                    <div key={reservation.reservation_id} className="reservation-card">
+                        <h3>
+                            Foglalás #{reservation.reservation_id} (
+                            {reservation.mode === "on_site"
+                                ? "Helyben"
+                                : "Online"}
+                            )
+                        </h3>
 
-                    <p>
-                        {reservation.reserved_date_from} – {reservation.reserved_date_to}
-                    </p>
+                        <p>
+                            {reservation.reserved_date_from} – {reservation.reserved_date_to}
+                        </p>
 
-                    <p>
-                        {reservation.reserved_from} –{" "}
-                        {reservation.reserved_to}
-                    </p>
+                        <p>
+                            {reservation.reserved_from} –{" "}
+                            {reservation.reserved_to}
+                        </p>
 
-                    <ul>
-                        {reservation.items.map((item, index) => (
-                            <li key={index}>
-                                {item.title} – {item.quantity} db
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            ))}
-
+                        <ul>
+                            {reservation.items.map((item, index) => (
+                                <li key={index}>
+                                    {item.title} – {item.quantity} db
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
+            </div>
+            
             <Footer />
 
         </>

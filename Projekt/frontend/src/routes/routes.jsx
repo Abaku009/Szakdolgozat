@@ -14,6 +14,7 @@ import MainReservation from "../components/Reservations/MainReservation";
 import OnSiteReservation from "../components/Reservations/OnSiteReservation";
 import OnlineReservation from "../components/Reservations/OnlineReservation";
 import OwnReservations from "../components/OwnReservations/OwnReservations";
+import AdminReservations from "../components/Admin/AdminReservations/AdminReservations";
 
 const routes = [
     {
@@ -75,6 +76,10 @@ const routes = [
     {
         path: "/sajatFoglalasok",
         element: <OwnReservations />,
+    },
+    {
+        path: "/admin_foglalasok",
+        element: <AdminReservations />,
     },
     {
         path: "*",

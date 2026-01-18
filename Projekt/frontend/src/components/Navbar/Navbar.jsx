@@ -6,8 +6,10 @@ import { useNavigate } from "react-router";
 
 function Navbar() {
 
-    const { user } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
     const navigate = useNavigate();
+
+    const GETLOGOUTAPI = import.meta.env.VITE_API_GET_LOGOUT_URL;
 
     function handleCartClick(e) {
         e.preventDefault();
@@ -19,28 +21,55 @@ function Navbar() {
         }
     }
 
+    async function logOut() {
+
+        try {
+            const res = await fetch(GETLOGOUTAPI, { credentials: "include" });
+            const data = await res.json();
+            alert(data.message);
+            setUser(null);
+            navigate("/");
+        } catch(err) {
+            console.log(err);
+        }
+    }
+
     return (
         <div className="Navbar">
             <div className="Links">
-                <Link to="/">Kezdőlap</Link>{" "}
-                <Link to="/zenek">Zenék</Link>{" "}
-                <Link to="/filmek">Filmek</Link>{" "}
-                <Link to="/sorozatok">Sorozatok</Link>{" "}
-                {user && (
-                <>
-                    <Link to="/foglalas">Foglalás</Link>{" "}
-                    <Link to="/sajatFoglalasok">Saját foglalások</Link>{" "}
-                </>
-                )}
-                <Link to="/kosar" onClick={handleCartClick}>Kosár</Link>{" "}
-                <Link to="/kapcsolat">Kapcsolat</Link>{" "}
-                {user ? (
-                    <Link to="/profil">Profil</Link>
+                {user?.is_admin ? (
+                    <>
+                        <Link to="/">Kezdőlap</Link>{" "}
+                        <Link to="/admin_zenek">Admin Zenék</Link>{" "}
+                        <Link to="/admin_filmek">Admin Filmek</Link>{" "}
+                        <Link to="/admin_sorozatok">Admin Sorozatok</Link>{" "}
+                        <Link to="/admin_profilok">Admin Profilok</Link>{" "}
+                        <Link to="/admin_foglalasok">Admin Foglalások</Link>{" "}
+                        <Link onClick={logOut}>Kijelentkezés</Link>
+                    </>
                 ) : (
-                    <Link to="/regisztracio">Bejelentkezés/Regisztráció</Link>
+                    <>
+                        <Link to="/">Kezdőlap</Link>{" "}
+                        <Link to="/zenek">Zenék</Link>{" "}
+                        <Link to="/filmek">Filmek</Link>{" "}
+                        <Link to="/sorozatok">Sorozatok</Link>{" "}
+                        {user && (
+                            <>
+                                <Link to="/foglalas">Foglalás</Link>{" "}
+                                <Link to="/sajatFoglalasok">Saját foglalások</Link>{" "}
+                            </>
+                        )}
+                        <Link to="/kosar" onClick={handleCartClick}>Kosár</Link>{" "}
+                        <Link to="/kapcsolat">Kapcsolat</Link>{" "}
+                        {user ? (
+                            <Link to="/profil">Profil</Link>
+                        ) : (
+                            <Link to="/regisztracio">Bejelentkezés/Regisztráció</Link>
+                        )}
+                    </>
                 )}
             </div>
-        </div>
+        </div> 
     );
 }
 
