@@ -38,6 +38,7 @@ function Contacts() {
             const res = await fetch(POSTMESSAGEAPI, {
                 mode: "cors",
                 method: "POST",
+                credentials: "include",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     keresztnev: FirstName,

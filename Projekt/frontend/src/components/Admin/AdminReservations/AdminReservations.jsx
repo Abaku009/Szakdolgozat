@@ -2,6 +2,7 @@ import Navbar from "../../Navbar/Navbar";
 import Footer from "../../Footer/Footer";
 import { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../../context/UserContext";
+import "../AdminReservations/adminreservations.css";
 
 function AdminReservations() {
 
@@ -33,6 +34,7 @@ function AdminReservations() {
     }, [user]);
 
 
+
     function groupReservations(rows) {
     const result = [];
 
@@ -50,7 +52,7 @@ function AdminReservations() {
       }
 
       if (row.reservation_id) { 
-        let reservation = user.reservations.find(r => r.reservation_id === row.reservation_id);
+        let reservation = user.reservations.find(res => res.reservation_id === row.reservation_id);
         if (!reservation) {
           reservation = {
             reservation_id: row.reservation_id,
@@ -93,7 +95,7 @@ function AdminReservations() {
                         <h2>{user.last_name} {user.first_name} ({user.email})</h2>
 
                         {user.reservations.length === 0 ? (
-                            <p className="no_reservations">Nincs foglalásuk.</p>
+                            <p className="no_reservations">Nincs foglalása.</p>
                         ) : (
                             user.reservations.map(reservation => (
                                 <div key={reservation.reservation_id} className="reservation_card">
@@ -104,8 +106,8 @@ function AdminReservations() {
                                     <p>{reservation.reserved_date_from} – {reservation.reserved_date_to}</p>
                                     <p>{reservation.reserved_from} – {reservation.reserved_to}</p>
                                     <ul>
-                                        {reservation.items.map((item, idx) => (
-                                            <li key={idx}>{item.title} – {item.quantity} db</li>
+                                        {reservation.items.map((item, index) => (
+                                            <li key={index}>{item.title} – {item.quantity} db</li>
                                         ))}
                                     </ul>
                                     <button 

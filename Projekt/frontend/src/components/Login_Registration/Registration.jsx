@@ -49,6 +49,7 @@ function Registration() {
             const res = await fetch(POSTREGISTRATIONAPI, {
                 mode: "cors",
                 method: "POST",
+                credentials: "include",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     vezeteknev: lastName,
