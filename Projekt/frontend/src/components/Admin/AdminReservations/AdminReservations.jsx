@@ -4,6 +4,7 @@ import { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../../context/UserContext";
 import "../AdminReservations/adminreservations.css";
 
+
 function AdminReservations() {
 
     const [reservations, setReservations ] = useState([]);
@@ -34,47 +35,47 @@ function AdminReservations() {
     }, [user]);
 
 
-
     function groupReservations(rows) {
-    const result = [];
+        const result = [];
 
-    rows.forEach(row => {
-      let user = result.find(usr => usr.user_id === row.user_id);
-      if (!user) {
-        user = {
-          user_id: row.user_id,
-          first_name: row.first_name,
-          last_name: row.last_name,
-          email: row.email,
-          reservations: []
-        };
-        result.push(user);
-      }
+        rows.forEach(row => {
+            let user = result.find(usr => usr.user_id === row.user_id);
+            if (!user) {
+                user = {
+                    user_id: row.user_id,
+                    first_name: row.first_name,
+                    last_name: row.last_name,
+                    email: row.email,
+                    reservations: []
+                };
+                result.push(user);
+            }
 
-      if (row.reservation_id) { 
-        let reservation = user.reservations.find(res => res.reservation_id === row.reservation_id);
-        if (!reservation) {
-          reservation = {
-            reservation_id: row.reservation_id,
-            mode: row.mode,
-            reserved_date_from: row.reserved_date_from,
-            reserved_date_to: row.reserved_date_to,
-            reserved_from: row.reserved_from,
-            reserved_to: row.reserved_to,
-            items: []
-          };
-          user.reservations.push(reservation);
-        }
+            if (row.reservation_id) { 
+                let reservation = user.reservations.find(res => res.reservation_id === row.reservation_id);
+                if (!reservation) {
+                    reservation = {
+                        reservation_id: row.reservation_id,
+                        mode: row.mode,
+                        reserved_date_from: row.reserved_date_from,
+                        reserved_date_to: row.reserved_date_to,
+                        reserved_from: row.reserved_from,
+                        reserved_to: row.reserved_to,
+                        items: []
+                    };
+                    user.reservations.push(reservation);
+                }
 
-        reservation.items.push({
-          title: row.film_title || row.series_title,
-          quantity: row.quantity
+                reservation.items.push({
+                    title: row.film_title || row.series_title,
+                    quantity: row.quantity
+                });
+            }
         });
-      }
-    });
 
-    return result;
-  }
+        return result;
+
+    }
 
 
     return (

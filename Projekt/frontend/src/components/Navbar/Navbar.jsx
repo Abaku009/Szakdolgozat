@@ -62,7 +62,10 @@ function Navbar() {
                         <Link to="/kosar" onClick={handleCartClick}>Kosár</Link>{" "}
                         <Link to="/kapcsolat">Kapcsolat</Link>{" "}
                         {user ? (
-                            <Link to="/profil">Profil</Link>
+                            <>
+                                <Link to="/profil">Profil</Link>
+                                <Link onClick={logOut}>Kijelentkezés</Link>
+                            </>
                         ) : (
                             <Link to="/regisztracio">Bejelentkezés/Regisztráció</Link>
                         )}
