@@ -14,6 +14,8 @@ async function getAllUsersReservations() {
             reservations.reserved_from,
             reservations.reserved_to,
             reservation_items.quantity,
+            reservation_items.film_id,
+            reservation_items.series_id,
             films.title AS film_title,
             series.title AS series_title
         FROM users
