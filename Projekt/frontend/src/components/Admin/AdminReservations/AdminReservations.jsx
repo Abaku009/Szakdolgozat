@@ -9,9 +9,11 @@ function AdminReservations() {
 
     const [reservations, setReservations ] = useState([]);
     const { user } = useContext(UserContext);
+    const [isDeleting, setIsDeleting] = useState(false);
 
 
     const GETADMINRESERVATIONSAPI = import.meta.env.VITE_API_GET_ADMIN_RESERVATIONS_URL;
+    const POSTADMINRESERVATIONSDELETEAPI = import.meta.env.VITE_API_POST_ADMIN_RESERVATIONS_DELETE_URL;
 
 
     useEffect(() => {
@@ -67,13 +69,65 @@ function AdminReservations() {
                 }
 
                 reservation.items.push({
-                    title: row.film_title || row.series_title,
+                    id: row.film_id ?? row.series_id,
+                    type: row.film_id ? "film" : "series", 
+                    title: row.film_id ? row.film_title : row.series_title,
                     quantity: row.quantity
                 });
             }
         });
 
         return result;
+
+    }
+
+
+    async function handleDeleteReservation(user, reservation) {
+        const reason = prompt("Add meg a törlés okát:");
+
+        if (!reason || reason.trim() === "") {
+            alert("A törlés oka kötelező.");
+            return;
+        }
+
+        try {
+            setIsDeleting(true);
+
+            alert("Foglalás törlése folyamatban...");
+
+            const res = await fetch(POSTADMINRESERVATIONSDELETEAPI, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: "include",
+                body: JSON.stringify({
+                    user,
+                    reservation,
+                    reason
+                })
+            });
+
+            const data = await res.json();
+            alert(data.message);
+            setReservations(prev =>
+                prev.map(usr =>
+                    usr.user_id === user.user_id
+                        ? {
+                            ...usr,
+                            reservations: usr.reservations.filter(
+                                reserv => reserv.reservation_id !== reservation.reservation_id
+                            )
+                        }
+                        : usr
+                )
+            );
+        } catch(err) {
+            console.error(err);
+            alert("Hiba történt a törlés során.");
+        } finally {
+            setIsDeleting(false);
+        }
 
     }
 
@@ -113,8 +167,10 @@ function AdminReservations() {
                                     </ul>
                                     <button 
                                         className="deleteButton"
+                                        onClick={() => handleDeleteReservation(user, reservation)}
+                                        disabled={isDeleting}
                                     >
-                                        Törlés 
+                                        {isDeleting ? "Törlés..." : "Törlés"} 
                                     </button>
                                 </div>
                             ))
