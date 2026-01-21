@@ -15,6 +15,7 @@ import OnSiteReservation from "../components/Reservations/OnSiteReservation";
 import OnlineReservation from "../components/Reservations/OnlineReservation";
 import OwnReservations from "../components/OwnReservations/OwnReservations";
 import AdminReservations from "../components/Admin/AdminReservations/AdminReservations";
+import AdminProfiles from "../components/Admin/AdminProfiles/AdminProfiles";
 
 const routes = [
     {
@@ -80,6 +81,10 @@ const routes = [
     {
         path: "/admin_foglalasok",
         element: <AdminReservations />,
+    },
+    {
+        path: "/admin_profilok",
+        element: <AdminProfiles />,
     },
     {
         path: "*",
