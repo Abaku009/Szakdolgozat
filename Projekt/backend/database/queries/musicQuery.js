@@ -1,7 +1,7 @@
 const pool = require("../pool/pool");
 
-async function getAllMusic() {
-  const { rows } = await pool.query(`
+async function getAllMusic(showInactive = false) {
+  let query = `
     SELECT 
       music.music_id,
       music.title,
@@ -11,14 +11,23 @@ async function getAllMusic() {
       music_category.genre AS categoryname,
       music_language.language AS languagename,
       music_storage.quantity AS stock,
-      music.music_storage_id
+      music.music_storage_id,
+      music.is_active
     FROM music
     JOIN music_category ON music.music_category_id = music_category.music_category_id
     JOIN music_language ON music.music_language_id = music_language.music_language_id
     JOIN music_storage ON music.music_storage_id = music_storage.music_storage_id
-    ORDER BY music.title
-  `);
+  `;
+
+  if (!showInactive) { 
+    query += " WHERE music.is_active = true";
+  }
+
+  query += " ORDER BY music.title";
+
+  const { rows } = await pool.query(query);
   return rows;
+  
 }
 
 async function getMusicGenres() {

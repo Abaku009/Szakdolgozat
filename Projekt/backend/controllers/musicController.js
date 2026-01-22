@@ -2,7 +2,8 @@ const db = require("../database/queries/musicQuery");
 
 async function musicGet(req, res) {
   try {
-    const music = await db.getAllMusic();
+    const showInactive = req.query.showInactive === "true";
+    const music = await db.getAllMusic(showInactive);
     res.status(200).json(music);
   } catch (error) {
     console.error("Error fetching music");

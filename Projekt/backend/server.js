@@ -99,6 +99,7 @@ const ownReservationsRouter = require("./routes/ownReservationsRouter");
 const adminReservationsRouter = require("./routes/adminReservationsRouter");
 const adminReservationsDeleteRouter = require("./routes/adminReservationsDeleteRouter");
 const adminProfilesRouter = require("./routes/adminProfilesRouter");
+const adminMusicRouter = require("./routes/adminMusicRouter");
 
 
 app.use("/api/message", messageRouter);
@@ -117,6 +118,7 @@ app.use("/api/own_reservations", ownReservationsRouter);
 app.use("/api/admin_reservations", adminReservationsRouter);
 app.use("/api/admin_reservations_delete", adminReservationsDeleteRouter);
 app.use("/api/admin_profiles", adminProfilesRouter);
+app.use("/api/admin_music", adminMusicRouter);
 
 
 app.listen(port, () => {
