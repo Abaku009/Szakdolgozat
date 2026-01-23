@@ -12,8 +12,8 @@ function AdminReservations() {
     const [isDeleting, setIsDeleting] = useState(false);
 
 
-    const GETADMINRESERVATIONSAPI = import.meta.env.VITE_API_GET_ADMIN_RESERVATIONS_URL;
-    const POSTADMINRESERVATIONSDELETEAPI = import.meta.env.VITE_API_POST_ADMIN_RESERVATIONS_DELETE_URL;
+    const GETADMINRESERVATIONSAPI = import.meta.env.VITE_API_ADMIN_RESERVATIONS_URL;
+    const ADMINRESERVATIONSDELETEAPI = import.meta.env.VITE_API_ADMIN_RESERVATIONS_DELETE_URL;
 
 
     useEffect(() => {
@@ -82,7 +82,7 @@ function AdminReservations() {
     }
 
 
-    async function handleDeleteReservation(user, reservation) {
+    async function handleDeleteReservation(reservationOwner, reservation) {
         const reason = prompt("Add meg a törlés okát:");
 
         if (!reason || reason.trim() === "") {
@@ -95,14 +95,15 @@ function AdminReservations() {
 
             alert("Foglalás törlése folyamatban...");
 
-            const res = await fetch(POSTADMINRESERVATIONSDELETEAPI, {
+            const res = await fetch(ADMINRESERVATIONSDELETEAPI, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 credentials: "include",
                 body: JSON.stringify({
-                    user,
+                    adminUser: user,
+                    reservationOwner: reservationOwner,
                     reservation,
                     reason
                 })
@@ -112,7 +113,7 @@ function AdminReservations() {
             alert(data.message);
             setReservations(prev =>
                 prev.map(usr =>
-                    usr.user_id === user.user_id
+                    usr.user_id === reservationOwner.user_id
                         ? {
                             ...usr,
                             reservations: usr.reservations.filter(
@@ -170,7 +171,7 @@ function AdminReservations() {
                                         onClick={() => handleDeleteReservation(user, reservation)}
                                         disabled={isDeleting}
                                     >
-                                        {isDeleting ? "Törlés..." : "Törlés"} 
+                                        Törlés
                                     </button>
                                 </div>
                             ))
