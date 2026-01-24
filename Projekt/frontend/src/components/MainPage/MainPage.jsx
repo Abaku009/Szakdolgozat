@@ -6,7 +6,19 @@ import { UserContext } from "../../context/UserContext";
 
 function MainPage() {
 
-    const { user } = useContext(UserContext);
+    const { user, loading } = useContext(UserContext);
+
+    if (loading) {
+        return (
+            <>
+                <Navbar />
+                <div className="mainpage-container">
+                    <h1 className="mainpage-title">Betöltés...</h1>
+                </div>
+                <Footer />
+            </>
+        );
+    }
 
     return (
         <div>

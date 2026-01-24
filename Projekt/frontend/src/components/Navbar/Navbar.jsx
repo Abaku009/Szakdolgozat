@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 
 function Navbar() {
 
-    const { user, setUser } = useContext(UserContext);
+    const { user, setUser, loading } = useContext(UserContext);
     const navigate = useNavigate();
 
     const GETLOGOUTAPI = import.meta.env.VITE_API_GET_LOGOUT_URL;
@@ -33,6 +33,8 @@ function Navbar() {
             console.log(err);
         }
     }
+
+    if(loading) return null;
 
     return (
         <div className="Navbar">
