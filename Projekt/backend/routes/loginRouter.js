@@ -19,7 +19,12 @@ router.post("/", (req, res) => {
                 return res.status(500).json({ message: "Session hiba! "});
             }
 
-            return res.json({ message: "Sikeres bejelentkezés!", user: req.user});
+            req.session.save(() => {
+                res.json({
+                    message: "Sikeres bejelentkezés!",
+                    user: req.user
+                });
+            });
         });
     })(req, res);
 });
