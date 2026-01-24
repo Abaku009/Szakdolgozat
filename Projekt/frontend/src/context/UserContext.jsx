@@ -10,6 +10,7 @@ export function UserProvider({ children }) {
     const GETCURRENTUSERAPI = import.meta.env.VITE_API_GET_CURRENT_USER_URL;
 
     useEffect(() => {
+        if (user !== null) return;
         fetch(GETCURRENTUSERAPI, {
             credentials: "include",
         })
