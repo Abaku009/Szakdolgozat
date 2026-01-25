@@ -33,5 +33,67 @@ async function deleteMusic(musicID) {
     );
 }
 
-module.exports = { deleteMusic, softDeleteMusic, restoreMusic };
+
+async function editMusic(musicId, data) {
+
+    const client = await pool.connect();
+    
+    try {
+        await client.query("BEGIN");
+
+
+        if (data.price !== undefined) {
+            await client.query(`UPDATE music SET price = $1 WHERE music_id = $2`, [data.price, musicId]);
+        }
+
+
+        if (data.title !== undefined) {
+            await client.query(`UPDATE music SET title = $1 WHERE music_id = $2`, [data.title, musicId]);
+        }
+
+
+        if (data.performer !== undefined) {
+            await client.query(`UPDATE music SET performer = $1 WHERE music_id = $2`, [data.performer, musicId]);
+        }
+
+
+        if (data.format !== undefined) {
+            await client.query(`UPDATE music SET format = $1 WHERE music_id = $2`, [data.format, musicId]);
+        }
+
+
+        if (data.music_language_id !== undefined) {
+            await client.query(`UPDATE music SET music_language_id = $1 WHERE music_id = $2`, [data.music_language_id, musicId]);
+        }
+
+
+        if (data.music_category_id !== undefined) {
+            await client.query(`UPDATE music SET music_category_id = $1 WHERE music_id = $2`, [data.music_category_id, musicId]);
+        }
+
+
+        if (data.quantity !== undefined) {
+            await client.query(`
+                UPDATE music_storage
+                SET quantity = $1
+                WHERE music_storage_id = (
+                    SELECT music_storage_id FROM music WHERE music_id = $2
+                )
+            `, [data.quantity, musicId]);
+        }
+
+
+        await client.query("COMMIT");
+
+
+    } catch (err) {
+        await client.query("ROLLBACK");
+        throw err;
+    } finally {
+        client.release();
+    }
+}
+
+
+module.exports = { deleteMusic, softDeleteMusic, restoreMusic, editMusic };
 

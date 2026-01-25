@@ -31,12 +31,20 @@ async function getAllMusic(showInactive = false) {
 }
 
 async function getMusicGenres() {
-  const { rows } = await pool.query(`SELECT genre FROM music_category ORDER BY genre`);
+  const { rows } = await pool.query(`
+    SELECT music_category_id, genre 
+    FROM music_category 
+    ORDER BY genre
+  `);
   return rows;
 }
 
 async function getMusicLanguages() {
-  const { rows } = await pool.query(`SELECT language FROM music_language ORDER BY language`);
+  const { rows } = await pool.query(`
+    SELECT music_language_id, language 
+    FROM music_language 
+    ORDER BY language
+  `);
   return rows;
 }
 

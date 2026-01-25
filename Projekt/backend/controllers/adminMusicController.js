@@ -42,5 +42,21 @@ async function deleteMusic(req, res) {
     }
 }
 
-module.exports = { deleteMusic, deactivateMusic, restoreMusic };
+
+async function updateMusic(req, res) {
+
+    const musicId = req.params.id;
+    const data = req.body;
+
+    try {
+        await db.editMusic(musicId, data);
+        res.json({ message: "Zene sikeresen módosítva!" });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Hiba a módosítás során" });
+    } 
+}
+
+
+module.exports = { deleteMusic, deactivateMusic, restoreMusic, updateMusic };
 
