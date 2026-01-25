@@ -2,6 +2,7 @@ import Navbar from "../../Navbar/Navbar"
 import Footer from "../../Footer/Footer"
 import { useState, useEffect } from "react";
 import "../AdminMusic/adminmusic.css";
+import AdminMusicEditForm from "./AdminMusicEditForm";
 
 
 function AdminMusic() {
@@ -26,6 +27,7 @@ function AdminMusic() {
     const [sortOrder, setSortOrder] = useState("asc"); 
 
     const [isDeleting, setIsDeleting] = useState(false);
+    const [editingMusic, setEditingMusic] = useState(null);
 
 
     useEffect(() => {
@@ -38,8 +40,8 @@ function AdminMusic() {
             ]);
 
             setMusic(musicRes);
-            setGenres(genresRes.map(genr => genr.genre));
-            setLanguages(languagesRes.map(lang => lang.language));
+            setGenres(genresRes);
+            setLanguages(languagesRes);
             setFormats(formatsRes.map(form => form.format));
         };
 
@@ -49,8 +51,8 @@ function AdminMusic() {
 
     useEffect(() => {
         const filtered = music
-            .filter(mus => (selectedGenre === "" || mus.categoryname === selectedGenre))
-            .filter(mus => (selectedLanguage === "" || mus.languagename === selectedLanguage))
+            .filter(mus => (selectedGenre === "" || mus.music_category_id === Number(selectedGenre)))
+            .filter(mus => (selectedLanguage === "" || mus.music_language_id === Number(selectedLanguage)))
             .filter(mus => (selectedFormat === "" || mus.format === selectedFormat))
             .sort((a, b) =>
                 sortOrder === "asc" ? a.price - b.price : b.price - a.price
@@ -141,12 +143,12 @@ function AdminMusic() {
             <div className="filters">
                 <select onChange={e => setSelectedGenre(e.target.value)}>
                     <option value="">Minden műfaj</option>
-                    {genres.map(genr => <option key={genr} value={genr}>{genr}</option>)}
+                    {genres.map(genr => <option key={genr.music_category_id} value={genr.music_category_id}>{genr.genre}</option>)}
                 </select>
 
                 <select onChange={e => setSelectedLanguage(e.target.value)}>
                     <option value="">Minden nyelv</option>
-                    {languages.map(lang => <option key={lang} value={lang}>{lang}</option>)}
+                    {languages.map(lang => <option key={lang.music_language_id} value={lang.music_language_id}>{lang.language}</option>)}
                 </select>
 
                 <select onChange={e => setSelectedFormat(e.target.value)}>
@@ -192,11 +194,27 @@ function AdminMusic() {
                                     </>
                                 )}
                                 <button className="delete-Button" onClick={() => handleDelete(mus.music_id)} disabled={isDeleting}>Törlés</button>
+                                <button onClick={() => setEditingMusic(mus)}>Szerkesztés</button>
                             </div>
                         ))}
                     </div>
                 ))}
             </div>
+
+            {editingMusic && (
+                <AdminMusicEditForm
+                    music={editingMusic}
+                    languages={languages}
+                    genres={genres}
+                    onClose={() => setEditingMusic(null)}
+                    onUpdate={() => {
+                        setEditingMusic(null);
+                        fetch(`${GETMUSICAPI}?showInactive=true`)
+                        .then((res) => res.json())
+                        .then((data) => setMusic(data));
+                    }}
+                />
+            )}
 
             <Footer />
 
