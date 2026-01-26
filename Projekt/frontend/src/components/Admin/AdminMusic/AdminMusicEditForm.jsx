@@ -11,9 +11,12 @@ function AdminMusicEditForm({ music, languages, genres, onClose, onUpdate }) {
     const [selectedGenre, setSelectedGenre] = useState("");
     const [quantity, setQuantity] = useState("");
 
+
     const [isSubmitting, setIsSubmitting] = useState(false);
 
+
     const GETADMINMUSICAPI = import.meta.env.VITE_API_ADMIN_MUSIC_URL;
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -51,6 +54,8 @@ function AdminMusicEditForm({ music, languages, genres, onClose, onUpdate }) {
         }
     };
 
+
+
     return (
         <div className="form-overlay">
             <div className="form">
@@ -62,14 +67,14 @@ function AdminMusicEditForm({ music, languages, genres, onClose, onUpdate }) {
                     <input type="text" placeholder={`Formátum (jelenlegi: ${music.format})`} value={format} onChange={e => setFormat(e.target.value)} />
 
                     <select value={selectedLanguage} onChange={e => setSelectedLanguage(e.target.value)}>
-                        <option value="">Nyelv nem módosítva</option>
+                        <option value="">{`Nyelv nem módosítva - Jelenlegi: ${music.languagename}`}</option>
                         {languages.map(lang => (
                             <option key={lang.music_language_id} value={lang.music_language_id}>{lang.language}</option>
                         ))}
                     </select>
 
                     <select value={selectedGenre} onChange={e => setSelectedGenre(e.target.value)}>
-                        <option value="">Műfaj nem módosítva</option>
+                        <option value="">{`Műfaj nem módosítva - Jelenlegi: ${music.categoryname}`}</option>
                         {genres.map(genr => (
                             <option key={genr.music_category_id} value={genr.music_category_id}>{genr.genre}</option>
                         ))}
@@ -86,6 +91,7 @@ function AdminMusicEditForm({ music, languages, genres, onClose, onUpdate }) {
         </div>
     );
 }
+
 
 export default AdminMusicEditForm;
 

@@ -5,10 +5,14 @@ import { UserContext } from "../../../context/UserContext";
 import "../AdminProfiles/adminprofiles.css";
 
 function AdminProfiles() {
+
+    
     const [profiles, setProfiles] = useState([]);
     const { user } = useContext(UserContext);
 
+    
     const GETADMINPROFILESAPI = import.meta.env.VITE_API_GET_ADMIN_PROFILES_URL;
+
 
     useEffect(() => {
         if (!user || !user.is_admin) return;
@@ -25,6 +29,7 @@ function AdminProfiles() {
                 console.error(err);
             });
     }, [user]);
+
 
     return (
 

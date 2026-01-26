@@ -13,7 +13,9 @@ function AdminMusic() {
     const GETMUSICLANGUAGESAPI = import.meta.env.VITE_API_GET_MUSIC_LANGUAGES_URL;
     const GETMUSICFORMATSAPI = import.meta.env.VITE_API_GET_MUSIC_FORMATS_URL;
 
+
     const ADMINMUSICAPI = import.meta.env.VITE_API_ADMIN_MUSIC_URL;
+
 
     const [music, setMusic] = useState([]);
     const [filteredMusic, setFilteredMusic] = useState({});
@@ -28,6 +30,7 @@ function AdminMusic() {
 
     const [isDeleting, setIsDeleting] = useState(false);
     const [editingMusic, setEditingMusic] = useState(null);
+
 
 
     useEffect(() => {
@@ -49,10 +52,11 @@ function AdminMusic() {
     }, []);
 
 
+
     useEffect(() => {
         const filtered = music
-            .filter(mus => (selectedGenre === "" || mus.music_category_id === Number(selectedGenre)))
-            .filter(mus => (selectedLanguage === "" || mus.music_language_id === Number(selectedLanguage)))
+            .filter(mus => (selectedGenre === "" || mus.categoryname === selectedGenre))
+            .filter(mus => (selectedLanguage === "" || mus.languagename === selectedLanguage))
             .filter(mus => (selectedFormat === "" || mus.format === selectedFormat))
             .sort((a, b) =>
                 sortOrder === "asc" ? a.price - b.price : b.price - a.price
@@ -68,6 +72,7 @@ function AdminMusic() {
     }, [music, selectedGenre, selectedLanguage, selectedFormat, sortOrder]);
 
 
+    
     const handleDelete = async (musicID) => {
         const confirmDelete = window.confirm("Adott zene törlése?");
         if(!confirmDelete) return;
@@ -93,6 +98,7 @@ function AdminMusic() {
     };
 
 
+
     const handleDeactivate = async (musicID) => {
         const confirmDelete = window.confirm("Adott zene deaktiválása?");
         if(!confirmDelete) return;
@@ -112,6 +118,7 @@ function AdminMusic() {
             setIsDeleting(false);
         }
     };
+
 
 
     const handleRestore = async (musicID) => {
@@ -135,6 +142,7 @@ function AdminMusic() {
     };
 
 
+
     return (
         <>
 
@@ -143,12 +151,12 @@ function AdminMusic() {
             <div className="filters">
                 <select onChange={e => setSelectedGenre(e.target.value)}>
                     <option value="">Minden műfaj</option>
-                    {genres.map(genr => <option key={genr.music_category_id} value={genr.music_category_id}>{genr.genre}</option>)}
+                    {genres.map(genr => <option key={genr.music_category_id} value={genr.genre}>{genr.genre}</option>)}
                 </select>
 
                 <select onChange={e => setSelectedLanguage(e.target.value)}>
                     <option value="">Minden nyelv</option>
-                    {languages.map(lang => <option key={lang.music_language_id} value={lang.music_language_id}>{lang.language}</option>)}
+                    {languages.map(lang => <option key={lang.music_language_id} value={lang.language}>{lang.language}</option>)}
                 </select>
 
                 <select onChange={e => setSelectedFormat(e.target.value)}>
@@ -212,6 +220,9 @@ function AdminMusic() {
                         fetch(`${GETMUSICAPI}?showInactive=true`)
                         .then((res) => res.json())
                         .then((data) => setMusic(data));
+                        fetch(GETMUSICFORMATSAPI)
+                        .then((res) => res.json())
+                        .then((data) => setFormats(data.map(form => form.format)));
                     }}
                 />
             )}
@@ -219,8 +230,11 @@ function AdminMusic() {
             <Footer />
 
         </>
+
     );
+
 }
+
 
 export default AdminMusic;
 

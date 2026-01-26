@@ -33,6 +33,7 @@ function OwnReservations() {
             });
     }, [user]);
 
+    
 
     function groupReservations(rows) {
         const result = [];
