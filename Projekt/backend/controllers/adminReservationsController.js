@@ -84,7 +84,7 @@ MediaHaven
 
     } catch(err) {
         console.error(err);
-        return res.status(500).json({ message: "Hiba a foglalás mentésekor." });
+        return res.status(500).json({ message: "Hiba a foglalás törlésekor." });
     }
 
 }
