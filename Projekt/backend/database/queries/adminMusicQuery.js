@@ -113,5 +113,53 @@ async function insertLanguage(language) {
 }
 
 
-module.exports = { deleteMusic, softDeleteMusic, restoreMusic, editMusic, insertGenre, insertLanguage };
+async function insertMusic(data) {
+    const client = await pool.connect();
+
+    try {
+        await client.query("BEGIN");
+
+        const storageResult = await client.query(
+            `INSERT INTO music_storage (quantity)
+             VALUES ($1)
+             RETURNING music_storage_id`,
+            [data.quantity]
+        );
+
+        const storageId = storageResult.rows[0].music_storage_id;
+
+        await client.query(
+            `INSERT INTO music (
+                price,
+                format,
+                title,
+                performer,
+                music_language_id,
+                music_category_id,
+                music_storage_id
+            ) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+            [
+                data.price,
+                data.format,
+                data.title,
+                data.performer,
+                data.music_language_id,
+                data.music_category_id,
+                storageId
+            ]
+        );
+
+        await client.query("COMMIT");
+
+    } catch (err) {
+        await client.query("ROLLBACK");
+        throw err;
+    } finally {
+        client.release();
+    }
+    
+}
+
+
+module.exports = { deleteMusic, softDeleteMusic, restoreMusic, editMusic, insertGenre, insertLanguage, insertMusic };
 

@@ -8,6 +8,7 @@ router.delete("/:id", adminMusicController.deleteMusic);
 router.patch("/:id", adminMusicController.updateMusic);
 router.post("/add_genre", adminMusicController.addMusicGenre);
 router.post("/add_language", adminMusicController.addMusicLanguage);
+router.post("/add_music", adminMusicController.addMusic);
 
 module.exports = router;
 
