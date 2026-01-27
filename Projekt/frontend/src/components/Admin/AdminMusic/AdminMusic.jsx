@@ -3,6 +3,7 @@ import Footer from "../../Footer/Footer"
 import { useState, useEffect } from "react";
 import "../AdminMusic/adminmusic.css";
 import AdminMusicEditForm from "./AdminMusicEditForm";
+import AdminMusicAddForm from "./AdminMusicAddForm";
 
 
 function AdminMusic() {
@@ -30,6 +31,7 @@ function AdminMusic() {
 
     const [isDeleting, setIsDeleting] = useState(false);
     const [editingMusic, setEditingMusic] = useState(null);
+    const [addingMusic, setAddingMusic] = useState(false);
 
 
 
@@ -257,6 +259,7 @@ function AdminMusic() {
             <div className="admin-actions">
                 <button onClick={handleAddGenre}>Műfaj hozzáadása</button>
                 <button onClick={handleAddLanguage}>Nyelv hozzáadása</button>
+                <button onClick={() => setAddingMusic(true)}>Zene hozzáadása</button>
             </div>
 
             {Object.keys(filteredMusic).length === 0 && (
@@ -314,6 +317,22 @@ function AdminMusic() {
                         fetch(GETMUSICFORMATSAPI)
                         .then((res) => res.json())
                         .then((data) => setFormats(data.map(form => form.format)));
+                    }}
+                />
+            )}
+
+            {addingMusic && (
+                <AdminMusicAddForm
+                    languages={languages}
+                    genres={genres}
+                    musicList={music}
+                    onClose={() => setAddingMusic(false)}
+                    onUpdate={async () => {
+                        setAddingMusic(false);
+                        const updatedMusic = await fetch(`${GETMUSICAPI}?showInactive=true`).then(res => res.json());
+                        setMusic(updatedMusic);
+                        const updatedFormats = await fetch(GETMUSICFORMATSAPI).then(res => res.json());
+                        setFormats(updatedFormats.map(form => form.format));
                     }}
                 />
             )}

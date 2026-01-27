@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../AdminMusic/adminmusiceditform.css";
+import "../AdminMusic/adminmusicforms.css";
 
 function AdminMusicEditForm({ music, languages, genres, onClose, onUpdate }) {
 
