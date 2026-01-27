@@ -6,6 +6,8 @@ router.patch("/:id/deactivate", adminMusicController.deactivateMusic);
 router.patch("/:id/restore", adminMusicController.restoreMusic);
 router.delete("/:id", adminMusicController.deleteMusic);
 router.patch("/:id", adminMusicController.updateMusic);
+router.post("/add_genre", adminMusicController.addMusicGenre);
+router.post("/add_language", adminMusicController.addMusicLanguage);
 
 module.exports = router;
 

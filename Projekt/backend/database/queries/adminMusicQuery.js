@@ -95,5 +95,23 @@ async function editMusic(musicId, data) {
 }
 
 
-module.exports = { deleteMusic, softDeleteMusic, restoreMusic, editMusic };
+async function insertGenre(genre) {
+    await pool.query(
+        `INSERT INTO music_category (genre)
+        VALUES ($1)`,
+        [genre]
+    );
+}
+
+
+async function insertLanguage(language) {
+    await pool.query(
+        `INSERT INTO music_language (language)
+        VALUES ($1)`,
+        [language]
+    );
+}
+
+
+module.exports = { deleteMusic, softDeleteMusic, restoreMusic, editMusic, insertGenre, insertLanguage };
 
