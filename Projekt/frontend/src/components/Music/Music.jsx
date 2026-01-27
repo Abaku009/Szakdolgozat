@@ -116,7 +116,9 @@ function Music() {
             )}
 
             <div className="musicList">
-                {Object.keys(filteredMusic).map(category => (
+                {Object.keys(filteredMusic)
+                .filter(category => filteredMusic[category].length > 0)
+                .map(category => (
                     <div key={category} className="musicCategory">
                         <h2>{category}</h2>
                         {filteredMusic[category].map(mus => (

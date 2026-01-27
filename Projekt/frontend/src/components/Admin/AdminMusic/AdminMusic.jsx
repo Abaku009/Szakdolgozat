@@ -143,6 +143,90 @@ function AdminMusic() {
 
 
 
+    const handleAddGenre = async () => {
+        const newGenre = window.prompt("Add meg az új műfajt!");
+        if(newGenre === null) return;
+
+        const trimmedGenre = newGenre.trim();
+        if(trimmedGenre === "") {
+            alert("A műfaj nem lehet üres!");
+            return;
+        }
+
+        const exists = genres.some(
+            genr => genr.genre.toLowerCase() === trimmedGenre.toLowerCase()
+        );
+        if(exists) {
+            alert("A megadott műfaj már létezik!");
+            return;
+        }
+
+        try {
+            const res = await fetch(`${ADMINMUSICAPI}/add_genre`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ genre: trimmedGenre }),
+            });
+            const data = await res.json();
+            if (!res.ok) {
+                alert(data.message || "Hiba történt a hozzáadás során!");
+                return;
+            }
+            alert(data.message);
+            const updatedGenres = await fetch(GETMUSICGENRESAPI).then(res => res.json());
+            setGenres(updatedGenres);
+        } catch(err) {
+            console.error(err);
+            alert("Hiba a műfaj hozzáadásakor!");
+        }
+    };
+
+
+
+    const handleAddLanguage = async () => {
+        const newLanguage = window.prompt("Add meg az új nyelvet!");
+        if(newLanguage === null) return;
+
+        const trimmedLanguage = newLanguage.trim();
+        if(trimmedLanguage === "") {
+            alert("A nyelv nem lehet üres!");
+            return;
+        }
+
+        const exists = languages.some(
+            lang => lang.language.toLowerCase() === trimmedLanguage.toLowerCase()
+        );
+        if(exists) {
+            alert("A megadott nyelv már létezik!");
+            return;
+        }
+
+        try {
+            const res = await fetch(`${ADMINMUSICAPI}/add_language`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ language: trimmedLanguage }),
+            });
+            const data = await res.json();
+            if (!res.ok) {
+                alert(data.message || "Hiba történt a hozzáadás során!");
+                return;
+            }
+            alert(data.message);
+            const updatedLanguages = await fetch(GETMUSICLANGUAGESAPI).then(res => res.json());
+            setLanguages(updatedLanguages);
+        } catch(err) {
+            console.error(err);
+            alert("Hiba a nyelv hozzáadásakor!");
+        }
+    };
+
+
+
     return (
         <>
 
@@ -170,6 +254,11 @@ function AdminMusic() {
                 </select>
             </div>
 
+            <div className="admin-actions">
+                <button onClick={handleAddGenre}>Műfaj hozzáadása</button>
+                <button onClick={handleAddLanguage}>Nyelv hozzáadása</button>
+            </div>
+
             {Object.keys(filteredMusic).length === 0 && (
                 <div className="no-results">
                     <p>A keresett termék nem elérhető!</p>
@@ -177,7 +266,9 @@ function AdminMusic() {
             )}
 
             <div className="musicList">
-                {Object.keys(filteredMusic).map(category => (
+                {Object.keys(filteredMusic)
+                .filter(category => filteredMusic[category].length > 0)
+                .map(category => (
                     <div key={category} className="musicCategory">
                         <h2>{category}</h2>
                         {filteredMusic[category].map(mus => (

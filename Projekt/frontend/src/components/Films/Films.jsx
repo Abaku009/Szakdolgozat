@@ -122,7 +122,9 @@ function Films() {
             )}
 
             <div className="filmList">
-                {Object.keys(filtered).map(category => (
+                {Object.keys(filtered)
+                .filter(category => filtered[category].length > 0)
+                .map(category => (
                     <div key={category} className="filmCategory">
                         <h2>{category}</h2>
                         {filtered[category].map(film => (

@@ -126,7 +126,9 @@ function Series() {
             )}
 
             <div className="seriesList"> 
-                {Object.keys(filtered).map(category => (
+                {Object.keys(filtered)
+                .filter(category => filtered[category].length > 0)
+                .map(category => (
                     <div key={category} className="seriesCategory">
                         <h2>{category}</h2>
                         {filtered[category].map(serie => (

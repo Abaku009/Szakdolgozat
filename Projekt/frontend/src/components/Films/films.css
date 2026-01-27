@@ -24,6 +24,10 @@
   margin-bottom: 40px;
 }
 
+.filmCategory:last-child {
+  margin-bottom: 80px; 
+}
+
 .filmCategory h2 {
   font-size: 24px;
   margin-bottom: 15px;

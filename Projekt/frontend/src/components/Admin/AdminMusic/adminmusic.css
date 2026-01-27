@@ -24,6 +24,10 @@
   margin-bottom: 40px;
 }
 
+.musicCategory:last-child {
+  margin-bottom: 80px; 
+}
+
 .musicCategory h2 {
   font-size: 24px;
   margin-bottom: 15px;
@@ -36,7 +40,7 @@
   border: 1px solid #e6e6e6;
   border-radius: 10px;
   padding: 15px 20px;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
   box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
 }
 
@@ -68,5 +72,23 @@
 .delete-Button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+}
+
+.admin-actions {
+    margin: 15px 0;
+}
+
+.admin-actions button {
+    padding: 8px 14px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.admin-actions button:hover {
+    background-color: #555;
 }
 

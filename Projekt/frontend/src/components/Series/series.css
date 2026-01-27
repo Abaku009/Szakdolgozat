@@ -24,6 +24,10 @@
   margin-bottom: 40px;
 }
 
+.seriesCategory:last-child {
+  margin-bottom: 80px; 
+}
+
 .seriesCategory h2 {
   font-size: 24px;
   margin-bottom: 15px;
