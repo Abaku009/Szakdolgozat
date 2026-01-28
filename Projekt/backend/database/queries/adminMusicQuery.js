@@ -39,7 +39,17 @@ async function editMusic(musicId, data) {
     const client = await pool.connect();
     
     try {
+        
         await client.query("BEGIN");
+
+        const { rowCount } = await client.query(
+            `SELECT 1 FROM music_order_items WHERE music_id = $1`,
+            [musicId]
+        );
+
+        if (rowCount > 0) {
+            throw new Error("A zene nem szerkeszthető! Rendelés tartozik a zenéhez!");
+        }
 
 
         if (data.price !== undefined) {

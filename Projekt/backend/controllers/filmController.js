@@ -2,7 +2,8 @@ const db = require("../database/queries/filmQuery");
 
 async function filmsGet(req, res) {
     try {
-        const films = await db.getAllFilms();
+        const showInactive = req.query.showInactive === "true";
+        const films = await db.getAllFilms(showInactive);
         res.status(200).json(films);
     } catch(err) {
         console.error("Error fetching films");
