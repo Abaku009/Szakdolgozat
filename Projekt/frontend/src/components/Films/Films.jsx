@@ -132,7 +132,7 @@ function Films() {
                                 <p><strong>Cím: </strong>{film.title}</p>
                                 <p><strong>Nyelv: </strong>{film.languagename}</p>
                                 <p><strong>Formátum: </strong>{film.format}</p>
-                                <p><strong>Ár: </strong>{film.price}</p>
+                                <p><strong>Ár: </strong>{film.price} Ft</p>
                                 <p><strong>Darabszám: </strong>{film.stock}</p>
                                 <p><button disabled={film.stock === 0} onClick={() => moveToCart(film)}>Kosárba helyezés</button></p>
                             </div>

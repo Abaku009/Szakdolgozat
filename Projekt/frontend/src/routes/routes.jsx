@@ -17,6 +17,7 @@ import OwnReservations from "../components/OwnReservations/OwnReservations";
 import AdminReservations from "../components/Admin/AdminReservations/AdminReservations";
 import AdminProfiles from "../components/Admin/AdminProfiles/AdminProfiles";
 import AdminMusic from "../components/Admin/AdminMusic/AdminMusic";
+import AdminFilms from "../components/Admin/AdminFilms/AdminFilms";
 
 const routes = [
     {
@@ -90,6 +91,10 @@ const routes = [
     {
         path: "/admin_zenek",
         element: <AdminMusic />,
+    },
+    {
+        path: "/admin_filmek",
+        element: <AdminFilms />,
     },
     {
         path: "*",
