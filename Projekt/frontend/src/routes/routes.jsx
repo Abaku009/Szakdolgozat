@@ -18,6 +18,8 @@ import AdminReservations from "../components/Admin/AdminReservations/AdminReserv
 import AdminProfiles from "../components/Admin/AdminProfiles/AdminProfiles";
 import AdminMusic from "../components/Admin/AdminMusic/AdminMusic";
 import AdminFilms from "../components/Admin/AdminFilms/AdminFilms";
+import AdminSeries from "../components/Admin/AdminSeries/AdminSeries";
+
 
 const routes = [
     {
@@ -95,6 +97,10 @@ const routes = [
     {
         path: "/admin_filmek",
         element: <AdminFilms />,
+    },
+    {
+        path: "/admin_sorozatok",
+        element: <AdminSeries />,
     },
     {
         path: "*",

@@ -136,7 +136,7 @@ function Series() {
                                 <p><strong>Cím: </strong>{serie.title}</p>
                                 <p><strong>Nyelv: </strong>{serie.languagename}</p>
                                 <p><strong>Formátum: </strong>{serie.format}</p>
-                                <p><strong>Ár: </strong>{serie.price}</p>
+                                <p><strong>Ár: </strong>{serie.price} Ft</p>
                                 <p><strong>Darabszám: </strong>{serie.stock}</p>
                                 <p><button disabled={serie.stock === 0} onClick={() => moveToCart(serie)}>Kosárba helyezés</button></p>
                             </div> 
