@@ -60,9 +60,10 @@ function AdminFilms() {
             .filter(film => (selectedGenre === "" || film.categoryname === selectedGenre))
             .filter(film => (selectedLanguage === "" || film.languagename === selectedLanguage))
             .filter(film => (selectedFormat === "" || film.format === selectedFormat))
-            .sort((a, b) =>
-                selectedOrder === "asc" ? a.price - b.price : b.price - a.price
-            );
+
+        filtered.sort((a, b) =>
+            selectedOrder === "asc" ? a.price - b.price : b.price - a.price
+        );
 
         const grouped = filtered.reduce((acc, currentFilm) => {
             if (!acc[currentFilm.categoryname]) acc[currentFilm.categoryname] = [];
@@ -70,7 +71,14 @@ function AdminFilms() {
             return acc;
         }, {});
 
-        setFiltered(grouped);
+        const sortedGrouped = Object.keys(grouped)
+            .sort((a, b) => a.localeCompare(b, "hu"))
+            .reduce((acc, currentCategogy) => {
+                acc[currentCategogy] = grouped[currentCategogy];
+                return acc;
+            }, {});
+
+        setFiltered(sortedGrouped);
     }, [films, selectedGenre, selectedLanguage, selectedFormat, selectedOrder]);
 
 
@@ -295,7 +303,26 @@ function AdminFilms() {
                                     </>
                                 )}
                                 <button className="delete-Button" onClick={() => handleDelete(film.film_id)} disabled={isDeleting}>Törlés</button>
-                                <button onClick={() => setEditingFilm(film)}>Szerkesztés</button>
+                                <button onClick={async () => {
+                                            try {
+                                                const res = await fetch(`${ADMINFILMSAPI}/${film.film_id}/has_order`);
+                                                const data = await res.json();
+
+                                                if (data.hasOrder) {
+                                                    alert("Ez a film nem szerkeszthető, mert foglalás tartozik hozzá!");
+                                                    return;
+                                                }
+
+                                                setEditingFilm(film);
+
+                                            } catch (err) {
+                                                console.error(err);
+                                                alert("Hiba az ellenőrzés során!");
+                                            }
+                                        }}
+                                >
+                                    Szerkesztés
+                                </button>
                             </div>
                         ))}
                     </div>

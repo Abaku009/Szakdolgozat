@@ -60,9 +60,10 @@ function AdminMusic() {
             .filter(mus => (selectedGenre === "" || mus.categoryname === selectedGenre))
             .filter(mus => (selectedLanguage === "" || mus.languagename === selectedLanguage))
             .filter(mus => (selectedFormat === "" || mus.format === selectedFormat))
-            .sort((a, b) =>
-                sortOrder === "asc" ? a.price - b.price : b.price - a.price
-            );
+
+        filtered.sort((a, b) =>
+            sortOrder === "asc" ? a.price - b.price : b.price - a.price
+        );
 
         const grouped = filtered.reduce((acc, currentmusic) => {
             if (!acc[currentmusic.categoryname]) acc[currentmusic.categoryname] = [];
@@ -70,7 +71,14 @@ function AdminMusic() {
             return acc;
         }, {});
 
-        setFilteredMusic(grouped);
+        const sortedGrouped = Object.keys(grouped)
+            .sort((a, b) => a.localeCompare(b, "hu"))
+            .reduce((acc, currentCategogy) => {
+                acc[currentCategogy] = grouped[currentCategogy];
+                return acc;
+            }, {});
+
+        setFilteredMusic(sortedGrouped);
     }, [music, selectedGenre, selectedLanguage, selectedFormat, sortOrder]);
 
 
@@ -296,7 +304,26 @@ function AdminMusic() {
                                     </>
                                 )}
                                 <button className="delete-Button" onClick={() => handleDelete(mus.music_id)} disabled={isDeleting}>Törlés</button>
-                                <button onClick={() => setEditingMusic(mus)}>Szerkesztés</button>
+                                <button onClick={async () => {
+                                            try {
+                                                const res = await fetch(`${ADMINMUSICAPI}/${mus.music_id}/has_order`);
+                                                const data = await res.json();
+
+                                                if (data.hasOrder) {
+                                                    alert("Ez a zene nem szerkeszthető, mert rendelés tartozik hozzá!");
+                                                    return;
+                                                }
+
+                                                setEditingMusic(mus);
+
+                                            } catch (err) {
+                                                console.error(err);
+                                                alert("Hiba az ellenőrzés során!");
+                                            }
+                                        }}
+                                >
+                                    Szerkesztés
+                                </button>
                             </div>
                         ))}
                     </div>

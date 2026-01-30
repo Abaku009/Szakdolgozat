@@ -56,10 +56,11 @@ function Series() {
     useEffect(() => {
 
         const filtered = series
-        .filter(serie => (selectedGenre === "" || serie.categoryname === selectedGenre))
-        .filter(serie => (selectedLanguage === "" || serie.languagename === selectedLanguage))
-        .filter(serie => (selectedFormat === "" || serie.format === selectedFormat))
-        .sort((a, b) => 
+            .filter(serie => (selectedGenre === "" || serie.categoryname === selectedGenre))
+            .filter(serie => (selectedLanguage === "" || serie.languagename === selectedLanguage))
+            .filter(serie => (selectedFormat === "" || serie.format === selectedFormat))
+
+        filtered.sort((a, b) =>
             selectedOrder === "asc" ? a.price - b.price : b.price - a.price
         );
 
@@ -69,8 +70,14 @@ function Series() {
             return acc;
         }, {});
 
-        setFiltered(grouped);
+        const sortedGrouped = Object.keys(grouped)
+            .sort((a, b) => a.localeCompare(b, "hu"))
+            .reduce((acc, currentCategogy) => {
+                acc[currentCategogy] = grouped[currentCategogy];
+                return acc;
+            }, {});
 
+        setFiltered(sortedGrouped);
     }, [series, selectedFormat, selectedGenre, selectedLanguage, selectedOrder]);
 
 

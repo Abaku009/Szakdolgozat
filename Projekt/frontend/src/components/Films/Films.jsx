@@ -52,10 +52,11 @@ function Films() {
 
     useEffect(() => {
         const filtered = films
-        .filter(film => (selectedGenre === "" || selectedGenre === film.categoryname))
-        .filter(film => (selectedLanguage === "" || selectedLanguage === film.languagename))
-        .filter(film => (selectedFormat === "" || selectedFormat === film.format))
-        .sort((a, b) => 
+            .filter(film => (selectedGenre === "" || selectedGenre === film.categoryname))
+            .filter(film => (selectedLanguage === "" || selectedLanguage === film.languagename))
+            .filter(film => (selectedFormat === "" || selectedFormat === film.format))
+
+        filtered.sort((a, b) =>
             selectedOrder === "asc" ? a.price - b.price : b.price - a.price
         );
 
@@ -65,8 +66,14 @@ function Films() {
             return acc;
         }, {})
 
-        setFiltered(grouped);
+        const sortedGrouped = Object.keys(grouped)
+            .sort((a, b) => a.localeCompare(b, "hu"))
+            .reduce((acc, currentCategogy) => {
+                acc[currentCategogy] = grouped[currentCategogy];
+                return acc;
+            }, {});
 
+        setFiltered(sortedGrouped);
     }, [selectedOrder, selectedGenre, selectedLanguage, selectedFormat, films]);
 
 

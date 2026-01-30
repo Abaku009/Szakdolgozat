@@ -60,9 +60,10 @@ function AdminSeries() {
             .filter(serie => (selectedGenre === "" || serie.categoryname === selectedGenre))
             .filter(serie => (selectedLanguage === "" || serie.languagename === selectedLanguage))
             .filter(serie => (selectedFormat === "" || serie.format === selectedFormat))
-            .sort((a, b) =>
-                selectedOrder === "asc" ? a.price - b.price : b.price - a.price
-            );
+
+        filtered.sort((a, b) =>
+            selectedOrder === "asc" ? a.price - b.price : b.price - a.price
+        );
 
         const grouped = filtered.reduce((acc, currentSerie) => {
             if (!acc[currentSerie.categoryname]) acc[currentSerie.categoryname] = [];
@@ -70,7 +71,14 @@ function AdminSeries() {
             return acc;
         }, {});
 
-        setFiltered(grouped);
+        const sortedGrouped = Object.keys(grouped)
+            .sort((a, b) => a.localeCompare(b, "hu"))
+            .reduce((acc, currentCategogy) => {
+                acc[currentCategogy] = grouped[currentCategogy];
+                return acc;
+            }, {});
+
+        setFiltered(sortedGrouped);
     }, [series, selectedGenre, selectedLanguage, selectedFormat, selectedOrder]);
 
 
@@ -295,7 +303,26 @@ function AdminSeries() {
                                     </>
                                 )}
                                 <button className="delete-Button" onClick={() => handleDelete(serie.series_id)} disabled={isDeleting}>Törlés</button>
-                                <button onClick={() => setEditingSerie(serie)}>Szerkesztés</button>
+                                <button onClick={async () => {
+                                            try {
+                                                const res = await fetch(`${ADMINSERIESAPI}/${serie.series_id}/has_order`);
+                                                const data = await res.json();
+
+                                                if (data.hasOrder) {
+                                                    alert("Ez a sorozat nem szerkeszthető, mert foglalás tartozik hozzá!");
+                                                    return;
+                                                }
+
+                                                setEditingSerie(serie);
+
+                                            } catch (err) {
+                                                console.error(err);
+                                                alert("Hiba az ellenőrzés során!");
+                                            }
+                                        }}
+                                >
+                                    Szerkesztés
+                                </button>
                             </div>
                         ))}
                     </div>

@@ -55,9 +55,10 @@ function Music() {
             .filter(mus => (selectedGenre === "" || mus.categoryname === selectedGenre))
             .filter(mus => (selectedLanguage === "" || mus.languagename === selectedLanguage))
             .filter(mus => (selectedFormat === "" || mus.format === selectedFormat))
-            .sort((a, b) =>
-                sortOrder === "asc" ? a.price - b.price : b.price - a.price
-            );
+
+        filtered.sort((a, b) =>
+            sortOrder === "asc" ? a.price - b.price : b.price - a.price
+        );
 
         const grouped = filtered.reduce((acc, currentmusic) => {
             if (!acc[currentmusic.categoryname]) acc[currentmusic.categoryname] = [];
@@ -65,9 +66,15 @@ function Music() {
             return acc;
         }, {});
 
-        setFilteredMusic(grouped);
-    }, [music, selectedGenre, selectedLanguage, selectedFormat, sortOrder]);
+        const sortedGrouped = Object.keys(grouped)
+            .sort((a, b) => a.localeCompare(b, "hu"))
+            .reduce((acc, currentCategogy) => {
+                acc[currentCategogy] = grouped[currentCategogy];
+                return acc;
+            }, {});
 
+        setFilteredMusic(sortedGrouped);
+    }, [music, selectedGenre, selectedLanguage, selectedFormat, sortOrder]);
 
 
     function moveToCart(music) {
@@ -79,7 +86,6 @@ function Music() {
 
         addToCart(music);
     }
-
 
 
     return (
