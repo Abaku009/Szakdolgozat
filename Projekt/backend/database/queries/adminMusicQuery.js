@@ -42,15 +42,6 @@ async function editMusic(musicId, data) {
         
         await client.query("BEGIN");
 
-        const { rowCount } = await client.query(
-            `SELECT 1 FROM music_order_items WHERE music_id = $1`,
-            [musicId]
-        );
-
-        if (rowCount > 0) {
-            throw new Error("A zene nem szerkeszthető! Rendelés tartozik a zenéhez!");
-        }
-
 
         if (data.price !== undefined) {
             await client.query(`UPDATE music SET price = $1 WHERE music_id = $2`, [data.price, musicId]);
@@ -171,5 +162,15 @@ async function insertMusic(data) {
 }
 
 
-module.exports = { deleteMusic, softDeleteMusic, restoreMusic, editMusic, insertGenre, insertLanguage, insertMusic };
+async function musicHasOrder(musicId) {
+    const { rowCount } = await pool.query(
+        `SELECT 1 FROM music_order_items WHERE music_id = $1`,
+        [musicId]
+    );
+
+    return rowCount > 0;
+}
+
+
+module.exports = { deleteMusic, softDeleteMusic, restoreMusic, editMusic, insertGenre, insertLanguage, insertMusic, musicHasOrder };
 

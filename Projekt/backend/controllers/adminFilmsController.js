@@ -100,5 +100,18 @@ async function addFilm(req, res) {
 }
 
 
-module.exports = { deleteFilm, deactivateFilm, restoreFilm, updateFilm, addFilmGenre, addFilmLanguage, addFilm };
+async function hasOrder(req, res) {
+    const { id } = req.params;
+
+    try {
+        const hasOrder = await db.filmHasOrder(id);
+        res.json({ hasOrder });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Hiba az ellenőrzés során!" });
+    }
+}
+
+
+module.exports = { deleteFilm, deactivateFilm, restoreFilm, updateFilm, addFilmGenre, addFilmLanguage, addFilm, hasOrder };
 

@@ -42,16 +42,7 @@ async function editSerie(serieId, data) {
 
         await client.query("BEGIN");
 
-        const { rowCount } = await client.query(
-            `SELECT 1 FROM reservation_items WHERE series_id = $1`,
-            [serieId]
-        );
-
-        if (rowCount > 0) {
-            throw new Error("A sorozat nem szerkeszthető! Foglalás tartozik a sorozathoz!");
-        }
-
-
+        
         if (data.title !== undefined) {
             await client.query(`UPDATE series SET title = $1 WHERE series_id = $2`, [data.title, serieId]);
         }
@@ -164,5 +155,15 @@ async function insertSerie(data) {
 }
 
 
-module.exports = { deleteSerie, softDeleteSerie, restoreSerie, editSerie, insertGenre, insertLanguage, insertSerie };
+async function serieHasOrder(serieId) {
+    const { rowCount } = await pool.query(
+        `SELECT 1 FROM reservation_items WHERE series_id = $1`,
+        [serieId]
+    );
+
+    return rowCount > 0;
+}
+
+
+module.exports = { deleteSerie, softDeleteSerie, restoreSerie, editSerie, insertGenre, insertLanguage, insertSerie, serieHasOrder };
 

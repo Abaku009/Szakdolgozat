@@ -42,16 +42,7 @@ async function editFilm(filmId, data) {
 
         await client.query("BEGIN");
 
-        const { rowCount } = await client.query(
-            `SELECT 1 FROM reservation_items WHERE film_id = $1`,
-            [filmId]
-        );
-
-        if (rowCount > 0) {
-            throw new Error("A film nem szerkeszthető! Foglalás tartozik a filmhez!");
-        }
-
-
+        
         if (data.title !== undefined) {
             await client.query(`UPDATE films SET title = $1 WHERE film_id = $2`, [data.title, filmId]);
         }
@@ -164,5 +155,15 @@ async function insertFilm(data) {
 }
 
 
-module.exports = { deleteFilm, softDeleteFilm, restoreFilm, editFilm, insertGenre, insertLanguage, insertFilm };
+async function filmHasOrder(filmId) {
+    const { rowCount } = await pool.query(
+        `SELECT 1 FROM reservation_items WHERE film_id = $1`,
+        [filmId]
+    );
+
+    return rowCount > 0;
+}
+
+
+module.exports = { deleteFilm, softDeleteFilm, restoreFilm, editFilm, insertGenre, insertLanguage, insertFilm, filmHasOrder };
 

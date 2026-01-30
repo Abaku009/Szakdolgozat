@@ -9,6 +9,7 @@ router.patch("/:id", adminMusicController.updateMusic);
 router.post("/add_genre", adminMusicController.addMusicGenre);
 router.post("/add_language", adminMusicController.addMusicLanguage);
 router.post("/add_music", adminMusicController.addMusic);
+router.get("/:id/has_order", adminMusicController.hasOrder);
 
 module.exports = router;
 

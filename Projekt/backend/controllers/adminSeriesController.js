@@ -100,5 +100,18 @@ async function addSerie(req, res) {
 }
 
 
-module.exports = { deleteSerie, deactivateSerie, restoreSerie, updateSerie, addSerieGenre, addSerieLanguage, addSerie };
+async function hasOrder(req, res) {
+    const { id } = req.params;
+
+    try {
+        const hasOrder = await db.serieHasOrder(id);
+        res.json({ hasOrder });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Hiba az ellenőrzés során!" });
+    }
+}
+
+
+module.exports = { deleteSerie, deactivateSerie, restoreSerie, updateSerie, addSerieGenre, addSerieLanguage, addSerie, hasOrder };
 

@@ -9,6 +9,7 @@ router.patch("/:id", adminFilmsController.updateFilm);
 router.post("/add_genre", adminFilmsController.addFilmGenre);
 router.post("/add_language", adminFilmsController.addFilmLanguage);
 router.post("/add_film", adminFilmsController.addFilm);
+router.get("/:id/has_order", adminFilmsController.hasOrder);
 
 module.exports = router;
 

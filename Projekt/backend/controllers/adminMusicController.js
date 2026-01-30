@@ -100,5 +100,18 @@ async function addMusic(req, res) {
 }
 
 
-module.exports = { deleteMusic, deactivateMusic, restoreMusic, updateMusic, addMusicGenre, addMusicLanguage, addMusic };
+async function hasOrder(req, res) {
+    const { id } = req.params;
+
+    try {
+        const hasOrder = await db.musicHasOrder(id);
+        res.json({ hasOrder });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Hiba az ellenőrzés során!" });
+    }
+}
+
+
+module.exports = { deleteMusic, deactivateMusic, restoreMusic, updateMusic, addMusicGenre, addMusicLanguage, addMusic, hasOrder };
 

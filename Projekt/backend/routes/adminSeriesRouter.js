@@ -9,6 +9,7 @@ router.patch("/:id", adminSeriesController.updateSerie);
 router.post("/add_genre", adminSeriesController.addSerieGenre);
 router.post("/add_language", adminSeriesController.addSerieLanguage);
 router.post("/add_serie", adminSeriesController.addSerie);
+router.get("/:id/has_order", adminSeriesController.hasOrder);
 
 module.exports = router;
 
