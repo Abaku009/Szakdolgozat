@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import Navbar from "../Navbar/Navbar"
 import Footer from "../Footer/Footer"
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CartContext } from "../../context/CartContext";
 import { UserContext } from "../../context/UserContext";
 import { useState } from "react";
@@ -12,15 +12,50 @@ import "../Cart/ordercart.css";
 
 function OrderCart() {
 
-    const { cart, setCart, increaseQty, decreaseQty, removeItem } = useContext(CartContext);
+    const { cart, setCart, increaseQty, decreaseQty, removeItem, addToCart } = useContext(CartContext);
     const { user } = useContext(UserContext);
     const [loading, setLoading] = useState(false);
 
+
+    const [ recommendations, setRecommendations ] = useState([]);
+
+
     const POSTMUSICORDERAPI = import.meta.env.VITE_API_POST_MUSIC_ORDER_URL;
+    const GETORDERCARTRECOMMENDATIONSAPI = import.meta.env.VITE_API_GET_ORDER_CART_RECOMMENDATIONS_URL;
 
     const totalPrice = cart.reduce((sum, item) => {
         return sum + item.price * item.qty;
     }, 0);
+
+
+    useEffect(() => {
+        if(cart.length === 0 || !user) {
+            setRecommendations([]);
+            return;
+        }
+
+        fetchRecommendations();
+    }, [cart, user]);
+
+
+    async function fetchRecommendations() {
+        try {
+            const res = await fetch(GETORDERCARTRECOMMENDATIONSAPI, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                body: JSON.stringify({
+                    cartMusicIDs: cart.map(item => item.music_id)
+                })
+            });
+
+            const data = await res.json();
+            setRecommendations(data);
+        } catch (err) {
+            console.error(err);
+            alert("Hiba az ajánlások lekérése során!");
+        }
+    }
 
 
     async function handleOrder() {
@@ -96,6 +131,26 @@ function OrderCart() {
 
             {cart.length > 0 && (
                 <button className="rendelesLeadas" onClick={handleOrder} disabled={loading}>Rendelés elküldése</button>
+            )}
+
+            {recommendations.length > 0 && (
+                <div className="order-cart-recommendations">
+                    <h2>Ajánlott zenék a kosarad alapján</h2>
+
+                    <div className="order-cart-recommendations-list">
+                        {recommendations.map(rec => (
+                            <div key={rec.music_id} className="order-cart-recommendation-item">
+                                <p><strong>Cím:</strong> {rec.title}</p>
+                                <p><strong>Előadó:</strong> {rec.performer}</p>
+                                <p><strong>Nyelv:</strong> {rec.languagename}</p>
+                                <p><strong>Formátum:</strong> {rec.format}</p>
+                                <p><strong>Ár:</strong> {rec.price} Ft</p>
+                                <p><strong>Darabszám:</strong> {rec.stock}</p>
+                                <p><button disabled={rec.stock === 0} onClick={() => addToCart(rec)}>Kosárba helyezés</button></p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             )}
 
             <Footer />
