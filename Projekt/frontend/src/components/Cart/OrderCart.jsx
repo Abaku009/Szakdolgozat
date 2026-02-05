@@ -135,7 +135,7 @@ function OrderCart() {
 
             {recommendations.length > 0 && (
                 <div className="order-cart-recommendations">
-                    <h2>Ajánlott zenék a kosarad alapján</h2>
+                    <h2 className="recommendations">Ajánlott zenék a kosarad alapján</h2>
 
                     <div className="order-cart-recommendations-list">
                         {recommendations.map(rec => (
