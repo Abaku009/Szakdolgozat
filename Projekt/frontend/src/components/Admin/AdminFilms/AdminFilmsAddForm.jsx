@@ -6,6 +6,7 @@ function AdminFilmsAddForm({ languages, genres, filmList, onClose, onUpdate }) {
 
     const [price, setPrice] = useState("");
     const [title, setTitle] = useState("");
+    const [director, setDirector] = useState("");
     const [format, setFormat] = useState("");
     const [selectedLanguage, setSelectedLanguage] = useState("");
     const [selectedGenre, setSelectedGenre] = useState("");
@@ -21,7 +22,7 @@ function AdminFilmsAddForm({ languages, genres, filmList, onClose, onUpdate }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!price || !title || !format || !selectedLanguage || !selectedGenre || !quantity) {
+        if (!price || !title || !director || !format || !selectedLanguage || !selectedGenre || !quantity) {
             alert("Minden mezőt ki kell tölteni!");
             return;
         }
@@ -44,6 +45,7 @@ function AdminFilmsAddForm({ languages, genres, filmList, onClose, onUpdate }) {
         const body = {
             title: title,
             price: Number(price),
+            director: director,
             format: format,
             film_language_id: Number(selectedLanguage),
             film_category_id: Number(selectedGenre),
@@ -81,6 +83,7 @@ function AdminFilmsAddForm({ languages, genres, filmList, onClose, onUpdate }) {
                 <form onSubmit={handleSubmit}>
                     <input type="number" placeholder="Ár" value={price} onChange={e => setPrice(e.target.value)} />
                     <input type="text" placeholder="Cím" value={title} onChange={e => setTitle(e.target.value)} />
+                    <input type="text" placeholder="Rendező" value={director} onChange={e => setDirector(e.target.value)} />
                     <input type="text" placeholder="Formátum" value={format} onChange={e => setFormat(e.target.value)} />
 
                     <select value={selectedLanguage} onChange={e => setSelectedLanguage(e.target.value)}>

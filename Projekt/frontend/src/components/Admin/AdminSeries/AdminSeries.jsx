@@ -284,11 +284,12 @@ function AdminSeries() {
                         <h2>{category}</h2>
                         {filtered[category].map(serie => (
                             <div key={serie.series_id} className="seriesItem">
-                                <p><strong>Cím:</strong> {serie.title}</p>
-                                <p><strong>Nyelv:</strong> {serie.languagename}</p>
-                                <p><strong>Formátum:</strong> {serie.format}</p>
-                                <p><strong>Ár:</strong> {serie.price} Ft</p>
-                                <p><strong>Darabszám:</strong> {serie.stock}</p>
+                                <p><strong>Cím: </strong>{serie.title}</p>
+                                <p><strong>Alkotó: </strong>{serie.creator}</p>
+                                <p><strong>Nyelv: </strong>{serie.languagename}</p>
+                                <p><strong>Formátum: </strong>{serie.format}</p>
+                                <p><strong>Ár: </strong>{serie.price} Ft</p>
+                                <p><strong>Darabszám: </strong>{serie.stock}</p>
                                 {serie.is_active ? (
                                     <>
                                         <button onClick={() => handleDeactivate(serie.series_id)} className="delete-Button" disabled={isDeleting}>

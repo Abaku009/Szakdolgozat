@@ -5,6 +5,7 @@ function AdminSeriesEditForm({ serie, languages, genres, onClose, onUpdate }) {
 
     const [price, setPrice] = useState("");
     const [title, setTitle] = useState("");
+    const [creator, setCreator] = useState("");
     const [format, setFormat] = useState("");
     const [selectedLanguage, setSelectedLanguage] = useState("");
     const [selectedGenre, setSelectedGenre] = useState("");
@@ -24,6 +25,7 @@ function AdminSeriesEditForm({ serie, languages, genres, onClose, onUpdate }) {
         const body = {};
         if (title) body.title = title;
         if (price) body.price = Number(price);
+        if (creator) body.creator = creator;
         if (format) body.format = format;
         if (selectedLanguage) body.series_language_id = Number(selectedLanguage);
         if (selectedGenre) body.series_category_id = Number(selectedGenre);
@@ -61,6 +63,7 @@ function AdminSeriesEditForm({ serie, languages, genres, onClose, onUpdate }) {
                 <form onSubmit={handleSubmit}>
                     <input type="number" placeholder={`Ár (jelenlegi: ${serie.price})`} value={price} onChange={e => setPrice(e.target.value)} />
                     <input type="text" placeholder={`Cím (jelenlegi: ${serie.title})`} value={title} onChange={e => setTitle(e.target.value)} />
+                    <input type="text" placeholder={`Alkotó (jelenlegi: ${serie.creator})`} value={creator} onChange={e => setCreator(e.target.value)} />
                     <input type="text" placeholder={`Formátum (jelenlegi: ${serie.format})`} value={format} onChange={e => setFormat(e.target.value)} />
 
                     <select value={selectedLanguage} onChange={e => setSelectedLanguage(e.target.value)}>

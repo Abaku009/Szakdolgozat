@@ -98,11 +98,11 @@ function OrderCart() {
             {cart.length > 0 ? (
                 cart.map(music => (
                     <div key={music.music_id} className="orderCartItem">
-                        <p><strong>Cím:</strong> {music.title}</p>
-                        <p><strong>Előadó:</strong> {music.performer}</p>
-                        <p><strong>Nyelv:</strong> {music.languagename}</p>
-                        <p><strong>Formátum:</strong> {music.format}</p>
-                        <p><strong>Ár:</strong> {music.price * music.qty} Ft</p>
+                        <p><strong>Cím: </strong>{music.title}</p>
+                        <p><strong>Előadó: </strong>{music.performer}</p>
+                        <p><strong>Nyelv: </strong>{music.languagename}</p>
+                        <p><strong>Formátum: </strong>{music.format}</p>
+                        <p><strong>Ár: </strong>{music.price * music.qty} Ft</p>
 
                         <div className="quantityControls">
                             <button onClick={() => decreaseQty(music.music_id)} disabled={music.qty === 1}>-</button>
@@ -140,12 +140,12 @@ function OrderCart() {
                     <div className="order-cart-recommendations-list">
                         {recommendations.map(rec => (
                             <div key={rec.music_id} className="order-cart-recommendation-item">
-                                <p><strong>Cím:</strong> {rec.title}</p>
-                                <p><strong>Előadó:</strong> {rec.performer}</p>
-                                <p><strong>Nyelv:</strong> {rec.languagename}</p>
-                                <p><strong>Formátum:</strong> {rec.format}</p>
-                                <p><strong>Ár:</strong> {rec.price} Ft</p>
-                                <p><strong>Darabszám:</strong> {rec.stock}</p>
+                                <p><strong>Cím: </strong>{rec.title}</p>
+                                <p><strong>Előadó: </strong>{rec.performer}</p>
+                                <p><strong>Nyelv: </strong>{rec.languagename}</p>
+                                <p><strong>Formátum: </strong>{rec.format}</p>
+                                <p><strong>Ár: </strong>{rec.price} Ft</p>
+                                <p><strong>Darabszám: </strong>{rec.stock}</p>
                                 <p><button disabled={rec.stock === 0} onClick={() => addToCart(rec)}>Kosárba helyezés</button></p>
                             </div>
                         ))}

@@ -5,6 +5,7 @@ function AdminFilmsEditForm({ film, languages, genres, onClose, onUpdate }) {
 
     const [price, setPrice] = useState("");
     const [title, setTitle] = useState("");
+    const [director, setDirector] = useState("");
     const [format, setFormat] = useState("");
     const [selectedLanguage, setSelectedLanguage] = useState("");
     const [selectedGenre, setSelectedGenre] = useState("");
@@ -24,6 +25,7 @@ function AdminFilmsEditForm({ film, languages, genres, onClose, onUpdate }) {
         const body = {};
         if (title) body.title = title;
         if (price) body.price = Number(price);
+        if (director) body.director = director;
         if (format) body.format = format;
         if (selectedLanguage) body.film_language_id = Number(selectedLanguage);
         if (selectedGenre) body.film_category_id = Number(selectedGenre);
@@ -61,6 +63,7 @@ function AdminFilmsEditForm({ film, languages, genres, onClose, onUpdate }) {
                 <form onSubmit={handleSubmit}>
                     <input type="number" placeholder={`Ár (jelenlegi: ${film.price})`} value={price} onChange={e => setPrice(e.target.value)} />
                     <input type="text" placeholder={`Cím (jelenlegi: ${film.title})`} value={title} onChange={e => setTitle(e.target.value)} />
+                    <input type="text" placeholder={`Rendező (jelenlegi: ${film.director})`} value={director} onChange={e => setDirector(e.target.value)} />
                     <input type="text" placeholder={`Formátum (jelenlegi: ${film.format})`} value={format} onChange={e => setFormat(e.target.value)} />
 
                     <select value={selectedLanguage} onChange={e => setSelectedLanguage(e.target.value)}>

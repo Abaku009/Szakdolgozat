@@ -129,12 +129,12 @@ function Music() {
                         <h2>{category}</h2>
                         {filteredMusic[category].map(mus => (
                             <div key={mus.music_id} className="musicItem">
-                                <p><strong>Cím:</strong> {mus.title}</p>
-                                <p><strong>Előadó:</strong> {mus.performer}</p>
-                                <p><strong>Nyelv:</strong> {mus.languagename}</p>
-                                <p><strong>Formátum:</strong> {mus.format}</p>
-                                <p><strong>Ár:</strong> {mus.price} Ft</p>
-                                <p><strong>Darabszám:</strong> {mus.stock}</p>
+                                <p><strong>Cím: </strong>{mus.title}</p>
+                                <p><strong>Előadó: </strong>{mus.performer}</p>
+                                <p><strong>Nyelv: </strong>{mus.languagename}</p>
+                                <p><strong>Formátum: </strong>{mus.format}</p>
+                                <p><strong>Ár: </strong>{mus.price} Ft</p>
+                                <p><strong>Darabszám: </strong>{mus.stock}</p>
                                 <p><button disabled={mus.stock === 0} onClick={() => moveToCart(mus)}>Kosárba helyezés</button></p>
                             </div>
                         ))}

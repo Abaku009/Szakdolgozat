@@ -39,6 +39,11 @@ function ReservationCart() {
                 cart.map(item => (
                     <div key={`${item.type}-${item.id}`} className="reserveCartItem">
                         <p><strong>Cím: </strong>{item.title}</p>
+                        {item.director ? (
+                            <p><strong>Rendező: </strong>{item.director}</p>
+                        ) : (
+                            <p><strong>Alkotó: </strong>{item.creator}</p>
+                        )}
                         <p><strong>Nyelv: </strong>{item.languagename}</p>
                         <p><strong>Formátum: </strong>{item.format}</p>
                         <p><strong>Ár: </strong>{item.price * item.qty} Ft</p>

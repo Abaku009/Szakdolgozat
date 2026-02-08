@@ -137,6 +137,7 @@ function Films() {
                         {filtered[category].map(film => (
                             <div key={film.film_id} className="filmItem">
                                 <p><strong>Cím: </strong>{film.title}</p>
+                                <p><strong>Rendező: </strong> {film.director}</p>
                                 <p><strong>Nyelv: </strong>{film.languagename}</p>
                                 <p><strong>Formátum: </strong>{film.format}</p>
                                 <p><strong>Ár: </strong>{film.price} Ft</p>

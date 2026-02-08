@@ -141,6 +141,7 @@ function Series() {
                         {filtered[category].map(serie => (
                             <div key={serie.series_id} className="seriesItem">
                                 <p><strong>Cím: </strong>{serie.title}</p>
+                                <p><strong>Alkotó: </strong> {serie.creator}</p>
                                 <p><strong>Nyelv: </strong>{serie.languagename}</p>
                                 <p><strong>Formátum: </strong>{serie.format}</p>
                                 <p><strong>Ár: </strong>{serie.price} Ft</p>
