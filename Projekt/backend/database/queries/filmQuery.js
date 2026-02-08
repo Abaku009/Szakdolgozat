@@ -11,7 +11,8 @@ async function getAllFilms(showInactive = false) {
             films_language.language AS languagename,
             films_storage.quantity AS stock,
             films.film_storage_id,
-            films.is_active
+            films.is_active,
+            films.director
         FROM films
         JOIN films_category ON films.film_category_id = films_category.film_category_id
         JOIN films_language ON films.film_language_id = films_language.film_language_id

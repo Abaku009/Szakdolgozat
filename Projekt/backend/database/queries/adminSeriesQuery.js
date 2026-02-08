@@ -53,6 +53,11 @@ async function editSerie(serieId, data) {
         }
 
 
+        if (data.creator !== undefined) {
+            await client.query(`UPDATE series SET creator = $1 WHERE series_id = $2`, [data.creator, serieId]);
+        }
+
+
         if (data.format !== undefined) {
             await client.query(`UPDATE series SET format = $1 WHERE series_id = $2`, [data.format, serieId]);
         }
@@ -131,15 +136,17 @@ async function insertSerie(data) {
                 format,
                 series_language_id,
                 series_category_id,
-                series_storage_id
-            ) VALUES ($1, $2, $3, $4, $5, $6)`,
+                series_storage_id,
+                creator
+            ) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
             [
                 data.title,
                 data.price,
                 data.format,
                 data.series_language_id,
                 data.series_category_id,
-                storageId
+                storageId,
+                data.creator
             ]
         );
 

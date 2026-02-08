@@ -53,6 +53,11 @@ async function editFilm(filmId, data) {
         }
 
 
+        if (data.director !== undefined) {
+            await client.query(`UPDATE films SET director = $1 WHERE film_id = $2`, [data.director, filmId]);
+        }
+
+
         if (data.format !== undefined) {
             await client.query(`UPDATE films SET format = $1 WHERE film_id = $2`, [data.format, filmId]);
         }
@@ -131,15 +136,17 @@ async function insertFilm(data) {
                 format,
                 film_language_id,
                 film_category_id,
-                film_storage_id
-            ) VALUES ($1, $2, $3, $4, $5, $6)`,
+                film_storage_id,
+                director
+            ) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
             [
                 data.title,
                 data.price,
                 data.format,
                 data.film_language_id,
                 data.film_category_id,
-                storageId
+                storageId,
+                data.director
             ]
         );
 
