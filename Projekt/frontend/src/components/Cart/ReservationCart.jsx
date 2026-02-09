@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import Navbar from "../Navbar/Navbar"
 import Footer from "../Footer/Footer"
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { ReservationCartContext } from "../../context/ReservationCartContext";
 import { UserContext } from "../../context/UserContext";
 import { useNavigate } from "react-router";
@@ -11,19 +11,58 @@ import "../Cart/reservationcart.css";
 
 function ReservationCart() {
 
-    const { cart, setCart, increaseQty, decreaseQty, removeItem } = useContext(ReservationCartContext);
+    const { cart, setCart, increaseQty, decreaseQty, removeItem, addToCart } = useContext(ReservationCartContext);
     const { user } = useContext(UserContext);
     const navigate = useNavigate();
+
+
+    const [recommendations, setRecommendations] = useState([]);
+
+
+    const GETRESERVATIONCARTRECOMMENDATIONSAPI = import.meta.env.VITE_API_GET_RESERVATION_CART_RECOMMENDATIONS_URL;
+
 
     const totalPrice = cart.reduce((sum, currentItem) => {
         return sum + currentItem.price * currentItem.qty;
     }, 0);
 
 
+    useEffect(() => {
+        if(cart.length === 0 || !user) {
+            setRecommendations([]);
+            return;
+        }
+
+        fetchRecommendations();
+    }, [user, cart]);
+
+
+    async function fetchRecommendations() {
+        try {
+            const res = await fetch(GETRESERVATIONCARTRECOMMENDATIONSAPI, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                body: JSON.stringify({
+                    cartIDs: cart.map(item => ({
+                        id: item.id,
+                        type: item.type
+                    }))
+                })
+            });
+
+            const data = await res.json();
+            setRecommendations(data);
+        } catch(err) {
+            console.error(err);
+            alert("Hiba történt az ajánlások lekérésekor!");
+        }
+    }
+
+
     function handleClick() {
         navigate("/foglalas")
     }
-
 
 
     return (
@@ -75,6 +114,30 @@ function ReservationCart() {
 
             {cart.length > 0 && (
                 <button className="foglalasElkuldes" onClick={handleClick}>Foglalás</button>
+            )}
+
+            {recommendations.length > 0 && (
+                <div className="reservation-cart-recommendations">
+                    <h2 className="recommendations">Ajánlott termékek a kosarad alapján</h2>
+
+                    <div className="reservation-cart-recommendations-list">
+                        {recommendations.map(rec => (
+                            <div key={`${rec.type}-${rec.id}`} className="reservation-cart-recommendation-item">
+                                <p><strong>Cím: </strong>{rec.title}</p>
+                                {rec.director ? (
+                                    <p><strong>Rendező: </strong>{rec.director}</p>
+                                ) : (
+                                    <p><strong>Alkotó: </strong>{rec.creator}</p>
+                                )}
+                                <p><strong>Nyelv: </strong>{rec.languagename}</p>
+                                <p><strong>Formátum: </strong>{rec.format}</p>
+                                <p><strong>Ár: </strong>{rec.price} Ft</p>
+                                <p><strong>Darabszám: </strong>{rec.stock}</p>
+                                <p><button disabled={rec.stock === 0} onClick={() => addToCart(rec)}>Kosárba helyezés</button></p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             )}
 
             <Footer />
