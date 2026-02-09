@@ -102,6 +102,7 @@ const adminMusicRouter = require("./routes/adminMusicRouter");
 const adminFilmsRouter = require("./routes/adminFilmsRouter");
 const adminSeriesRouter = require("./routes/adminSeriesRouter");
 const orderCartRecommendationRouter = require("./routes/orderCartRecommendationRouter");
+const reservationCartRecommendationRouter = require("./routes/reservationCartRecommendationRouter");
 
 
 app.use("/api/message", messageRouter);
@@ -123,6 +124,7 @@ app.use("/api/admin_music", adminMusicRouter);
 app.use("/api/admin_films", adminFilmsRouter);
 app.use("/api/admin_series", adminSeriesRouter);
 app.use("/api/order_cart_recommendations", orderCartRecommendationRouter);
+app.use("/api/reservation_cart_recommendations", reservationCartRecommendationRouter);
 
 
 app.listen(port, () => {
