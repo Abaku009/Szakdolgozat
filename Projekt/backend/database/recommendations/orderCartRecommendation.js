@@ -1,8 +1,9 @@
+
 const pool = require("../pool/pool");
 
 
 const weights = {
-    genre: 5,
+    genre: 7,
     performer: 3,
     language: 2,
 };

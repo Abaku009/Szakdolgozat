@@ -1,8 +1,9 @@
+
 const pool = require("../pool/pool");
 
 
 const weights = {
-    genre: 5,
+    genre: 7,
     director_creator: 3,
     language: 2
 };
@@ -16,7 +17,8 @@ async function reservationCartRecommendations(cartIDs) {
     const seriesInCart = cartIDs.filter(item => item.type === "series").map(item => item.id);
 
 
-    const recommendations = [];
+    const filmRecommendations = [];
+    const seriesRecommendations = [];
 
 
     if(filmsInCart.length > 0) {
@@ -71,7 +73,7 @@ async function reservationCartRecommendations(cartIDs) {
             if(filmDirectors[film.director]) score += weights.director_creator * filmDirectors[film.director];
             if(filmLanguages[film.film_language_id]) score += weights.language * filmLanguages[film.film_language_id];
 
-            if(score > 0) recommendations.push({ ...film, score });
+            if(score > 0) filmRecommendations.push({ ...film, score });
         });
     }
 
@@ -128,14 +130,48 @@ async function reservationCartRecommendations(cartIDs) {
             if(seriesCreators[serie.creator]) score += weights.director_creator * seriesCreators[serie.creator];
             if(seriesLanguages[serie.series_language_id]) score += weights.language * seriesLanguages[serie.series_language_id];
 
-            if(score > 0) recommendations.push({ ...serie, score });
+            if(score > 0) seriesRecommendations.push({ ...serie, score });
         });
     }
 
 
-    return recommendations
-        .sort((a, b) => b.score - a.score)
-        .slice(0, 4);
+    const TOTAL_RECOMMENDATIONS = 4;
+
+    const filmCount = filmsInCart.length;
+    const seriesCount = seriesInCart.length;
+
+    if (seriesCount === 0) {
+        return filmRecommendations
+            .sort((a, b) => b.score - a.score)
+            .slice(0, TOTAL_RECOMMENDATIONS);
+    }
+
+    if (filmCount === 0) {
+        return seriesRecommendations
+            .sort((a, b) => b.score - a.score)
+            .slice(0, TOTAL_RECOMMENDATIONS);
+    }
+
+    const totalInCart = filmCount + seriesCount;
+
+    const filmQuantity = Math.floor(
+        (filmCount / totalInCart) * TOTAL_RECOMMENDATIONS
+    );
+
+    const seriesQuantity = TOTAL_RECOMMENDATIONS - filmQuantity;
+
+    filmRecommendations.sort((a, b) => b.score - a.score);
+    seriesRecommendations.sort((a, b) => b.score - a.score);
+
+    const selectedFilms = filmRecommendations.slice(0, filmQuantity);
+    const selectedSeries = seriesRecommendations.slice(0, seriesQuantity);
+
+    let finalRecommendations = [
+        ...selectedFilms,
+        ...selectedSeries
+    ];
+
+    return finalRecommendations;
 
     
 };
