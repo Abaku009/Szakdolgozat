@@ -111,7 +111,7 @@ function Music() {
                 credentials: "include",
                 headers: { "Content-Type": "application/json"},
                 body: JSON.stringify({
-                    user: user
+                    userID: user.user_id
                 })
             });
             const data = await res.json();
