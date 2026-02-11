@@ -12,6 +12,7 @@ function Music() {
 
     const { user } = useContext(UserContext);
     const { addToCart } = useContext(CartContext);
+
     const navigate = useNavigate();
 
     const GETMUSICAPI = import.meta.env.VITE_API_GET_MUSIC_URL;
@@ -29,6 +30,11 @@ function Music() {
     const [selectedLanguage, setSelectedLanguage] = useState("");
     const [selectedFormat, setSelectedFormat] = useState("");
     const [sortOrder, setSortOrder] = useState("asc"); 
+
+
+    const [recommendations, setRecommendations] = useState([]);
+
+    const GETMUSICRECOMMENDATIONSAPI = import.meta.env.VITE_API_GET_MUSIC_RECOMMENDATIONS_URL;
 
 
     useEffect(() => {
@@ -77,6 +83,16 @@ function Music() {
     }, [music, selectedGenre, selectedLanguage, selectedFormat, sortOrder]);
 
 
+    useEffect(() => {
+        if(!user) {
+            setRecommendations([]);
+            return;
+        }
+
+        fetchRecommendations();
+    }, [user]);
+
+
     function moveToCart(music) {
         if(!user) {
             alert("Kérjük jelentkezzen be!");
@@ -85,6 +101,25 @@ function Music() {
         } 
 
         addToCart(music);
+    }
+
+
+    async function fetchRecommendations() {
+        try {
+            const res = await fetch(GETMUSICRECOMMENDATIONSAPI, {
+                method: "POST",
+                credentials: "include",
+                headers: { "Content-Type": "application/json"},
+                body: JSON.stringify({
+                    user: user
+                })
+            });
+            const data = await res.json();
+            setRecommendations(data);
+        } catch(err) {
+            console.error(err);
+            alert("Hiba az ajánlások lekérése során!");
+        }
     }
 
 
@@ -118,6 +153,26 @@ function Music() {
             {Object.keys(filteredMusic).length === 0 && (
                 <div className="no-results">
                     <p>A keresett termék nem elérhető!</p>
+                </div>
+            )}
+
+            {recommendations.length > 0 && (
+                <div className="music-recommendations">
+                    <h2 className="recommendations">Ajánlott zenék a rendeléseid alapján</h2>
+
+                    <div className="music-recommendations-list">
+                        {recommendations.map(rec => (
+                            <div key={rec.music_id} className="music-recommendation-item">
+                                <p><strong>Cím: </strong>{rec.title}</p>
+                                <p><strong>Előadó: </strong>{rec.performer}</p>
+                                <p><strong>Nyelv: </strong>{rec.languagename}</p>
+                                <p><strong>Formátum: </strong>{rec.format}</p>
+                                <p><strong>Ár: </strong>{rec.price} Ft</p>
+                                <p><strong>Darabszám: </strong>{rec.stock}</p>
+                                <p><button disabled={rec.stock === 0} onClick={() => addToCart(rec)}>Kosárba helyezés</button></p>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             )}
 
