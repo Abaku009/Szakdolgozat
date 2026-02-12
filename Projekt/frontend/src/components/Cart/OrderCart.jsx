@@ -93,49 +93,49 @@ function OrderCart() {
 
             <Navbar />
 
-            <h1 className="orderCart">Rendelési kosár</h1>
+            <h1 className="OrderCart">Rendelési kosár</h1>
 
             {cart.length > 0 ? (
                 cart.map(music => (
-                    <div key={music.music_id} className="orderCartItem">
+                    <div key={music.music_id} className="OrderCartItem">
                         <p><strong>Cím: </strong>{music.title}</p>
                         <p><strong>Előadó: </strong>{music.performer}</p>
                         <p><strong>Nyelv: </strong>{music.languagename}</p>
                         <p><strong>Formátum: </strong>{music.format}</p>
                         <p><strong>Ár: </strong>{music.price * music.qty} Ft</p>
 
-                        <div className="quantityControls">
+                        <div className="OrderCartQuantityControls">
                             <button onClick={() => decreaseQty(music.music_id)} disabled={music.qty === 1}>-</button>
                             {music.qty}
                             <button onClick={() => increaseQty(music.music_id)} disabled={music.qty === music.stock}>+</button>
                         </div>
 
-                        <button className="removeItem" onClick={() => removeItem(music.music_id)}>Törlés</button>
+                        <button className="OrderCartRemoveItem" onClick={() => removeItem(music.music_id)}>Törlés</button>
                     </div>
                 ))
             ) : (
-                <div className="no-results">
+                <div className="order-cart-no-results">
                     <p>A kosár jelenleg üres.</p>
                 </div>
             )}
 
-            <div className="cartHeaderRow">
-                <h4 className="back-toCart">
-                    <Link to="/kosar" className="back-toCartButton">Vissza</Link>
+            <div className="OrderCartHeaderRow">
+                <h4 className="order-cart-back-to-cart">
+                    <Link to="/kosar" className="order-cart-back-to-cart-button">Vissza</Link>
                 </h4>
 
                 {cart.length > 0 && (
-                    <p className="totalPrice">Összesen fizetendő: {totalPrice} Ft</p>
+                    <p className="OrderCartTotalPrice">Összesen fizetendő: {totalPrice} Ft</p>
                 )}
             </div>
 
             {cart.length > 0 && (
-                <button className="rendelesLeadas" onClick={handleOrder} disabled={loading}>Rendelés elküldése</button>
+                <button className="OrderCartRendelesLeadas" onClick={handleOrder} disabled={loading}>Rendelés elküldése</button>
             )}
 
             {recommendations.length > 0 && (
                 <div className="order-cart-recommendations">
-                    <h2 className="recommendations">Ajánlott zenék a kosarad alapján</h2>
+                    <h2 className="order-cart-recommendations-header">Ajánlott zenék a kosarad alapján</h2>
 
                     <div className="order-cart-recommendations-list">
                         {recommendations.map(rec => (

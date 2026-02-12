@@ -2,7 +2,7 @@
   padding-bottom: 20px;
 }
 
-.reservations-card {
+.admin-reservations-card {
   background: #fafafa;
   border: 1px solid #e6e6e6;
   border-radius: 10px;
@@ -11,7 +11,7 @@
   box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
 }
 
-.reservations-card h2 {
+.admin-reservations-card h2 {
   font-size: 22px;
   margin-bottom: 15px;
   border-left: 5px solid #222;
@@ -19,14 +19,14 @@
   color: #222;
 }
 
-.no_reservations {
+.admin-reservations-no-reservations {
   font-size: 18px;
   color: #c0392b;
   font-weight: bold;
   margin-top: 15px;
 }
 
-.reservation_card {
+.admin-reservation-card {
   background: #fafafa;
   border: 1px solid #e6e6e6;
   border-radius: 10px;
@@ -35,7 +35,7 @@
   box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
 }
 
-.reservation_card h3 {
+.admin-reservation-card h3 {
   font-size: 20px;
   margin-bottom: 10px;
   border-left: 5px solid #222;
@@ -43,29 +43,29 @@
   color: #222;
 }
 
-.reservation_card p {
+.admin-reservation-card p {
   margin: 4px 0;
   font-size: 15px;
   color: #555;
 }
 
-.reservation_card ul {
+.admin-reservation-card ul {
   margin-top: 10px;
   padding-left: 20px;
   list-style-type: disc;
 }
 
-.reservation_card li {
+.admin-reservation-card li {
   margin-bottom: 6px;
   font-size: 15px;
   color: #333;
 }
 
-.reservation_card li strong {
+.admin-reservation-card li strong {
   font-weight: 600;
 }
 
-.deleteButton {
+.admin-reservations-delete-button {
   margin-top: 10px;
   padding: 8px 12px;
   background-color: #333;
@@ -77,11 +77,11 @@
   transition: background-color 0.2s;
 }
 
-.deleteButton:hover:not(:disabled) {
+.admin-reservations-delete-button:hover:not(:disabled) {
   background-color: #555;
 }
 
-.deleteButton:disabled {
+.admin-reservations-delete-button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }

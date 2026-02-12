@@ -1,11 +1,10 @@
-
-.filters {
+.film-filters {
   display: flex;
   gap: 15px;
   margin-bottom: 25px;
 }
 
-.filters select {
+.film-filters select {
   padding: 10px;
   border-radius: 6px;
   border: 1px solid #ccc;
@@ -13,29 +12,29 @@
   font-size: 15px;
 }
 
-.no-result {
+.film-no-result {
   margin-top: 30px;
   font-size: 20px;
   color: #c0392b;
   font-weight: bold;
 }
 
-.filmCategory {
+.FilmCategory {
   margin-bottom: 40px;
 }
 
-.filmCategory:last-child {
+.FilmCategory:last-child {
   margin-bottom: 80px; 
 }
 
-.filmCategory h2 {
+.FilmCategory h2 {
   font-size: 24px;
   margin-bottom: 15px;
   border-left: 5px solid #222;
   padding-left: 10px;
 }
 
-.filmItem {
+.FilmItem {
   background: #fafafa;
   border: 1px solid #e6e6e6;
   border-radius: 10px;
@@ -44,15 +43,15 @@
   box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
 }
 
-.filmItem p {
+.FilmItem p {
   margin: 4px 0;
 }
 
-.filmItem strong {
+.FilmItem strong {
   color: #333;
 }
 
-.filmItem button {
+.FilmItem button {
   margin-top: 10px;
   padding: 8px 12px;
   background-color: #333;
@@ -65,13 +64,12 @@
   display: inline-block;
 }
 
-.filmItem button:hover {
+.FilmItem button:hover {
   background-color: #555;
 }
 
-.filmItem button:disabled {
+.FilmItem button:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
 }
-
 

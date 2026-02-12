@@ -104,7 +104,7 @@ function Series() {
 
             <Navbar />
 
-            <div className="filters">
+            <div className="series-filters">
                 <select onChange={e => setSelectedGenre(e.target.value)}>
                     <option value="">Minden műfaj</option>
                     {genres.map(gen => <option key={gen} value={gen}>{gen}</option>)}
@@ -127,19 +127,19 @@ function Series() {
             </div>
 
             {Object.keys(filtered).length === 0 && (
-                <div className="no-result">
+                <div className="series-no-result">
                     <p>A keresett termék nem elérhető!</p>
                 </div>
             )}
 
-            <div className="seriesList"> 
+            <div className="SeriesList"> 
                 {Object.keys(filtered)
                 .filter(category => filtered[category].length > 0)
                 .map(category => (
-                    <div key={category} className="seriesCategory">
+                    <div key={category} className="SeriesCategory">
                         <h2>{category}</h2>
                         {filtered[category].map(serie => (
-                            <div key={serie.series_id} className="seriesItem">
+                            <div key={serie.series_id} className="SeriesItem">
                                 <p><strong>Cím: </strong>{serie.title}</p>
                                 <p><strong>Alkotó: </strong> {serie.creator}</p>
                                 <p><strong>Nyelv: </strong>{serie.languagename}</p>

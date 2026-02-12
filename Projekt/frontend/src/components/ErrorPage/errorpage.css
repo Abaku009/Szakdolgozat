@@ -1,4 +1,4 @@
-.error-container {
+.errorpage-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,30 +10,30 @@
     color: #333;
 }
 
-.error-title {
+.errorpage-title {
     font-size: 100px;
     font-weight: bold;
     color: #c0392b;
     margin: 0;
 }
 
-.error-message {
+.errorpage-message {
     font-size: 24px;
     margin: 10px 0;
 }
 
-.error-link {
+.errorpage-link {
     font-size: 18px;
     margin-top: 20px;
 }
 
-.error-link a {
+.errorpage-link a {
     color: #333;
     text-decoration: none;
     font-weight: bold;
 }
 
-.error-link a:hover {
+.errorpage-link a:hover {
     text-decoration: underline;
 }
 

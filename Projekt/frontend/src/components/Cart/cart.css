@@ -1,17 +1,17 @@
-.cart-h1 {
+.cart-header {
     text-align: center;
     margin-bottom: 2rem;
     font-size: 2rem;
 }
 
-.Cart-links {
+.cart-links {
     display: flex;
     gap: 1rem; 
     margin-bottom: 2rem;
     justify-content: center;
 }
 
-.Cart-links a {
+.cart-links a {
     display: inline-block;
     padding: 1rem 2rem; 
     text-decoration: none;
@@ -23,7 +23,7 @@
     transition: background-color 0.2s ease;
 }
 
-.Cart-links a:hover {
+.cart-links a:hover {
     background-color: #555;
 }
 

@@ -242,7 +242,7 @@ function AdminMusic() {
 
             <Navbar/>
             
-            <div className="filters">
+            <div className="admin-music-filters">
                 <select onChange={e => setSelectedGenre(e.target.value)}>
                     <option value="">Minden műfaj</option>
                     {genres.map(genr => <option key={genr.music_category_id} value={genr.genre}>{genr.genre}</option>)}
@@ -264,26 +264,26 @@ function AdminMusic() {
                 </select>
             </div>
 
-            <div className="admin-actions">
+            <div className="admin-music-actions">
                 <button onClick={handleAddGenre}>Műfaj hozzáadása</button>
                 <button onClick={handleAddLanguage}>Nyelv hozzáadása</button>
                 <button onClick={() => setAddingMusic(true)}>Zene hozzáadása</button>
             </div>
 
             {Object.keys(filteredMusic).length === 0 && (
-                <div className="no-results">
+                <div className="admin-music-no-results">
                     <p>A keresett termék nem elérhető!</p>
                 </div>
             )}
 
-            <div className="musicList">
+            <div className="AdminMusicList">
                 {Object.keys(filteredMusic)
                 .filter(category => filteredMusic[category].length > 0)
                 .map(category => (
-                    <div key={category} className="musicCategory">
+                    <div key={category} className="AdminMusicCategory">
                         <h2>{category}</h2>
                         {filteredMusic[category].map(mus => (
-                            <div key={mus.music_id} className="musicItem">
+                            <div key={mus.music_id} className="AdminMusicItem">
                                 <p><strong>Cím:</strong> {mus.title}</p>
                                 <p><strong>Előadó:</strong> {mus.performer}</p>
                                 <p><strong>Nyelv:</strong> {mus.languagename}</p>
@@ -292,19 +292,19 @@ function AdminMusic() {
                                 <p><strong>Darabszám:</strong> {mus.stock}</p>
                                 {mus.is_active ? (
                                     <>
-                                        <button onClick={() => handleDeactivate(mus.music_id)} className="delete-Button" disabled={isDeleting}>
+                                        <button onClick={() => handleDeactivate(mus.music_id)} className="admin-music-delete-button" disabled={isDeleting}>
                                             Deaktiválás
                                         </button>
                                     </>
                                 ) : (
                                     <>
-                                        <button onClick={() => handleRestore(mus.music_id)} className="delete-Button" disabled={isDeleting}>
+                                        <button onClick={() => handleRestore(mus.music_id)} className="admin-music-delete-button" disabled={isDeleting}>
                                             Visszaállítás
                                         </button>
                                     </>
                                 )}
-                                <button className="delete-Button" onClick={() => handleDelete(mus.music_id)} disabled={isDeleting}>Törlés</button>
-                                <button onClick={async () => {
+                                <button className="admin-music-delete-button" onClick={() => handleDelete(mus.music_id)} disabled={isDeleting}>Törlés</button>
+                                <button className="admin-music-delete-button" onClick={async () => {
                                             try {
                                                 const res = await fetch(`${ADMINMUSICAPI}/${mus.music_id}/has_order`);
                                                 const data = await res.json();

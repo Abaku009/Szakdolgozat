@@ -72,11 +72,11 @@ function ReservationCart() {
 
             <Navbar />
 
-            <h1 className="reserve-cart-h1">Foglalási kosár</h1>
+            <h1 className="reservation-cart-header">Foglalási kosár</h1>
 
             {cart.length > 0 ? (
                 cart.map(item => (
-                    <div key={`${item.type}-${item.id}`} className="reserveCartItem">
+                    <div key={`${item.type}-${item.id}`} className="ReservationCartItem">
                         <p><strong>Cím: </strong>{item.title}</p>
                         {item.director ? (
                             <p><strong>Rendező: </strong>{item.director}</p>
@@ -87,38 +87,38 @@ function ReservationCart() {
                         <p><strong>Formátum: </strong>{item.format}</p>
                         <p><strong>Ár: </strong>{item.price * item.qty} Ft</p>
 
-                        <div className="quantityButtons">
+                        <div className="ReservationCartQuantityButtons">
                             <button onClick={() => decreaseQty(item.id, item.type)} disabled={item.qty === 1}>-</button>
                             {item.qty}
                             <button onClick={() => increaseQty(item.id, item.type)} disabled={item.qty === item.stock}>+</button>
                         </div>
 
-                        <button className="removeFromCart" onClick={() => removeItem(item.id, item.type)}>Törlés</button>
+                        <button className="ReservationCartRemoveFromCart" onClick={() => removeItem(item.id, item.type)}>Törlés</button>
                     </div>
                 ))
             ) : (
-                <div className="noResult">
+                <div className="ReservationCartNoResult">
                     <p>A kosár jelenleg üres.</p>
                 </div>
             )}
 
-            <div className="cartOsszegzes">
-                <h4 className="visszaKosarhoz">
-                    <Link to="/kosar" className="visszaKosarhozGomb">Vissza</Link>
+            <div className="ReservationCartOsszegzes">
+                <h4 className="ReservationCartVisszaKosarhoz">
+                    <Link to="/kosar" className="ReservationCartVisszaKosarhozGomb">Vissza</Link>
                 </h4>
 
                 {cart.length > 0 && (
-                    <p className="teljesAr">Összesen fizetendő: {totalPrice} Ft</p>
+                    <p className="ReservationCartTeljesAr">Összesen fizetendő: {totalPrice} Ft</p>
                 )}
             </div>
 
             {cart.length > 0 && (
-                <button className="foglalasElkuldes" onClick={handleClick}>Foglalás</button>
+                <button className="ReservationCartFoglalasElkuldes" onClick={handleClick}>Foglalás</button>
             )}
 
             {recommendations.length > 0 && (
                 <div className="reservation-cart-recommendations">
-                    <h2 className="recommendations">Ajánlott termékek a kosarad alapján</h2>
+                    <h2 className="reservation-cart-recommendations-header">Ajánlott termékek a kosarad alapján</h2>
 
                     <div className="reservation-cart-recommendations-list">
                         {recommendations.map(rec => (

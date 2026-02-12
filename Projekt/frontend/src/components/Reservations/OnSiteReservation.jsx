@@ -148,14 +148,14 @@ function OnSiteReservation() {
         return (
             <>
                 <Navbar />
-                <div className="empty-cart-message">
+                <div className="on-site-reservation-empty-cart-message">
                     <h2>Az üzlet jelenleg zárva van</h2>
                     <p>
                         Nyitvatartás: <br />
                         Hétfő–Péntek 08:00–18:00
                     </p>
-                    <h4 className="back-to-reservations">
-                        <Link to="/foglalas" className="back-to-reservation-button">
+                    <h4 className="on-site-reservation-back-to-reservations">
+                        <Link to="/foglalas" className="on-site-reservation-back-to-reservations-button">
                             Vissza
                         </Link>
                     </h4>
@@ -172,11 +172,11 @@ function OnSiteReservation() {
         return (
             <>
                 <Navbar />
-                <div className="empty-cart-message">
+                <div className="on-site-reservation-empty-cart-message">
                     <h2>A foglalási kosarad üres!</h2>
                     <p>Kérjük, tegyél először valamit a foglalási kosaradba, mielőtt foglalnál.</p>
-                    <h4 className="back-to-reservations">
-                        <Link to="/foglalas" className="back-to-reservation-button">Vissza</Link>
+                    <h4 className="on-site-reservation-back-to-reservations">
+                        <Link to="/foglalas" className="on-site-reservation-back-to-reservations-button">Vissza</Link>
                     </h4>
                 </div>
                 <Footer />
@@ -194,13 +194,13 @@ function OnSiteReservation() {
 
             <div className="on-site-reservation-div">
 
-                <div className="cart-warning">
+                <div className="on-site-reservation-cart-warning">
                     <p>A foglalás a kosaradban lévő termékekre vonatkozik. Megtekintheted a <Link to="/kosar/reservation-cart">foglalási kosárban</Link>.</p>
                 </div>
 
                 <h1>Helyben foglalás</h1>
 
-                <form onSubmit={handleSubmit} className="on-site-form">
+                <form onSubmit={handleSubmit} className="on-site-reservation-form">
                     <label htmlFor="kezdodatum">Kezdődátum: </label>
                     <input type="date" name="kezdodatum" id="kezdodatum" value={today} disabled/>
                     <label htmlFor="vegdatum">Végdátum: </label>
@@ -212,8 +212,8 @@ function OnSiteReservation() {
                     <button type="submit" disabled={!endDate || loading}>Foglalás elküldése</button>
                 </form>
 
-                <h4 className="back-to-reservations">
-                    <Link to="/foglalas" className="back-to-reservation-button">Vissza</Link>
+                <h4 className="on-site-reservation-back-to-reservations">
+                    <Link to="/foglalas" className="on-site-reservation-back-to-reservations-button">Vissza</Link>
                 </h4>
 
             </div>

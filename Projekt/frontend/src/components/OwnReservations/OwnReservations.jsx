@@ -76,11 +76,11 @@ function OwnReservations() {
                 <h1>Saját foglalások</h1>
 
                 {reservations.length === 0 && (
-                    <p className="no-reservations">Nincs még foglalásod.</p>
+                    <p className="own-reservations-no-reservations">Nincs még foglalásod.</p>
                 )}
 
                 {reservations.map(reservation => (
-                    <div key={reservation.reservation_id} className="reservation-card">
+                    <div key={reservation.reservation_id} className="own-reservation-card">
                         <h3>
                             Foglalás #{reservation.reservation_id} (
                             {reservation.mode === "on_site"

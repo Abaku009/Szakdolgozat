@@ -1,4 +1,4 @@
-.reserveCartItem {
+.ReservationCartItem {
   background: #fafafa;
   border: 1px solid #e6e6e6;
   border-radius: 10px;
@@ -7,22 +7,22 @@
   box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
 }
 
-.reserveCartItem p {
+.ReservationCartItem p {
   margin: 5px 0;
 }
 
-.reserveCartItem strong {
+.ReservationCartItem strong {
   color: #333;
 }
 
-.quantityButtons {
+.ReservationCartQuantityButtons {
   display: flex;
   align-items: center;
   gap: 10px;
   margin: 10px 0;
 }
 
-.quantityButtons button {
+.ReservationCartQuantityButtons button {
   padding: 6px 10px;
   background-color: #333;
   color: white;
@@ -33,16 +33,16 @@
   transition: background-color 0.2s;
 }
 
-.quantityButtons button:hover {
+.ReservationCartQuantityButtons button:hover {
   background-color: #555;
 }
 
-.quantityButtons button:disabled {
+.ReservationCartQuantityButtons button:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
 }
 
-.reserveCartItem button.removeFromCart {
+.ReservationCartItem button.ReservationCartRemoveFromCart {
   margin-top: 10px;
   padding: 8px 12px;
   background-color: #c0392b;
@@ -54,38 +54,38 @@
   transition: background-color 0.2s;
 }
 
-.reserveCartItem button.removeFromCart:hover {
+.ReservationCartItem button.ReservationCartRemoveFromCart:hover {
   background-color: #e74c3c;
 }
 
-.reserve-cart-h1 {
+.reservation-cart-header {
   margin-bottom: 20px;
   font-size: 26px;
   border-left: 5px solid #222;
   padding-left: 10px;
 }
 
-.noResult {
+.ReservationCartNoResult {
   margin-top: 30px;
   font-size: 20px;
   color: #c0392b;
   font-weight: bold;
 }
 
-.visszaKosarhoz {
+.ReservationCartVisszaKosarhoz {
     margin-top: 15px;
 }
 
-.visszaKosarhoz a {
+.ReservationCartVisszaKosarhoz a {
     color: #fff;
     text-decoration: none;
 }
 
-.visszaKosarhoz a:hover {
+.ReservationCartVisszaKosarhoz a:hover {
     text-decoration: underline;
 }
 
-.visszaKosarhozGomb {
+.ReservationCartVisszaKosarhozGomb {
     display: inline-block;
     padding: 10px 15px;
     font-size: 16px;
@@ -100,24 +100,24 @@
     text-align: center;
 }
 
-.visszaKosarhozGomb:hover {
+.ReservationCartVisszaKosarhozGomb:hover {
     background-color: #555;
 }
 
-.teljesAr {
+.ReservationCartTeljesAr {
     font-size: 1.4rem;
     font-weight: bold;
     margin: 0;
 }
 
-.cartOsszegzes {
+.ReservationCartOsszegzes {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 20px 0 10px 0;
 }
 
-.foglalasElkuldes  {
+.ReservationCartFoglalasElkuldes  {
   margin-bottom: 60px;
   padding: 10px 18px;
   background-color: #333;
@@ -131,11 +131,11 @@
   margin-left: auto;
 }
 
-.foglalasElkuldes:hover:not(:disabled) {
+.ReservationCartFoglalasElkuldes:hover:not(:disabled) {
   background-color: #555;
 }
 
-.foglalasElkuldes:disabled {
+.ReservationCartFoglalasElkuldes:disabled {
     background-color: #ccc;
     cursor: not-allowed;
 }
@@ -183,7 +183,7 @@
   margin-bottom: 80px; 
 }
 
-.recommendations {
+.reservation-cart-recommendations-header {
   margin-bottom: 20px;
   font-size: 26px;
   border-left: 5px solid #222;

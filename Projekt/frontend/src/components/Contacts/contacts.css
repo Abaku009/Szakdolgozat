@@ -1,4 +1,4 @@
-.container {
+.contacts-container {
     display: flex;
     flex-wrap: wrap;
     gap: 40px;
@@ -9,7 +9,7 @@
     box-sizing: border-box;
 }
 
-.kapcsolat, .irjnekunk {
+.contacts, .contacts-irjnekunk {
     background-color: #f9f9f9;
     padding: 20px;
     border-radius: 8px;
@@ -17,39 +17,39 @@
     flex: 1 1 400px;
 }
 
-.kapcsolat p {
+.contacts p {
     margin: 8px 0;
     font-size: 16px;
 }
 
-#nyitvatartas {
+#contacts-nyitvatartas {
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
 }
 
-#nyitvatartas th, #nyitvatartas td {
+#contacts-nyitvatartas th, #contacts-nyitvatartas td {
     border: 1px solid #ccc;
     padding: 8px 12px;
     text-align: left;
 }
 
-#nyitvatartas th {
+#contacts-nyitvatartas th {
     background-color: #eee;
 }
 
-.irjnekunk form {
+.contacts-irjnekunk form {
     display: flex;
     flex-direction: column;
 }
 
-.irjnekunk label {
+.contacts-irjnekunk label {
     margin-top: 10px;
     font-weight: 500;
 }
 
-.irjnekunk input,
-.irjnekunk textarea {
+.contacts-irjnekunk input,
+.contacts-irjnekunk textarea {
     padding: 8px 10px;
     margin-top: 4px;
     border: 1px solid #ccc;
@@ -59,7 +59,7 @@
     box-sizing: border-box;
 }
 
-.irjnekunk button {
+.contacts-irjnekunk button {
     margin-top: 15px;
     padding: 10px 20px;
     font-size: 16px;
@@ -71,18 +71,19 @@
     transition: all 0.3s ease;
 }
 
-.irjnekunk button:hover:enabled {
+.contacts-irjnekunk button:hover:enabled {
     background-color: #555;
 }
 
-.irjnekunk button:disabled {
+.contacts-irjnekunk button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
 }
 
 @media (max-width: 768px) {
-    .container {
+    .contacts-container {
         flex-direction: column;
         gap: 20px;
     }
 }
+

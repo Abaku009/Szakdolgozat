@@ -128,7 +128,7 @@ function Music() {
 
             <Navbar/>
             
-            <div className="filters">
+            <div className="music-filters">
                 <select onChange={e => setSelectedGenre(e.target.value)}>
                     <option value="">Minden műfaj</option>
                     {genres.map(genr => <option key={genr} value={genr}>{genr}</option>)}
@@ -151,14 +151,14 @@ function Music() {
             </div>
 
             {Object.keys(filteredMusic).length === 0 && (
-                <div className="no-results">
+                <div className="music-no-results">
                     <p>A keresett termék nem elérhető!</p>
                 </div>
             )}
 
             {recommendations.length > 0 && (
                 <div className="music-recommendations">
-                    <h2 className="recommendations">Ajánlott zenék a rendeléseid alapján</h2>
+                    <h2 className="music-recommendations-header">Ajánlott zenék a rendeléseid alapján</h2>
 
                     <div className="music-recommendations-list">
                         {recommendations.map(rec => (
@@ -176,31 +176,40 @@ function Music() {
                 </div>
             )}
 
-            <div className="musicList">
-                {Object.keys(filteredMusic)
-                .filter(category => filteredMusic[category].length > 0)
-                .map(category => (
-                    <div key={category} className="musicCategory">
-                        <h2>{category}</h2>
-                        {filteredMusic[category].map(mus => (
-                            <div key={mus.music_id} className="musicItem">
-                                <p><strong>Cím: </strong>{mus.title}</p>
-                                <p><strong>Előadó: </strong>{mus.performer}</p>
-                                <p><strong>Nyelv: </strong>{mus.languagename}</p>
-                                <p><strong>Formátum: </strong>{mus.format}</p>
-                                <p><strong>Ár: </strong>{mus.price} Ft</p>
-                                <p><strong>Darabszám: </strong>{mus.stock}</p>
-                                <p><button disabled={mus.stock === 0} onClick={() => moveToCart(mus)}>Kosárba helyezés</button></p>
-                            </div>
-                        ))}
+            {Object.keys(filteredMusic).length > 0 && (
+                <>
+                    <h2 className="music-offer-header">Zene kínálat</h2>
+
+                    <div className="MusicList">
+                        {Object.keys(filteredMusic)
+                            .filter(category => filteredMusic[category].length > 0)
+                            .map(category => (
+                                <div key={category} className="MusicCategory">
+                                    <h2>{category}</h2>
+                                    {filteredMusic[category].map(mus => (
+                                        <div key={mus.music_id} className="MusicItem">
+                                            <p><strong>Cím: </strong>{mus.title}</p>
+                                            <p><strong>Előadó: </strong>{mus.performer}</p>
+                                            <p><strong>Nyelv: </strong>{mus.languagename}</p>
+                                            <p><strong>Formátum: </strong>{mus.format}</p>
+                                            <p><strong>Ár: </strong>{mus.price} Ft</p>
+                                            <p><strong>Darabszám: </strong>{mus.stock}</p>
+                                            <p><button disabled={mus.stock === 0} onClick={() => moveToCart(mus)}>Kosárba helyezés</button></p>
+                                        </div>
+                                    ))}
+                                </div>
+                            ))}
                     </div>
-                ))}
-            </div>
+                </>
+            )}
+
 
             <Footer />
 
         </>
+
     );
+
 }
 
 export default Music;

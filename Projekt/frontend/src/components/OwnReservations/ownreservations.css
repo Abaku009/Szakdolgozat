@@ -1,4 +1,4 @@
-.reservation-card {
+.own-reservation-card {
   background: #fafafa;
   border: 1px solid #e6e6e6;
   border-radius: 10px;
@@ -7,7 +7,7 @@
   box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
 }
 
-.reservation-card h3 {
+.own-reservation-card h3 {
   font-size: 20px;
   margin-bottom: 10px;
   border-left: 5px solid #222; 
@@ -15,25 +15,25 @@
   color: #222;
 }
 
-.reservation-card p {
+.own-reservation-card p {
   margin: 4px 0;
   font-size: 15px;
   color: #555;
 }
 
-.reservation-card ul {
+.own-reservation-card ul {
   margin-top: 10px;
   padding-left: 20px;
   list-style-type: disc;
 }
 
-.reservation-card li {
+.own-reservation-card li {
   margin-bottom: 6px;
   font-size: 15px;
   color: #333;
 }
 
-.no-reservations {
+.own-reservations-no-reservations {
   font-size: 20px;
   color: #c0392b;
   font-weight: bold;

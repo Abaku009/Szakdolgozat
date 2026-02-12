@@ -142,11 +142,11 @@ function OnlineReservation() {
         return (
             <>
                 <Navbar />
-                <div className="empty-cart-message">
+                <div className="online-reservation-empty-cart-message">
                     <h2>A foglalási kosarad üres!</h2>
                     <p>Kérjük, tegyél először valamit a foglalási kosaradba, mielőtt foglalnál.</p>
-                    <h4 className="back-to-reservations-header">
-                        <Link to="/foglalas" className="back-to-reservations-button">Vissza</Link>
+                    <h4 className="online-reservation-back-to-reservations-header">
+                        <Link to="/foglalas" className="online-reservation-back-to-reservations-button">Vissza</Link>
                     </h4>
                 </div>
                 <Footer />
@@ -164,13 +164,13 @@ function OnlineReservation() {
 
             <div className="online-reservation-div">
 
-                <div className="cart-warning-message">
+                <div className="online-reservation-cart-warning-message">
                     <p>A foglalás a kosaradban lévő termékekre vonatkozik. Megtekintheted a <Link to="/kosar/reservation-cart">foglalási kosárban</Link>.</p>
                 </div>
 
                 <h1>Online foglalás</h1>
 
-                <form onSubmit={handleSubmit} className="online-form">
+                <form onSubmit={handleSubmit} className="online-reservation-form">
                     <label htmlFor="kezdodatum">Kezdődátum: </label>
                     <input type="date" name="kezdodatum" id="kezdodatum" required value={startDate} min={today} onChange={handleStartDateChange}/>
                     <label htmlFor="vegdatum">Végdátum: </label>
@@ -182,8 +182,8 @@ function OnlineReservation() {
                     <button type="submit" disabled={!startDate || !endDate || !startTime || loading}>Foglalás elküldése</button>
                 </form>
 
-                <h4 className="back-to-reservations-header">
-                    <Link to="/foglalas" className="back-to-reservations-button">Vissza</Link>
+                <h4 className="online-reservation-back-to-reservations-header">
+                    <Link to="/foglalas" className="online-reservation-back-to-reservations-button">Vissza</Link>
                 </h4>
 
             </div>

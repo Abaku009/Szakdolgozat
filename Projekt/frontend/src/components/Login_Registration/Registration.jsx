@@ -77,9 +77,9 @@ function Registration() {
         <>
             <Navbar />
 
-            <h1 className="reg">Regisztráció</h1>
+            <h1 className="registration">Regisztráció</h1>
 
-            <div className="regisztracio">
+            <div className="registration-form">
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="vezeteknev">Vezetéknév: </label>
                     <input type="text" name="vezeteknev" id="vezeteknev" required placeholder="Kocsis" value={lastName} onChange={lastNameChange}/>
@@ -95,7 +95,7 @@ function Registration() {
                 </form>
             </div>
 
-            <h4 className="link"><Link to="/bejelentkezes" className="link-button">Már van fiókom</Link></h4>
+            <h4 className="link-div"><Link to="/bejelentkezes" className="link-button">Már van fiókom</Link></h4>
 
             <Footer />
         </>

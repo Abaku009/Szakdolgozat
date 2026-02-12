@@ -2,7 +2,7 @@
   padding-bottom: 20px;
 }
 
-.profile-card {
+.admin-profiles-card {
   background: #fafafa;
   border: 1px solid #e6e6e6;
   border-radius: 10px;
@@ -17,13 +17,13 @@
   color: #222;
 }
 
-.profile-card p {
+.admin-profiles-card p {
   margin: 6px 0;
   font-size: 15px;
   color: #555;
 }
 
-.profile-card p strong {
+.admin-profiles-card p strong {
   font-weight: 600;
   color: #222;
 }

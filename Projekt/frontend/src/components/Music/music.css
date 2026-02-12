@@ -1,11 +1,10 @@
-
-.filters {
+.music-filters {
   display: flex;
   gap: 15px;
   margin-bottom: 25px;
 }
 
-.filters select {
+.music-filters select {
   padding: 10px;
   border-radius: 6px;
   border: 1px solid #ccc;
@@ -13,29 +12,29 @@
   font-size: 15px;
 }
 
-.no-results {
+.music-no-results {
   margin-top: 30px;
   font-size: 20px;
   color: #c0392b;
   font-weight: bold;
 }
 
-.musicCategory {
-  margin-bottom: 40px;
+.MusicCategory { 
+  margin-bottom: 40px; 
 }
 
-.musicCategory:last-child {
+.MusicCategory:last-child { 
   margin-bottom: 80px; 
 }
 
-.musicCategory h2 {
+.MusicCategory h2 {
   font-size: 24px;
   margin-bottom: 15px;
   border-left: 5px solid #222;
   padding-left: 10px;
 }
 
-.musicItem {
+.MusicItem {
   background: #fafafa;
   border: 1px solid #e6e6e6;
   border-radius: 10px;
@@ -44,15 +43,15 @@
   box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
 }
 
-.musicItem p {
+.MusicItem p {
   margin: 4px 0;
 }
 
-.musicItem strong {
+.MusicItem strong {
   color: #333;
 }
 
-.musicItem button {
+.MusicItem button {
   margin-top: 10px;
   padding: 8px 12px;
   background-color: #333;
@@ -65,13 +64,69 @@
   display: inline-block;
 }
 
-.musicItem button:hover {
+.MusicItem button:hover {
   background-color: #555;
 }
 
-.musicItem button:disabled {
+.MusicItem button:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
 }
 
+.music-recommendation-item {
+  background: #fafafa;
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
+}
+
+.music-recommendation-item p {
+  margin: 4px 0;
+}
+
+.music-recommendation-item strong {
+  color: #333;
+}
+
+.music-recommendation-item button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+  display: inline-block;
+}
+
+.music-recommendation-item button:hover {
+  background-color: #555;
+}
+
+.music-recommendation-item button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.music-recommendations-header {
+  margin-bottom: 20px;
+  font-size: 26px;
+  border-left: 5px solid #222;
+  padding-left: 10px;
+}
+
+.music-offer-header {
+  margin-bottom: 20px;
+  font-size: 26px;
+  border-left: 5px solid #222;
+  padding-left: 10px;
+}
+
+.music-recommendations {
+  margin-bottom: 60px;
+}
 

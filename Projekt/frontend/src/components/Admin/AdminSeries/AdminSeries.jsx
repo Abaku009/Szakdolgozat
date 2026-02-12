@@ -242,7 +242,7 @@ function AdminSeries() {
 
             <Navbar/>
             
-            <div className="filters">
+            <div className="admin-series-filters">
                 <select onChange={e => setSelectedGenre(e.target.value)}>
                     <option value="">Minden műfaj</option>
                     {genres.map(genr => <option key={genr.series_category_id} value={genr.genre}>{genr.genre}</option>)}
@@ -264,26 +264,26 @@ function AdminSeries() {
                 </select>
             </div>
 
-            <div className="admin-actions">
+            <div className="admin-series-actions">
                 <button onClick={handleAddGenre}>Műfaj hozzáadása</button>
                 <button onClick={handleAddLanguage}>Nyelv hozzáadása</button>
                 <button onClick={() => setAddingSerie(true)}>Sorozat hozzáadása</button>
             </div>
 
             {Object.keys(filtered).length === 0 && (
-                <div className="no-results">
+                <div className="admin-series-no-results">
                     <p>A keresett termék nem elérhető!</p>
                 </div>
             )}
 
-            <div className="seriesList">
+            <div className="AdminSeriesList">
                 {Object.keys(filtered)
                 .filter(category => filtered[category].length > 0)
                 .map(category => (
-                    <div key={category} className="seriesCategory">
+                    <div key={category} className="AdminSeriesCategory">
                         <h2>{category}</h2>
                         {filtered[category].map(serie => (
-                            <div key={serie.series_id} className="seriesItem">
+                            <div key={serie.series_id} className="AdminSeriesItem">
                                 <p><strong>Cím: </strong>{serie.title}</p>
                                 <p><strong>Alkotó: </strong>{serie.creator}</p>
                                 <p><strong>Nyelv: </strong>{serie.languagename}</p>
@@ -292,19 +292,19 @@ function AdminSeries() {
                                 <p><strong>Darabszám: </strong>{serie.stock}</p>
                                 {serie.is_active ? (
                                     <>
-                                        <button onClick={() => handleDeactivate(serie.series_id)} className="delete-Button" disabled={isDeleting}>
+                                        <button onClick={() => handleDeactivate(serie.series_id)} className="admin-series-delete-button" disabled={isDeleting}>
                                             Deaktiválás
                                         </button>
                                     </>
                                 ) : (
                                     <>
-                                        <button onClick={() => handleRestore(serie.series_id)} className="delete-Button" disabled={isDeleting}>
+                                        <button onClick={() => handleRestore(serie.series_id)} className="admin-series-delete-button" disabled={isDeleting}>
                                             Visszaállítás
                                         </button>
                                     </>
                                 )}
-                                <button className="delete-Button" onClick={() => handleDelete(serie.series_id)} disabled={isDeleting}>Törlés</button>
-                                <button onClick={async () => {
+                                <button className="admin-series-delete-button" onClick={() => handleDelete(serie.series_id)} disabled={isDeleting}>Törlés</button>
+                                <button className="admin-series-delete-button" onClick={async () => {
                                             try {
                                                 const res = await fetch(`${ADMINSERIESAPI}/${serie.series_id}/has_order`);
                                                 const data = await res.json();

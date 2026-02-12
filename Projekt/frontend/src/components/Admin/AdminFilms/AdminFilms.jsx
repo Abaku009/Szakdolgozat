@@ -242,7 +242,7 @@ function AdminFilms() {
 
             <Navbar/>
             
-            <div className="filters">
+            <div className="admin-films-filters">
                 <select onChange={e => setSelectedGenre(e.target.value)}>
                     <option value="">Minden műfaj</option>
                     {genres.map(genr => <option key={genr.film_category_id} value={genr.genre}>{genr.genre}</option>)}
@@ -264,26 +264,26 @@ function AdminFilms() {
                 </select>
             </div>
 
-            <div className="admin-actions">
+            <div className="admin-films-actions">
                 <button onClick={handleAddGenre}>Műfaj hozzáadása</button>
                 <button onClick={handleAddLanguage}>Nyelv hozzáadása</button>
                 <button onClick={() => setAddingFilm(true)}>Film hozzáadása</button>
             </div>
 
             {Object.keys(filtered).length === 0 && (
-                <div className="no-results">
+                <div className="admin-films-no-results">
                     <p>A keresett termék nem elérhető!</p>
                 </div>
             )}
 
-            <div className="filmList">
+            <div className="AdminFilmList">
                 {Object.keys(filtered)
                 .filter(category => filtered[category].length > 0)
                 .map(category => (
-                    <div key={category} className="filmCategory">
+                    <div key={category} className="AdminFilmCategory">
                         <h2>{category}</h2>
                         {filtered[category].map(film => (
-                            <div key={film.film_id} className="filmItem">
+                            <div key={film.film_id} className="AdminFilmItem">
                                 <p><strong>Cím: </strong>{film.title}</p>
                                 <p><strong>Rendező: </strong>{film.director}</p>
                                 <p><strong>Nyelv: </strong>{film.languagename}</p>
@@ -292,19 +292,19 @@ function AdminFilms() {
                                 <p><strong>Darabszám: </strong>{film.stock}</p>
                                 {film.is_active ? (
                                     <>
-                                        <button onClick={() => handleDeactivate(film.film_id)} className="delete-Button" disabled={isDeleting}>
+                                        <button onClick={() => handleDeactivate(film.film_id)} className="admin-films-delete-button" disabled={isDeleting}>
                                             Deaktiválás
                                         </button>
                                     </>
                                 ) : (
                                     <>
-                                        <button onClick={() => handleRestore(film.film_id)} className="delete-Button" disabled={isDeleting}>
+                                        <button onClick={() => handleRestore(film.film_id)} className="admin-films-delete-button" disabled={isDeleting}>
                                             Visszaállítás
                                         </button>
                                     </>
                                 )}
-                                <button className="delete-Button" onClick={() => handleDelete(film.film_id)} disabled={isDeleting}>Törlés</button>
-                                <button onClick={async () => {
+                                <button className="admin-films-delete-button" onClick={() => handleDelete(film.film_id)} disabled={isDeleting}>Törlés</button>
+                                <button className="admin-films-delete-button" onClick={async () => {
                                             try {
                                                 const res = await fetch(`${ADMINFILMSAPI}/${film.film_id}/has_order`);
                                                 const data = await res.json();

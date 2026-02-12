@@ -67,12 +67,12 @@ function Contacts() {
         <div>
             <Navbar />
             <h1>Kapcsolat</h1>
-            <div className="container">
-                <div className="kapcsolat">
+            <div className="contacts-container">
+                <div className="contacts">
                     <p>E-mail: mediahaven.contact@gmail.com</p>
                     <p>Telefonszám: +36 20 123 4567</p>
                     <p>Cím: 9700 Szombathely, Fő tér 42. </p>
-                    <table id="nyitvatartas">
+                    <table id="contacts-nyitvatartas">
                         <thead>
                             <tr>
                                 <th colSpan={2}>Nyitvatartás</th>
@@ -110,7 +110,7 @@ function Contacts() {
                         </tbody>
                     </table>
                 </div>
-                <div className="irjnekunk">
+                <div className="contacts-irjnekunk">
                     <form onSubmit={handleSubmit}>
                         <h2>Visszajelzés küldése</h2>
                         <label htmlFor="vezeteknev">Vezetéknév: </label>

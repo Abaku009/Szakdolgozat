@@ -143,18 +143,18 @@ function AdminReservations() {
                 <h1>Admin – Felhasználók foglalásai</h1>
 
                 {reservations.length === 0 && (
-                    <p className="no_reservations">Nincsenek foglalások.</p>
+                    <p className="admin-reservations-no-reservations">Nincsenek foglalások.</p>
                 )}
 
                 {reservations.map(user => (
-                    <div key={user.user_id} className="reservations-card">
+                    <div key={user.user_id} className="admin-reservations-card">
                         <h2>{user.last_name} {user.first_name} ({user.email})</h2>
 
                         {user.reservations.length === 0 ? (
-                            <p className="no_reservations">Nincs foglalása.</p>
+                            <p className="admin-reservations-no-reservations">Nincs foglalása.</p>
                         ) : (
                             user.reservations.map(reservation => (
-                                <div key={reservation.reservation_id} className="reservation_card">
+                                <div key={reservation.reservation_id} className="admin-reservation-card">
                                     <h3>
                                         Foglalás #{reservation.reservation_id} (
                                         {reservation.mode === "on_site" ? "Helyben" : "Online"})
@@ -167,7 +167,7 @@ function AdminReservations() {
                                         ))}
                                     </ul>
                                     <button 
-                                        className="deleteButton"
+                                        className="admin-reservations-delete-button"
                                         onClick={() => handleDeleteReservation(user, reservation)}
                                         disabled={isDeleting}
                                     >

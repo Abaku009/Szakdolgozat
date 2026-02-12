@@ -1,4 +1,4 @@
-.bejelentkezes {
+.login-form {
     max-width: 400px;
     margin: 20px auto;
     padding: 25px;
@@ -8,30 +8,30 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.bejelentkezes form {
+.login-form form {
     display: flex;
     flex-direction: column;
 }
 
-.bejelentkezes label {
+.login-form label {
     margin: 10px 0 5px;
     font-weight: 500;
 }
 
-.bejelentkezes input {
+.login-form input {
     padding: 8px 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 14px;
 }
 
-.bejelentkezes input:focus {
+.login-form input:focus {
     border-color: #333;
     outline: none;
     box-shadow: 0 0 5px #555;
 }
 
-.bejelentkezes button {
+.login-form button {
     margin-top: 20px;
     padding: 10px 15px;
     font-size: 16px;
@@ -44,36 +44,36 @@
     transition: background-color 0.2s ease;
 }
 
-.bejelentkezes button:hover:not(:disabled) {
+.login-form button:hover:not(:disabled) {
     background-color: #555;
 }
 
-.bejelentkezes button:disabled {
+.login-form button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
 }
 
-.log {
+.login {
     text-align: center;
     margin-top: 30px;
     font-size: 28px;
 }
 
-.linkButton {
+.LoginLinkButton {
     text-align: center;
     margin-top: 15px;
 }
 
-.linkButton a {
+.LoginLinkButton a {
     color: #fff;
     text-decoration: none;
 }
 
-.linkButton a:hover {
+.LoginLinkButton a:hover {
     text-decoration: underline;
 }
 
-.link-but {
+.login-link-button {
     display: inline-block;
     padding: 10px 15px;
     font-size: 16px;
@@ -88,7 +88,7 @@
     text-align: center;
 }
 
-.link-but:hover {
+.login-link-button:hover {
     background-color: #555;
 }
 

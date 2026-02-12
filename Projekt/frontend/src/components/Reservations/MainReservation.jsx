@@ -9,8 +9,8 @@ function MainReservation() {
             <Navbar />
             <h1 className="main-reservations-header">Foglalás</h1>
             <div className="main-reservations">
-                <Link to="/foglalas/helybenFoglalas" className="on-site-reservation">Helyben foglalok</Link>
-                <Link to="/foglalas/onlineFoglalas" className="online-reservation">Online foglalok</Link>
+                <Link to="/foglalas/helybenFoglalas" className="main-reservations-on-site-reservation">Helyben foglalok</Link>
+                <Link to="/foglalas/onlineFoglalas" className="main-reservations-online-reservation">Online foglalok</Link>
             </div>
             <Footer />
         </>

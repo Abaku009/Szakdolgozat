@@ -3,10 +3,10 @@ import "../ErrorPage/errorpage.css";
 
 function ErrorPage() {
     return (
-        <div className="error-container">
-            <h1 className="error-title">404</h1>
-            <p className="error-message">A keresett oldal nem található!</p>
-            <p className="error-link">
+        <div className="errorpage-container">
+            <h1 className="errorpage-title">404</h1>
+            <p className="errorpage-message">A keresett oldal nem található!</p>
+            <p className="errorpage-link">
                 Visszatérhet a <Link to="/">kezdőlapra</Link>
             </p>
         </div>

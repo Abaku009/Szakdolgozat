@@ -1,11 +1,10 @@
-
-.filters {
+.series-filters {
   display: flex;
   gap: 15px;
   margin-bottom: 25px;
 }
 
-.filters select {
+.series-filters select {
   padding: 10px;
   border-radius: 6px;
   border: 1px solid #ccc;
@@ -13,29 +12,29 @@
   font-size: 15px;
 }
 
-.no-result {
+.series-no-result {
   margin-top: 30px;
   font-size: 20px;
   color: #c0392b;
   font-weight: bold;
 }
 
-.seriesCategory {
+.SeriesCategory {
   margin-bottom: 40px;
 }
 
-.seriesCategory:last-child {
+.SeriesCategory:last-child {
   margin-bottom: 80px; 
 }
 
-.seriesCategory h2 {
+.SeriesCategory h2 {
   font-size: 24px;
   margin-bottom: 15px;
   border-left: 5px solid #222;
   padding-left: 10px;
 }
 
-.seriesItem {
+.SeriesItem {
   background: #fafafa;
   border: 1px solid #e6e6e6;
   border-radius: 10px;
@@ -44,15 +43,15 @@
   box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
 }
 
-.seriesItem p {
+.SeriesItem p {
   margin: 4px 0;
 }
 
-.seriesItem strong {
+.SeriesItem strong {
   color: #333;
 }
 
-.seriesItem button {
+.SeriesItem button {
   margin-top: 10px;
   padding: 8px 12px;
   background-color: #333;
@@ -65,13 +64,12 @@
   display: inline-block;
 }
 
-.seriesItem button:hover {
+.SeriesItem button:hover {
   background-color: #555;
 }
 
-.seriesItem button:disabled {
+.SeriesItem button:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
 }
-
 

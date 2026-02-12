@@ -7,8 +7,8 @@ function Cart() {
     return (
         <>
             <Navbar />
-            <h1 className="cart-h1">Kosár</h1>
-            <div className="Cart-links">
+            <h1 className="cart-header">Kosár</h1>
+            <div className="cart-links">
                 <Link to="/kosar/order-cart">Rendelési kosár</Link>
                 <Link to="/kosar/reservation-cart">Foglalási kosár</Link>
             </div>

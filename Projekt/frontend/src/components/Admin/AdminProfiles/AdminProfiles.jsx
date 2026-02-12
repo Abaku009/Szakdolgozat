@@ -45,7 +45,7 @@ function AdminProfiles() {
                 )}
 
                 {profiles.map(profile => (
-                    <div key={profile.user_id} className="profile-card">
+                    <div key={profile.user_id} className="admin-profiles-card">
                         <p><strong>ID:</strong> {profile.user_id}</p>
                         <p>
                             <strong>Név:</strong>{" "}

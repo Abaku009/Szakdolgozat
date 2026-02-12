@@ -99,7 +99,7 @@ function Films() {
 
             <Navbar />
 
-            <div className="filters">
+            <div className="film-filters">
                 <select onChange={e => setSelectedGenre(e.target.value)}>
                     <option value="">Minden műfaj</option>
                     {genres.map(gen => <option key={gen} value={gen}>{gen}</option>)}
@@ -123,19 +123,19 @@ function Films() {
             </div>
 
             {Object.keys(filtered).length === 0 && (
-                <div className="no-result">
+                <div className="film-no-result">
                     <p>A keresett termék nem elérhető!</p>
                 </div>
             )}
 
-            <div className="filmList">
+            <div className="FilmList">
                 {Object.keys(filtered)
                 .filter(category => filtered[category].length > 0)
                 .map(category => (
-                    <div key={category} className="filmCategory">
+                    <div key={category} className="FilmCategory">
                         <h2>{category}</h2>
                         {filtered[category].map(film => (
-                            <div key={film.film_id} className="filmItem">
+                            <div key={film.film_id} className="FilmItem">
                                 <p><strong>Cím: </strong>{film.title}</p>
                                 <p><strong>Rendező: </strong> {film.director}</p>
                                 <p><strong>Nyelv: </strong>{film.languagename}</p>

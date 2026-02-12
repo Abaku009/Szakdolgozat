@@ -67,9 +67,9 @@ function Login() {
 
             <Navbar />
 
-            <h1 className="log">Bejelentkezés</h1>
+            <h1 className="login">Bejelentkezés</h1>
 
-            <div className="bejelentkezes">
+            <div className="login-form">
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="email">E-mail cím: </label>
                     <input type="email" name="email" id="email" required placeholder="valamiemail@gmail.com" value={email} onChange={emailChange}/>
@@ -80,7 +80,7 @@ function Login() {
 
             </div>
 
-            <h4 className="linkButton"><Link to="/regisztracio" className="link-but">Még nincs fiókom</Link></h4>
+            <h4 className="LoginLinkButton"><Link to="/regisztracio" className="login-link-button">Még nincs fiókom</Link></h4>
 
             <Footer />
 
