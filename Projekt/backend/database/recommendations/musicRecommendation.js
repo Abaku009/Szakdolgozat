@@ -66,7 +66,14 @@ async function musicRecommendations(userID) {
         JOIN music_storage ON music.music_storage_id = music_storage.music_storage_id
         WHERE music.is_active = true
         AND music_storage.quantity > 0
-        `
+        AND music.music_id NOT IN (
+            SELECT music_order_items.music_id
+            FROM music_orders
+            JOIN music_order_items ON music_orders.order_id = music_order_items.order_id
+            WHERE music_orders.user_id = $1
+        )
+        `,
+        [userID]
     );
 
     const scored = recommendable.map(music => {
