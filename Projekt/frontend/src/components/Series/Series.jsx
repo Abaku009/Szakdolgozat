@@ -31,6 +31,11 @@ function Series() {
     const [selectedFormat, setSelectedFormat] = useState("");
 
 
+    const [recommendations, setRecommendations] = useState([]);
+
+    const GETSERIESRECOMMENDATIONSAPI = import.meta.env.VITE_API_GET_SERIES_RECOMMENDATIONS_URL;
+
+
     useEffect(() => {
 
         async function fetchSeriesData() {
@@ -81,6 +86,16 @@ function Series() {
     }, [series, selectedFormat, selectedGenre, selectedLanguage, selectedOrder]);
 
 
+    useEffect(() => {
+        if(!user) {
+            setRecommendations([]);
+            return;
+        }
+
+        fetchRecommendations();
+    }, [user]);
+
+
     function moveToCart(series) {
         if(!user) {
             alert("Kérjük jelentkezzen be!");
@@ -96,6 +111,23 @@ function Series() {
     }
 
 
+    async function fetchRecommendations() {
+        try {
+            const res = await fetch(GETSERIESRECOMMENDATIONSAPI, {
+                method: "POST",
+                credentials: "include",
+                headers: { "Content-Type": "application/json"},
+                body: JSON.stringify({
+                    userID: user.user_id
+                })
+            });
+            const data = await res.json();
+            setRecommendations(data);
+        } catch(err) {
+            console.error(err);
+            alert("Hiba az ajánlások lekérése során!");
+        }
+    }
 
 
     return (
@@ -132,32 +164,60 @@ function Series() {
                 </div>
             )}
 
-            <div className="SeriesList"> 
-                {Object.keys(filtered)
-                .filter(category => filtered[category].length > 0)
-                .map(category => (
-                    <div key={category} className="SeriesCategory">
-                        <h2>{category}</h2>
-                        {filtered[category].map(serie => (
-                            <div key={serie.series_id} className="SeriesItem">
-                                <p><strong>Cím: </strong>{serie.title}</p>
-                                <p><strong>Alkotó: </strong> {serie.creator}</p>
-                                <p><strong>Nyelv: </strong>{serie.languagename}</p>
-                                <p><strong>Formátum: </strong>{serie.format}</p>
-                                <p><strong>Ár: </strong>{serie.price} Ft</p>
-                                <p><strong>Darabszám: </strong>{serie.stock}</p>
-                                <p><button disabled={serie.stock === 0} onClick={() => moveToCart(serie)}>Kosárba helyezés</button></p>
-                            </div> 
+            {recommendations.length > 0 && (
+                <div className="series-recommendations">
+                    <h2 className="series-recommendations-header">Ajánlott sorozatok a foglalásaid alapján</h2>
+
+                    <div className="series-recommendations-list">
+                        {recommendations.map(rec => (
+                            <div key={rec.series_id} className="series-recommendation-item">
+                                <p><strong>Cím: </strong>{rec.title}</p>
+                                <p><strong>Alkotó: </strong>{rec.creator}</p>
+                                <p><strong>Nyelv: </strong>{rec.languagename}</p>
+                                <p><strong>Formátum: </strong>{rec.format}</p>
+                                <p><strong>Ár: </strong>{rec.price} Ft</p>
+                                <p><strong>Darabszám: </strong>{rec.stock}</p>
+                                <p><button disabled={rec.stock === 0} onClick={() => moveToCart(rec)}>Kosárba helyezés</button></p>
+                            </div>
                         ))}
                     </div>
-                ))}
-            </div>
+                </div>
+            )}
+
+            {Object.keys(filtered).length > 0 && (
+                <>
+                    <h2 className="series-offer-header">Sorozat kínálat</h2>
+
+                    <div className="SeriesList"> 
+                        {Object.keys(filtered)
+                            .filter(category => filtered[category].length > 0)
+                            .map(category => (
+                                <div key={category} className="SeriesCategory">
+                                    <h2>{category}</h2>
+                                    {filtered[category].map(serie => (
+                                        <div key={serie.series_id} className="SeriesItem">
+                                            <p><strong>Cím: </strong>{serie.title}</p>
+                                            <p><strong>Alkotó: </strong> {serie.creator}</p>
+                                            <p><strong>Nyelv: </strong>{serie.languagename}</p>
+                                            <p><strong>Formátum: </strong>{serie.format}</p>
+                                            <p><strong>Ár: </strong>{serie.price} Ft</p>
+                                            <p><strong>Darabszám: </strong>{serie.stock}</p>
+                                            <p><button disabled={serie.stock === 0} onClick={() => moveToCart(serie)}>Kosárba helyezés</button></p>
+                                        </div> 
+                                    ))}
+                                </div>
+                            ))}
+                    </div>
+                </>
+            )}
+            
 
             <Footer />
         
         </>
 
     );
+    
 }
 
 export default Series;
