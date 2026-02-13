@@ -30,6 +30,11 @@ function Films() {
     const [selectedFormat, setSelectedFormat] = useState("");
 
 
+    const [recommendations, setRecommendations] = useState([]);
+
+    const GETFILMRECOMMENDATIONSAPI = import.meta.env.VITE_API_GET_FILM_RECOMMENDATIONS_URL;
+
+
     useEffect(() => {
         async function fetchFilmsData() {
             const [filmsRes, genresRes, languagesRes, formatsRes ] = await Promise.all([
@@ -77,6 +82,16 @@ function Films() {
     }, [selectedOrder, selectedGenre, selectedLanguage, selectedFormat, films]);
 
 
+    useEffect(() => {
+        if(!user) {
+            setRecommendations([]);
+            return;
+        }
+
+        fetchRecommendations();
+    }, [user]);
+
+
     function moveToCart(movie) {
         if(!user) {
             alert("Kérjük jelentkezzen be!");
@@ -91,6 +106,24 @@ function Films() {
         });
     }
 
+
+    async function fetchRecommendations() {
+        try {
+            const res = await fetch(GETFILMRECOMMENDATIONSAPI, {
+                method: "POST",
+                credentials: "include",
+                headers: { "Content-Type": "application/json"},
+                body: JSON.stringify({
+                    userID: user.user_id
+                })
+            });
+            const data = await res.json();
+            setRecommendations(data);
+        } catch(err) {
+            console.error(err);
+            alert("Hiba az ajánlások lekérése során!");
+        }
+    }
 
 
     return (
@@ -128,32 +161,60 @@ function Films() {
                 </div>
             )}
 
-            <div className="FilmList">
-                {Object.keys(filtered)
-                .filter(category => filtered[category].length > 0)
-                .map(category => (
-                    <div key={category} className="FilmCategory">
-                        <h2>{category}</h2>
-                        {filtered[category].map(film => (
-                            <div key={film.film_id} className="FilmItem">
-                                <p><strong>Cím: </strong>{film.title}</p>
-                                <p><strong>Rendező: </strong> {film.director}</p>
-                                <p><strong>Nyelv: </strong>{film.languagename}</p>
-                                <p><strong>Formátum: </strong>{film.format}</p>
-                                <p><strong>Ár: </strong>{film.price} Ft</p>
-                                <p><strong>Darabszám: </strong>{film.stock}</p>
-                                <p><button disabled={film.stock === 0} onClick={() => moveToCart(film)}>Kosárba helyezés</button></p>
+            {recommendations.length > 0 && (
+                <div className="film-recommendations">
+                    <h2 className="film-recommendations-header">Ajánlott filmek a foglalásaid alapján</h2>
+
+                    <div className="film-recommendations-list">
+                        {recommendations.map(rec => (
+                            <div key={rec.film_id} className="film-recommendation-item">
+                                <p><strong>Cím: </strong>{rec.title}</p>
+                                <p><strong>Rendező: </strong>{rec.director}</p>
+                                <p><strong>Nyelv: </strong>{rec.languagename}</p>
+                                <p><strong>Formátum: </strong>{rec.format}</p>
+                                <p><strong>Ár: </strong>{rec.price} Ft</p>
+                                <p><strong>Darabszám: </strong>{rec.stock}</p>
+                                <p><button disabled={rec.stock === 0} onClick={() => moveToCart(rec)}>Kosárba helyezés</button></p>
                             </div>
                         ))}
                     </div>
-                ))}
-            </div>
+                </div>
+            )}
+
+            {Object.keys(filtered).length > 0 && (
+                <>
+                    <h2 className="film-offer-header">Film kínálat</h2>
+
+                    <div className="FilmList">
+                        {Object.keys(filtered)
+                            .filter(category => filtered[category].length > 0)
+                            .map(category => (
+                                <div key={category} className="FilmCategory">
+                                    <h2>{category}</h2>
+                                    {filtered[category].map(film => (
+                                        <div key={film.film_id} className="FilmItem">
+                                            <p><strong>Cím: </strong>{film.title}</p>
+                                            <p><strong>Rendező: </strong> {film.director}</p>
+                                            <p><strong>Nyelv: </strong>{film.languagename}</p>
+                                            <p><strong>Formátum: </strong>{film.format}</p>
+                                            <p><strong>Ár: </strong>{film.price} Ft</p>
+                                            <p><strong>Darabszám: </strong>{film.stock}</p>
+                                            <p><button disabled={film.stock === 0} onClick={() => moveToCart(film)}>Kosárba helyezés</button></p>
+                                        </div>
+                                    ))}
+                                </div>
+                            ))}
+                    </div>
+                </>
+            )}
+
 
             <Footer />
         
         </>
 
     );
+    
 }
 
 export default Films;
