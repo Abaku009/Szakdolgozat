@@ -1,0 +1,73 @@
+TARTALOMJEGYZÉK
+
+1 Bevezetés			kész
+1.1 A téma bemutatása		kész
+1.2 A projekt célja		kész
+1.3 Motiváció és aktualitás	kész
+
+2 Irodalmi áttekintés
+2.1 Webalkalmazások	
+2.2 Mesterséges intelligencia 	
+2.3 Ajánlórendszerek
+
+3 Hasonló rendszerek vizsgálata		beépíteni!!!
+3.1 Elérhető webalkalmazások		beépíteni!!!
+3.2 Alkalmazások összehasonlítása	beépíteni!!!
+3.3 Felhasználói igények összegzése	beépíteni!!!
+	
+3.1 Rendszer tervezése 1. (webalkalmazás)	
+3.1.1 Oldalszerkezet	
+3.1.1a Főoldalak	
+3.1.1b Aloldalak	
+3.1.2 Navigáció ás felhasználói élmény	
+3.1.3 Felhasználói felületek vázlatos tervezése	
+3.1.4 Adatmodellezés	
+3.1.5 Architektúra áttekintése	
+3.1.6 Diagramok	
+
+3.2 Rendszer tervezése 2. (ajánlórendszer)
+3.2.1 Ajánlórendszer tervezése
+3.2.2 Ajánlórendszer működése
+3.2.3 Meghatározott felhasználói felületre való implementálása	
+3.2.4 Funkcionális követelmények	
+3.2.5 Nem-funkcionális követelmények	
+3.2.6 Oldalszerkezet	
+3.2.7 Navigáció ás felhasználói élmény	
+3.2.8 Felhasználói felületek vázlatos tervezése	
+3.2.9 Adatmodellezés	
+3.2.10 Architektúra áttekintése	
+3.2.11 Diagramok	
+
+4 Technológiai háttér	
+4.1 Felhasznált technológiák	
+4.1.1 Frontend	
+4.1.2 Backend	
+4.1.3 Adatbázis	
+4.2 Fejlesztési környezet és eszközök	
+4.3 Verziókezelés, deployment lehetőségek
+	
+5 A rendszer megvalósítása	
+5.1 Backend megvalósítása	
+5.2 Felhasználói funkciók	
+5.3 Ajánlórendszer megvalósítása		
+5.4 Frontend implementáció	
+	
+6 Tesztelés és validálás	
+6.1 Maunális tesztelés	
+6.2 Hibakezelés, biztonsági szempontok	
+6.3 Szcenáriók, tesztesetek	
+6.4 Teljesítmény és skálázhatóság
+	
+7 Összegzés és fejlesztési lehetőségek	
+7.1 A fejlesztés eredményei	
+7.2 A rendszer korlátai	
+7.3 További fejlesztési lehetőségek	
+7.4 Reflexió	
+
+8 Felhasználói dokumentáció	
+9 Felhasznált források	
+10 Kép- és ábrajegyzék	
+
+
+
+
