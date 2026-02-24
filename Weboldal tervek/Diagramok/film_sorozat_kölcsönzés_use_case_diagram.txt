@@ -17,10 +17,10 @@ rectangle System {
     User --> (Saját foglalások megtekintése)
 
     Admin --> (Foglalások nyomon követése, törlése)
-    Admin --> (Foglalás státuszának módosítása)
     Admin --> (Készlet frissítése)
 }
 @enduml
 
 
-//www.plantuml.com/plantuml/png/ZP712XCn48Rl-nH3JnPiUvTIgc11UhFu075tkaqpII2PBNJ5X_0HzkZ1Ks5FtWRVospAWWGANa98llyV_ldtaLNWpbAbQlO15WUaYugzau7aiG0LuKl4CF--Rwns-JNVgYfWpSgrX72wHqOBtoe0o1fOhNRmvWDUaT2nmLv-HjZ0Psnrx3d8K6jvB4jSHjScCCCApfeicatqmVUAlG4ZOoyZSwax-YX3-AhWWdJFeqhYu5jI94C4xHhvnUccIkPJy-U7TepXfeWw2qRVPA2qZf8k78ECRPyyqrXyKjFnae3rEia_hgpIb1BzfcPwdkB-ktodp1BUmNQhNKrTWxlTVvWUfzqHCfo3Zd7-AsooJn7cfAuo9DbixWrOR1cDTa-Fh7hMNiHFgBjxwztKpWqp_XPOna1P-L88aTFCBfKzfB1WvT7uE5TJg5uagxvNUtHDP-al
+//www.plantuml.com/plantuml/png/ZPB1QYCn38RlynGYfmrialiIGdPX0oMtXZw0EwDC7Ciss4eWK_eGVOGvvj1JO4wzYRvNPnm2nH3enGZf-tzRafUHLU23fKALx0ECLaWx5HidBSbb12h2KyHmg_wjh7OfcwAY25YoSZKXR4wHqS9B0G190vF90dxzmpqIEZROo3d231wnrh7X86sfvJBESUbStOC9Lh3LPD7CeW--KUmD6EaQwPXptTf7QSEpWXtIALsL4ojVao9f8sXNoJltaSgPX-hpJJl6S5H41mj67wKb5PkSpXo3T7KpU9uZNgbqt2DWEktb_oTMQG8Z7rGDwQ7TxyDtoepX3ypdsfLqg72n-87fUfWT8SCsw1XljSmc-MJDRDHUsbvsC_S6BDQCHhkhHr9TrvwrtwFkvArtmtQEcF3VmD85IifCUEUDnMknH5SDN_4B
+

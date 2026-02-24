@@ -17,14 +17,10 @@ Adatbázis --> UI: Elérhető zenék listája
 alt Ha van raktáron
    Felhasználó -> UI: Kosárba helyezés
    UI -> RendelésKezelő: Hozzáadás a rendelési kosárhoz
-   RendelésKezelő -> Adatbázis: Ideiglenes rendelés mentése
-   Adatbázis --> RendelésKezelő: OK
 end
 
 Felhasználó -> UI: Kosár módosítása (mennyiség / törlés)
 UI -> RendelésKezelő: Frissítés
-RendelésKezelő -> Adatbázis: Adatmódosítás
-Adatbázis --> RendelésKezelő: OK
 
 Felhasználó -> UI: Megrendelés leadása
 UI -> RendelésKezelő: Rendelés rögzítése
@@ -34,26 +30,14 @@ RendelésKezelő -> EmailRendszer: Rendelési visszaigazolás küldése
 EmailRendszer --> Felhasználó: Visszaigazoló e-mail
 
 Felhasználó -> Admin: Átvétel (E-mail bemutatása)
-Admin -> UI: Rendelés keresése
-UI -> RendelésKezelő: Lekérdezi a rendeléseket
-RendelésKezelő-> Adatbázis: Rendelési adatok lekérdezése
-Adatbázis--> RendelésKezelő: Rendelés adatok ("Átvételre vár")
-RendelésKezelő--> UI: Rendelés részletei
-UI --> Admin: Rendelés státusza: "Átvételre vár"
-
-Admin -> UI: Státusz módosítása
-UI -> RendelésKezelő: Rendelés státusz frissítése
-RendelésKezelő-> Adatbázis: Státusz módosítása, rendelés törlése
-Adatbázis--> RendelésKezelő: OK
-RendelésKezelő--> UI: Módosítás megerősítése
-UI --> Admin: Rendelés lezárva
-
+Admin-> Adatbázis: Rendelés törlése
+Adatbázis--> Admin: OK
 Admin -> Felhasználó: Termékek átadása, fizetés
 
 @enduml
 
 
 
-//www.plantuml.com/plantuml/png/ZLMnRjim4Dtv5GTF2H0ZkuSYBP0WWHiKI9fsfgsBp92I0f8n46xz17-2HW-T0dZgHlY_UgIbq8gikXjnklVklKUUVM4ir_QbK8pFRQNX2jM26rVwMlatzapVn5myyzB2w2VEk99S5Tpvseo06tYuwRRSOPcXyci34XsgxIfslLUdks87ypdZTkPh9qoNwd9SSA504zOur97eCfJkcie7baAKZ7NKm_WJ2Pp05tn2XQKbIK7PEUd9XN5M-tekoEJ3JUXCEYRGfK55wErA1pGIl22kS6G90kDcrhsGg966x4wM1W_Ayfio9vueYeF3qgybIBznVcFj0LNJqApGAfH-hRFevf26IqMV5sYtgvPK2MDz_SGPuyh2DOSbBq5pIKLTbGm03YgSLeOQPXmMg5vtum0W2klTwGIkAqVlWcU-3dPq-rs0Z3IBoX6wX_jeyYP3aLDeQ195IXm0FXZkw_WsPLHZx1-MeF1l6Pr-MnBBuOJuorTX_3g7Sx1-emFXAHjoUgM5YM0Av9YVSDwVnlv3_u3sMynJ90fZqdn8PAg0zflSxUJYKRrtlT3FG3OF3-R6RwHiwiUTDCjmQ6PtbVV62bXIk8wBdBjAaKEQ_aTbSM074sTsSfh0ZmIDYpiEW7wQkr-B2VXVTkdN5XMSDBysConUB8-lufJ5hZRyb4lq5FGCHl-rNL2nlmWeqVQY64gVa5Ik9AHbxqO-FdBf3Vnaz6vI8onzhKUdVH4zZxgvSHJHP8eijHXAoRvGt1Feps3TyEwRtkxU3URN7mAFQUNmI8W3qyxIJRGhVZnGMiR1j6xtsA707FLsrKeSJ4sXetoMl0se_uQ_eoxyMg84Si6pdVH7uJ0GCtP1LE7Vclq5
+//www.plantuml.com/plantuml/png/VLIzRjim4Dxv58TC2H2ZkuSYBU0WWL4KI9jsFbjNcI4b1IHZ8Dpw27u4ZHuw1T3KxU3twb5ohCgniX77-tvqtr5NFg0BJuLLk0oLWskoA_InvDhoYtgKExtKZrW6EFj92xG6RO6HQty6wE7-TjXoHsL6bhSU34MokqtRTQZEk-80yod3iE0wQZ-acaqAr1QSO7qarnBDKkbkNpbYANIfrC0zJ3wAmIbyfWUoL0Qnb9nz43-vzZ4uhfTQFlB-DdNsFgOmf24hwDt69JG9l12kT5Gz12PxhM_Qa2CHwKv1X4TjSLFcmjEQGeXKyjQ0uIPo4y89L_FKR2bOChnr6INWAGypAzSh2hlDAwdLFd3zW4gX3N23iCOI71efkgfK073IuRpoqh10M95zxkG0e3DsdEaKRgeOkSQCQmy8xlLUWsbfLbLKKbFg7Iae-2MJqvyW90ZdCkdoMNlUvZBGm8rBX1TgpC6rqpw1fJOYyuNoWp6mr9h5CRw-0ewRF7RCf8uRZtBgOOTDkGIppmwMdXjZHZRecFcmJoSr1w_XFraDQvb3H9rZh6oAm_1VcxM20qpI72O_XHyzjDtzIGAydMRtuAR0lyEQju4idEyVx8AAfu1jW1UgxHeTJvVeS0wJdllhlCF3MvVVoHMos6I0wz2bU0c_TAGk-okHIB-qVm00
 
 

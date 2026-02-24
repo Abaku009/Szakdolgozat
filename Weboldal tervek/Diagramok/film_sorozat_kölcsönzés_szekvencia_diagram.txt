@@ -17,14 +17,10 @@ Database --> UI: Lista elérhető mennyiségekkel
 alt Ha van raktáron
     Felhasználó -> UI: Kosárhoz adás
     UI -> BookingSystem: Hozzáadás a foglalási kosárhoz
-    BookingSystem -> Database: Ideiglenes foglalás mentése
-    Database --> BookingSystem: OK
 end
 
 Felhasználó -> UI: Kosár módosítása (mennyiség / törlés)
 UI -> BookingSystem: Frissítés
-BookingSystem -> Database: Adatmódosítás
-Database --> BookingSystem: OK
 
 alt Felhasználó a Kosár menüpontból vagy a Foglalás menüpontból folytatja
     Felhasználó -> UI: Foglalás indítása
@@ -52,16 +48,8 @@ Felhasználó -> Admin: Felhasználó bemutatja a foglalási visszaigazolást
 Admin -> UI: Foglalás keresése a rendszerben
 UI -> BookingSystem: Lekérdezi a foglalásokat 
 BookingSystem -> Database: Foglalás adatainak lekérdezése
-Database --> BookingSystem: Foglalás adatok ("Átvételre vár")
-BookingSystem --> UI: Foglalás részletei
-UI --> Admin: Foglalás státusza: "Átvételre vár"
-
-Admin -> UI: Státusz módosítása "Átvéve"
-UI -> BookingSystem: Frissítés 
-BookingSystem -> Database: Státusz frissítése
-Database --> BookingSystem: OK
-BookingSystem --> UI: Sikeres módosítás
-UI --> Admin: Státusz frissült: "Átvéve"
+Database --> BookingSystem: Foglalási adatok visszaküldése
+Admin -> Felhasználó: Termékek átadása, fizetés
 
 Felhasználó -> Admin: Visszahozás a foglalási idő végén
 Felhasználó -> Admin: Foglalási visszaigazoló e-mail bemutatása
@@ -72,16 +60,14 @@ Database --> BookingSystem: Foglalási adatok visszaküldése
 BookingSystem --> UI: Foglalás megtalálva
 UI --> Admin: Foglalási adatok megjelenítése
 Admin -> Felhasználó: Visszahozás elfogadva
-Admin -> UI: Készlet frissítése
-UI -> BookingSystem: Készlet módosítása
-BookingSystem -> Database: Darabszám nő
+
 Admin -> UI: Foglalás törlése
 UI -> BookingSystem: Foglalás eltávolítása
-BookingSystem -> Database: Foglalás eltávolítása megtörtént
+BookingSystem -> Database: Foglalás eltávolítása, készlet frissítése megtörtént
 
 @enduml
 
 
 
-//www.plantuml.com/plantuml/png/ZLQnJYGv4Ctz5QM9G3gq-GHtUoiMWLXffKDx5zVGHMFijb7RZ3ITtIVm2HCIR8H4H6RnNrlsJEFnzlGq0QYdNLMlgjwhSdzs7bl_q6Y1rzwsS4Rw5brdmbg7Pt7FP_9QtgFnCFkF5gWLwWQxi7OpG0S_BagJCrjhr7mAYZhIRu_9wekrIfhwQkKyDQN3tnNwHLXtSXFl53qkq55fzFMaGQcX9LEvZjfa-JM-sX-naMOcH548dFp9kSxX2zsH9kCvk_3au1FyGxLqdM_3-bfolJykecMVnHpA8AJPz-snZRx4pWr7Ye-YTu2JBSwLLDHI14XFFeAEfHHUJCrHKa88AloCvzmLD8Dqlf4AJsr5dGJiW3J_k2N_zWWtKZUao4CCucnhE_HMeHzczaqouRkkN8HPIHUUQbAAj12eFPmZBD50Yyg7TMkD003Oc_wbTMnnQpl0YdbFXYdjalKvdDkEPPEC0E6c5ue4rKT8leLNMVr5HRBMPCXbzyn1TCxL3l6_NmhMZn07ge0cF5VyzDDpP8IZt1ecqeUNLZFIiTXRtbahNVHa2t6WXgZtNHGnaN9YeqmPtxCb4rxlhU41UjRCLxq2X3o1vV6DrIkF_Wx7gSokqbJR9cG-IvyvpCv9hnPaDi3MQ6aey_BNx81av99_y-k804Tzd4_mFGKvJfxftrQAjnkBRVHqCYgpqx3cRGRuu6s3Nge71mjYE9rPHGa6xpSmf1qnHCu_8qodVuU0ST5LRuzfy9Qib2hXMtyuoxCiVydUfOgZJEFVHvZIX5NYQHegfQUf9fPU1flGgbNlkVq15RQuS3p53LoxyABK1sUlNuV9RY_gxZhd3eTNNSM67ktqQIcTwr3MsDdu8j6NtMAKeKR7t7cLfojbppP8rmTdt54JdlIA732Xt3bFkbzRcJUEg1PeHgEKxnVKFAGHJ8762lCYEG-fJYrCDm--NuKBCllMKNbJPB1u9S2XzPJHaCb7QL21xaCDhxfHgU56EaUpyF-sUIq1ZqqxE_uTVb1dopYT9ayobPQxcKsSZrF6NPl3446K3RpQsfRBlVTRqcnodn_gM0v_anreQgllRK4_9KMYHGi6QA_QptSh6HNYlqbZVCTooA6CqsO8J-CwdfgZNjgnivFo5HDhgjJRv7xQsdzSdB9NvwOKjLqsD2dCXceVd_GIHvIPOxDj-jBi1P4CXxTeIGnf9WQhvMyzlDmEH9ROI1UpQIdsGqqypJkTFst7oEi_VYR98ys8IwkdaSUTKgCPaEiqNeZFPAg7HejV
+//www.plantuml.com/plantuml/png/fLR1Rjms4BtpAmO-EO2Dt7reqo0n73H0WQPfpoDhLgP9aOR8NM3r5_w4FUuX9mC-vKRulpgSNLacjDejq1m2hJWpxyrxmv4_X8XTNBPMuMtq7LoJlSFGkxInwKazy9c-rG_e8fpzGnLQWxR5Fct26M20xr_Aa6lVMBHy2ePwiY-F4lNHUwDTysqT8hLbmcyrnYfjUhshzmaZLXYe3FfysQAsq96hGq-TH7xEhmvNRBKxKwfe12v_OQvNy97koPABp2vj0xo7FwdHeOzTsjngxlVx5uvyPN45PH6odFlosELSukIMA-L7DIJ0vHxdcpRKKGQGfvX1voYbPzTm5I64ODAFVCwge9lG-KecRRkQUWtO0rd-SKVnvH4MshPaA48k4dpdUupUO9mo-whPyBUft8HRwv2s3Hb3LYcq4MuGLkYWGnFJflDE0VyxIFzt7pZYplU0DVikWKAxTFqARdpFOoD1WB0O1aM36IeezbUf8oZGfgUQdtv4JaGu7wcpq34zTvRRVwSEmbztEaZcDknQB77m5O9S-ldW7K_basKHcZMVZMDT7Y-yNKUCzpYlpvYgNRrdFefKvbp1sGtPTKLk1-oTrOv6hNuzE-A3Nl5lVfqHu7oeynx-a2Bl95F-s_jxjulOLvUJMUy-fGsl2C1bz2r6RPO1Ac8uErg16Xm-x6381cA8aV-8S9h-FGBcxL6_FCeqhzZUMl1zFCfob5g3vkpnUWedLyjy_HUdB64jFfs64dgM6kBP6i6AwF8AvuNdpIkt2wYnmohmrMZXDgHdOzwoBgvloM7OCH9t4FNjZcI5qqzRPq7Ft-YqqY7qg1liVNuXzerfkSfqHkVIdu1aJn-umhAJcN5FRThQDGLWGrcvI5PsGU4RLpGLkjagvVkAsgLSGIaqrrXKaZorMYIKTOwltvUAtA4TKgxV4IplML17B1_HaCr7xT207KfDln_pKuqoE_lUpDvF6bgR6FKNTIot8PFLtatq1InqJv7JvbtwMyhpFkQ4gJioy6axRy-fyHWSotHEkg9EtBvInjFNRXV_VpMVGaqwQAc9-SckK7eezIbhSwpyLI8RPDxFqXYoR0pMN7vEnE63U594icp6oW_BV5x68qaNO1YgjnHXCNvfINHW7lp3HQK-aAkNhVqN
 

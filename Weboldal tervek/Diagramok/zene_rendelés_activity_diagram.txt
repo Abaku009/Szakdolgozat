@@ -40,12 +40,12 @@ Nyitvatartási napok és órák
 Átvételi helyszín (üzlet címe)
 
 Fontos információ:
-A rendelésedet 7 napon belül át kell venned. Ha nem veszed át, a rendelést töröljük, és a zenék visszakerülnek a készletbe.
+A rendelésedet 7 napon belül át kell venned. Ha nem veszed át, a rendelést töröljük, és az admin módosítja a darabszámot.
 
 6️: Személyes átvétel és fizetés
 A rendelő személy elmegy az átvételi pontra.
 Megmutatja az e-mailt az adminnak (pl. telefonon vagy kinyomtatva).
-Az admin odaadja a rendelt termékeket, a felhasználó fizet és vége a folyamatnak.
+Az admin törli a rendelést az adatbázisból, odaadja a rendelt termékeket, a felhasználó fizet és vége a folyamatnak.
 
 
 UML:
@@ -82,10 +82,11 @@ endif
 :Átvételi pontra megy;
 |Admin|
 :Átvétel visszaigazolása;
+:Rendelés törlése;
 :Termékek átadása;
 :Fizetés;
 stop
 @enduml
 
-//www.plantuml.com/plantuml/png/TO-nRXin38RtUmgEpj0NS8R61PgbMr1qw2PNz9aHfGiasa24B7s4FCAD7ZePoDIDo7kLbJmuCBoT-7_7_-DT4PTb5tbukKVUkbAJpgp7bw45m_8BFY9Zae1L3-Lse0qiVhW46z9ZU7IVRq2sc6118wQR0U3y1mgt0t91M2ICBNp0aKgLR1qM9K-RYzxbJqm8QtrBenMsqYjCeBszRImw5zVLMe2iXxn5UN-zrFis5Ptpsi4M-RdVzD6nxxO7P1D4RdkkolPr4FNexUjFDxd47jegAmD6vq_G_s6fc2rVUIThdIiLCukOf7br5U-oMvUgSuHVHTz2w35Qljh959rGs9MJhGK4-2awOWZwbtqdBuI-DWAPCRs_vdg5qj-oruCW4pnDIRAvuVXiuCf7IkS0xAcKwcXqTU9-t_8xvgY7W05q5kTFqtkgsCyhCZqDTwQzY_mF
+//www.plantuml.com/plantuml/png/TOynRXin44NxFSMKSf4Bs4Mi076JpWXIfAF2qMhC8TSWPmMOS9CZ-0XRRf5AWAfq0zyhDBc5WeKwalzn_flx92RAwBbxVK0-c9I3Jgodrwu6tUqNV4B680wppkckepriVfW0UzAJUpAVRq0E6613FOQR3k3o0xcx3ZaXR0Bw6ZvYJobBB1qb2fRsgzxRdnWGTdeEVIcifLSOHyToBy-YKp9DhGR8EiS3ollRMk_Ra7IAEmC7v9Usq_-ERNQvG2o2o7NELTas3hoUR3dzQIPhxB6EAcN0QEm2VJocZB7aMsjafrEcLCmy1gbUJSMQQ7Ofw-JXLzApSot6acz76RmHScDQR4j0W9-y8GQdVzasSYNqjHB8ZE7zBUOhbFwMeyw2JF0y18aVRlrB0RVMKxW4u4WfPKEzoGEt_IwM5Zr7Nfo_O_GwEtIWanYxi0-KiIsTP7ZkxilNqVC_
 

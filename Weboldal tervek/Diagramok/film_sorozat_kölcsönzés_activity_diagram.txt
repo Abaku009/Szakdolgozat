@@ -15,13 +15,9 @@ A felhasználó a foglalási kosárban megtekintheti, hogy miket tett bele, és 
 5. Foglalás gomb megnyomása
 A felhasználó, amikor véglegesen elhatározza, hogy szeretné lefoglalni a termékeket, a Foglalás gombot megnyomja. Ha megnyomta a foglalás gombot, akkor egy másik lap nyílik meg, felül Foglalás néven. A rendszer ezután megkérdezi, hogy helyben vagy online szeretné-e a foglalást intézni:
 
-Helyben foglalás esetén a rendszer automatikusan a mai napot állítja be kezdő dátumként.
-Online foglalás esetén a felhasználónak kell manuálisan kiválasztania a kezdő dátumot.
-
 6. Foglalás menüpont
-A felhasználó itt tudja kiválasztani a foglalás kezdő és végdátumát:
-A rendszer a kezdeti dátum mellé a bolt nyitvatartásának kezdő időpontját is kiírja, pl. "Foglalás kezdete: március 1 10:00".
-A végdátum mellé a bolt zárási idejét is hozzáadja, pl. "Foglalás vége: március 5 18:00".
+Helyben foglalás esetén a rendszer automatikusan a mai napot, jelenlegi időt és zárási időt állítja be.
+Online foglalás esetén a felhasználónak kell manuálisan kiválasztania a kezdő, végdátumot, illetve a foglalás kezdeti idejét (óra, perc).
 
 7. Foglalás leadása
 A felhasználó véglegesíti a foglalást a Foglalás leadása gombbal. Ekkor:
@@ -31,16 +27,16 @@ A felhasználó kap egy visszaigazoló e-mailt, amely tartalmazza a foglalás r�
 
 8. Saját foglalások menüpont
 A felhasználó a Saját foglalások menüpontban nyomon követheti a foglalásait:
-Itt láthatja az aktív foglalásokat, és azok státuszát (pl. "Átvételre vár", "Átvéve").
+Itt láthatja az aktív foglalásokat.
 A foglalás időintervallumának megfelelően a felhasználó elmehet az átvételi pontra a termékekért.
 
 9. Átvétel
 A felhasználó az átvételi időpontban elmehet a boltba, és megmutathatja a kapott e-mailt az adminnak.
-Az admin átadja a foglalt terméket, és módosítja a foglalás státuszát a "Saját foglalások" menüpontban "Átvéve"-re.
+Az admin átadja a foglalt terméke(ke)t.
 
 10. Visszavitel
 A felhasználó a foglalási időszak végén visszahozza a termékeket.
-Az admin módosítja a darabszámot: növeli a termékek mennyiségét, és törli a foglalást a rendszerből.
+Az admin törli a foglalást a rendszerből. Darabszám firssül.
 
 11. Foglalás törlése, ha nem történik átvétel
 Ha a felhasználó nem veszi át a terméket a foglalás időintervalluma alatt, a foglalás törlésre kerül, és a termékek darabszáma visszaáll a készletre.
@@ -67,11 +63,10 @@ endif
 :Kosár szerkesztése;
 :Foglalás gomb megnyomása;
 if (Helyben vagy online foglalás?) then (Helyben)
-  :Automatikus kezdő dátum beállítása;
+  :Automatikus dátum beállítások - Végdátum manuálisan;
 else (Online)
-  :Kezdő dátum manuális kiválasztása;
+  :Kezdődátum, végdátum, kezdőidő manuális kiválasztása;
 endif
-:Foglalás kezdő és végdátumának kiválasztása;
 :Foglalás leadása;
 :Visszaigazoló e-mail fogadása;
 
@@ -88,20 +83,19 @@ endif
 
 |Admin|
 :Termék átadása;
-:Foglalás státuszának módosítása "Átvéve"-re;
 
 |User|
 :Termék visszavitele;
 :Adminisztrátornak a termék átadása;
 
 |Admin|
-:Termékek darabszámának növelése;
-:Foglalás törlése (ha nem történt átvétel);
+:Foglalás törlése;
+:Termékek darabszáma frissül;
 stop
 @enduml
 
 
-//www.plantuml.com/plantuml/png/VLCzRzim4DtrAmwPd27eRWzD2ZGeaA50FxAVehDCyuC1IGamuQK_mJz1euSEHG1FtGZ_hrBI2L5Zj9jzVE_TUu_KhG_eGgDLiV_koUsBuN-n_4Ary36ur3s9z0Blu0DjIP49ac8w-bKXrh1uH0CwTGxM6IFVNqFOa865gCbS5m3BjnnIdc1XIFUdRrRaKrE9TR6y5qgJX4m0RvsD6Ao4CfrCdKUz3gsAvTTu_kNE1mce92gDCNKUy_p1-kodHDYGsl5M7eAcEf0K9h06Ztqa9yd7QNnlQuKgwq5jTTcppCxgNdyC_IahbsIWnNe7rYXX2DOJXpjW5DTmrmIhCGZPUCXLLES3LAdBfKD9gLCg_Go3FFVpUT0Sc0z_eJMQ9kD5LX5j_e4-Cf6hUxNEQ_eIstIiHu7K6PGNt1bB4LOyV1JUHnGrHglo_TEDHg7wd1EYsDzLMfZzdE_IgOuv3JVvZPnEHqaIAdHO-dn9xE79fvEKn5Vnhsqo_LOL8zAFa8C4KY1oi6ThmdQK8gN8d0-ENmO_unb1G8zsc97Rfi-SrJuE-YNf9k1K0xk5r36HvY5dfrXT5ET3Nx2FeoMTNYhh-LRXQdJIqjMDcnkS5DiXUol6ZSjX8NyNmRfU3o5SRf-i_QzcaqujgOjt7TB93LDOR10CwM6IxyA4r_JNgy87-rpSagaQhOe_
+//www.plantuml.com/plantuml/png/VL8zRzim4DtrAsvCW0RTxQ59WGO5CXJeX_TJT5Pe7ic0f0nOyDAVu9-WqKE7ee2dReJ_Lq-q23K5ca40TU_UExx7kmqHVUmCL_jlWVo-ol_LuZErAlJHf-5HfL_m5jxJXfXirDIdOrXMQWrNAxHWqk1XBJtwtJN49x9mfLgornN0ubyESI2uicGo-dA4eBPHwsfnhzYG1Y50SDxr69s6EfriAwLHXvRLuaj__kdF1mt86jbWduQ0KdzmGUvJ8pmHxovJIn4CjP6qid7KcCkX9wyfzALyxrf65ZredQb7bjqva_MpwO-YN9E5BROxS9QL9LWNJicWT6MZTrrq1gFINO0c3P8sr9G6vlGZ2aVitS0g7Ti9CsWxGLL0MoBxbCTaiGVgc_FXqle6ja8hPvqH9Tyi0LfjvO1YBpie8SyccR2Pmbkf47fKBVQEvStfng3YqLlfgFPtZL5s_pVVfrFRYv4flQ_aJJfgqj2Wnph8mqXs5ZKyXdJIcahy_vccqszkfexqFOg_I0oZgMTdu-OYHSnapmS_RKDPtPcWOEps2CIRRdGkQX-oVascYvZ3c6yBQPY8D9jyWSu9v54pjiqkjkh2NMJgjDNH-V6o277MUIt9c4wUNuaHOUrbcWIqh49qpzKjsQOp_0S0
 
 
 
