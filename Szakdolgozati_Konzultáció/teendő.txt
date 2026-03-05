@@ -1,0 +1,13 @@
+1000 darab tétel generálás teszthez a zenékhez, filmekhez, sorozatokhoz
+
+teszt miatt képeket is rakjak
+
+gomb hogy továbbiak ajánlása az ajánlórendszereknél
+
+kiterjeszthető
+
+unit tesztek, integrációs tesztek
+
+teljes funkcionalitásra tesztek
+
+node js keretrendszer, tesztek készítése, 100 teszt

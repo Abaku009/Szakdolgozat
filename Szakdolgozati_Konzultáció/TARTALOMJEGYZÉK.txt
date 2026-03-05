@@ -25,20 +25,21 @@ TARTALOMJEGYZÉK
 4.1.5 Architektúra áttekintése						kész
 4.1.6 Diagramok								kész
 	
-4.2 Rendszer tervezése 2. (ajánlórendszer)								
+4.2 Rendszer tervezése 2. (ajánlórendszer)				kész						
 4.2.1 Ajánlórendszer tervezése						kész			
 4.2.2 Ajánlórendszer működése						kész
 4.2.3 Meghatározott felhasználói felületre való implementálása		kész	
 4.2.4 Adatbázis szerepe							kész
-4.2.5 Funkcionális követelmények								
-4.2.6 Nem-funkcionális követelmények																													
-5 Technológiai háttér	
-5.1 Felhasznált technológiák	
-5.1.1 Frontend	
-5.1.2 Backend	
-5.1.3 Adatbázis	
-5.2 Fejlesztési környezet és eszközök	
-5.3 Verziókezelés, deployment lehetőségek
+4.2.5 Funkcionális követelmények					kész								
+4.2.6 Nem-funkcionális követelmények					kész					
+			
+5 Technológiai háttér												
+5.1 Felhasznált technológiák											
+5.1.1 Frontend													
+5.1.2 Backend														
+5.1.3 Adatbázis								
+5.2 Fejlesztési környezet és eszközök					
+5.3 Verziókezelés, deployment lehetőségek				
 	
 6 A rendszer megvalósítása	
 6.1 Backend megvalósítása	
