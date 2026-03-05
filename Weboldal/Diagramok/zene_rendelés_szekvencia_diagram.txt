@@ -1,0 +1,43 @@
+@startuml
+actor Felhasználó
+participant "Webalkalmazás" as UI
+participant "Rendelés kezelő" as RendelésKezelő
+participant Adatbázis
+participant "E-mail rendszer" as EmailRendszer
+participant Admin
+
+Felhasználó -> UI: Bejelentkezés / Regisztráció
+UI -> Adatbázis: Felhasználó ellenőrzése / mentése
+Adatbázis --> UI: Sikeres / Sikertelen
+
+Felhasználó -> UI: Böngészés a zenék között
+UI -> Adatbázis: Készletlekérdezés
+Adatbázis --> UI: Elérhető zenék listája
+
+alt Ha van raktáron
+   Felhasználó -> UI: Kosárba helyezés
+   UI -> RendelésKezelő: Hozzáadás a rendelési kosárhoz
+end
+
+Felhasználó -> UI: Kosár módosítása (mennyiség / törlés)
+UI -> RendelésKezelő: Frissítés
+
+Felhasználó -> UI: Megrendelés leadása
+UI -> RendelésKezelő: Rendelés rögzítése
+RendelésKezelő -> Adatbázis: Rendelés mentése, készlet csökkentése
+Adatbázis --> RendelésKezelő: Sikeres
+RendelésKezelő -> EmailRendszer: Rendelési visszaigazolás küldése
+EmailRendszer --> Felhasználó: Visszaigazoló e-mail
+
+Felhasználó -> Admin: Átvétel (E-mail bemutatása)
+Admin-> Adatbázis: Rendelés törlése
+Adatbázis--> Admin: OK
+Admin -> Felhasználó: Termékek átadása, fizetés
+
+@enduml
+
+
+
+//www.plantuml.com/plantuml/png/VLIzRjim4Dxv58TC2H2ZkuSYBU0WWL4KI9jsFbjNcI4b1IHZ8Dpw27u4ZHuw1T3KxU3twb5ohCgniX77-tvqtr5NFg0BJuLLk0oLWskoA_InvDhoYtgKExtKZrW6EFj92xG6RO6HQty6wE7-TjXoHsL6bhSU34MokqtRTQZEk-80yod3iE0wQZ-acaqAr1QSO7qarnBDKkbkNpbYANIfrC0zJ3wAmIbyfWUoL0Qnb9nz43-vzZ4uhfTQFlB-DdNsFgOmf24hwDt69JG9l12kT5Gz12PxhM_Qa2CHwKv1X4TjSLFcmjEQGeXKyjQ0uIPo4y89L_FKR2bOChnr6INWAGypAzSh2hlDAwdLFd3zW4gX3N23iCOI71efkgfK073IuRpoqh10M95zxkG0e3DsdEaKRgeOkSQCQmy8xlLUWsbfLbLKKbFg7Iae-2MJqvyW90ZdCkdoMNlUvZBGm8rBX1TgpC6rqpw1fJOYyuNoWp6mr9h5CRw-0ewRF7RCf8uRZtBgOOTDkGIppmwMdXjZHZRecFcmJoSr1w_XFraDQvb3H9rZh6oAm_1VcxM20qpI72O_XHyzjDtzIGAydMRtuAR0lyEQju4idEyVx8AAfu1jW1UgxHeTJvVeS0wJdllhlCF3MvVVoHMos6I0wz2bU0c_TAGk-okHIB-qVm00
+
+

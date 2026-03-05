@@ -1,0 +1,101 @@
+Film és sorozat kölcsönzés:
+
+1. Regisztráció / Bejelentkezés
+A felhasználónak regisztrálnia kell, ha még nincs fiókja, vagy be kell jelentkeznie, ha már van.
+
+2. Böngészés
+A bejelentkezett felhasználó böngészhet a filmek és sorozatok között, szűrők segítségével (műfaj, ár, előadó stb.), és megtekintheti a készleten lévő darabszámokat.
+
+3. Kosárba helyezés
+A felhasználó kiválaszthatja a kívánt filmeket/sorozatokat, és azokat a foglalási kosárba helyezheti. Itt szerkesztheti a darabszámot, törölheti a termékeket, vagy módosíthatja a kosár tartalmát.
+
+4. Kosár kezelése
+A felhasználó a foglalási kosárban megtekintheti, hogy miket tett bele, és később módosíthatja azt, ha szükséges.
+
+5. Foglalás gomb megnyomása
+A felhasználó, amikor véglegesen elhatározza, hogy szeretné lefoglalni a termékeket, a Foglalás gombot megnyomja. Ha megnyomta a foglalás gombot, akkor egy másik lap nyílik meg, felül Foglalás néven. A rendszer ezután megkérdezi, hogy helyben vagy online szeretné-e a foglalást intézni:
+
+6. Foglalás menüpont
+Helyben foglalás esetén a rendszer automatikusan a mai napot, jelenlegi időt és zárási időt állítja be.
+Online foglalás esetén a felhasználónak kell manuálisan kiválasztania a kezdő, végdátumot, illetve a foglalás kezdeti idejét (óra, perc).
+
+7. Foglalás leadása
+A felhasználó véglegesíti a foglalást a Foglalás leadása gombbal. Ekkor:
+A foglalás rögzítésre kerül az adatbázisban.
+A termékek darabszáma csökken, mivel le lettek foglalva.
+A felhasználó kap egy visszaigazoló e-mailt, amely tartalmazza a foglalás részleteit, a késedelmi díjról szóló figyelmeztetést, és az átvétel helyét, idejét.
+
+8. Saját foglalások menüpont
+A felhasználó a Saját foglalások menüpontban nyomon követheti a foglalásait:
+Itt láthatja az aktív foglalásokat.
+A foglalás időintervallumának megfelelően a felhasználó elmehet az átvételi pontra a termékekért.
+
+9. Átvétel
+A felhasználó az átvételi időpontban elmehet a boltba, és megmutathatja a kapott e-mailt az adminnak.
+Az admin átadja a foglalt terméke(ke)t.
+
+10. Visszavitel
+A felhasználó a foglalási időszak végén visszahozza a termékeket.
+Az admin törli a foglalást a rendszerből. Darabszám firssül.
+
+11. Foglalás törlése, ha nem történik átvétel
+Ha a felhasználó nem veszi át a terméket a foglalás időintervalluma alatt, a foglalás törlésre kerül, és a termékek darabszáma visszaáll a készletre.
+
+12. Késedelmi díj
+Ha a felhasználó nem hozza vissza a terméket időben, akkor késedelmi díjat kell fizetnie, ami naponta növekvő díjat jelent.
+
+
+plant uml:
+
+@startuml
+|User|
+start
+:Regisztráció / Bejelentkezés;
+if (Van már fiók?) then (igen)
+  :Bejelentkezés;
+else (nem)
+  :Regisztráció;
+endif
+:Filmek és sorozatok böngészése;
+:Szűrők alkalmazása;
+:Kosárba helyezés;
+:Kosár megtekintése;
+:Kosár szerkesztése;
+:Foglalás gomb megnyomása;
+if (Helyben vagy online foglalás?) then (Helyben)
+  :Automatikus dátum beállítások - Végdátum manuálisan;
+else (Online)
+  :Kezdődátum, végdátum, kezdőidő manuális kiválasztása;
+endif
+:Foglalás leadása;
+:Visszaigazoló e-mail fogadása;
+
+|Admin|
+:Foglalás rögzítése;
+:Termékek darabszámának csökkentése;
+:Visszaigazoló e-mail küldése;
+:Átvétel időpontjának ellenőrzése;
+
+|User|
+:Átvételi pontra eljutás;
+:Email bemutatása;
+:Termék átvétele;
+
+|Admin|
+:Termék átadása;
+
+|User|
+:Termék visszavitele;
+:Adminisztrátornak a termék átadása;
+
+|Admin|
+:Foglalás törlése;
+:Termékek darabszáma frissül;
+stop
+@enduml
+
+
+//www.plantuml.com/plantuml/png/VL8zRzim4DtrAsvCW0RTxQ59WGO5CXJeX_TJT5Pe7ic0f0nOyDAVu9-WqKE7ee2dReJ_Lq-q23K5ca40TU_UExx7kmqHVUmCL_jlWVo-ol_LuZErAlJHf-5HfL_m5jxJXfXirDIdOrXMQWrNAxHWqk1XBJtwtJN49x9mfLgornN0ubyESI2uicGo-dA4eBPHwsfnhzYG1Y50SDxr69s6EfriAwLHXvRLuaj__kdF1mt86jbWduQ0KdzmGUvJ8pmHxovJIn4CjP6qid7KcCkX9wyfzALyxrf65ZredQb7bjqva_MpwO-YN9E5BROxS9QL9LWNJicWT6MZTrrq1gFINO0c3P8sr9G6vlGZ2aVitS0g7Ti9CsWxGLL0MoBxbCTaiGVgc_FXqle6ja8hPvqH9Tyi0LfjvO1YBpie8SyccR2Pmbkf47fKBVQEvStfng3YqLlfgFPtZL5s_pVVfrFRYv4flQ_aJJfgqj2Wnph8mqXs5ZKyXdJIcahy_vccqszkfexqFOg_I0oZgMTdu-OYHSnapmS_RKDPtPcWOEps2CIRRdGkQX-oVascYvZ3c6yBQPY8D9jyWSu9v54pjiqkjkh2NMJgjDNH-V6o277MUIt9c4wUNuaHOUrbcWIqh49qpzKjsQOp_0S0
+
+
+

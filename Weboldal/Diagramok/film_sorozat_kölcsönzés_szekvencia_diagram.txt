@@ -1,0 +1,73 @@
+@startuml
+actor Felhasználó
+participant "Webalkalmazás" as UI
+participant "Foglalás kezelő" as BookingSystem
+participant "Adatbázis" as Database
+participant "E-mail rendszer" as EmailSystem
+participant "Admin"
+
+Felhasználó -> UI: Bejelentkezés / Regisztráció
+UI -> Database: Felhasználó ellenőrzése / mentése
+Database --> UI: Sikeres / Sikertelen
+
+Felhasználó -> UI: Böngészés a kínálatban
+UI -> Database: Lekérdezi az elérhető filmeket és sorozatokat
+Database --> UI: Lista elérhető mennyiségekkel
+
+alt Ha van raktáron
+    Felhasználó -> UI: Kosárhoz adás
+    UI -> BookingSystem: Hozzáadás a foglalási kosárhoz
+end
+
+Felhasználó -> UI: Kosár módosítása (mennyiség / törlés)
+UI -> BookingSystem: Frissítés
+
+alt Felhasználó a Kosár menüpontból vagy a Foglalás menüpontból folytatja
+    Felhasználó -> UI: Foglalás indítása
+    UI -> Felhasználó: "Helyben vagy online foglalás?"
+    Felhasználó -> UI: Kiválasztás (Helyben / Online)
+    
+    alt Ha helyben foglal
+        UI -> BookingSystem: Dátum automatikus beállítása (mai nap)
+    else Ha online foglal
+        Felhasználó -> UI: Kiválasztja a kezdő és végdátumot
+        UI -> BookingSystem: Foglalási idő mentése
+    end
+end
+
+    Felhasználó -> UI: Foglalás leadása
+    UI -> BookingSystem: Foglalás véglegesítése
+    BookingSystem -> Database: Adatok mentése, darabszám csökkentése
+    Database --> BookingSystem: Sikeres
+    
+    BookingSystem -> EmailSystem: Küldés (Foglalási visszaigazolás)
+    EmailSystem --> Felhasználó: Foglalási visszaigazoló e-mail
+
+Felhasználó -> Admin: Személyes átvétel a foglalási időszakban
+Felhasználó -> Admin: Felhasználó bemutatja a foglalási visszaigazolást
+Admin -> UI: Foglalás keresése a rendszerben
+UI -> BookingSystem: Lekérdezi a foglalásokat 
+BookingSystem -> Database: Foglalás adatainak lekérdezése
+Database --> BookingSystem: Foglalási adatok visszaküldése
+Admin -> Felhasználó: Termékek átadása, fizetés
+
+Felhasználó -> Admin: Visszahozás a foglalási idő végén
+Felhasználó -> Admin: Foglalási visszaigazoló e-mail bemutatása
+Admin -> UI: Foglalás keresése
+UI -> BookingSystem: Foglalás lekérdezése
+BookingSystem -> Database: Adatok lekérése
+Database --> BookingSystem: Foglalási adatok visszaküldése
+BookingSystem --> UI: Foglalás megtalálva
+UI --> Admin: Foglalási adatok megjelenítése
+Admin -> Felhasználó: Visszahozás elfogadva
+
+Admin -> UI: Foglalás törlése
+UI -> BookingSystem: Foglalás eltávolítása
+BookingSystem -> Database: Foglalás eltávolítása, készlet frissítése megtörtént
+
+@enduml
+
+
+
+//www.plantuml.com/plantuml/png/fLR1Rjms4BtpAmO-EO2Dt7reqo0n73H0WQPfpoDhLgP9aOR8NM3r5_w4FUuX9mC-vKRulpgSNLacjDejq1m2hJWpxyrxmv4_X8XTNBPMuMtq7LoJlSFGkxInwKazy9c-rG_e8fpzGnLQWxR5Fct26M20xr_Aa6lVMBHy2ePwiY-F4lNHUwDTysqT8hLbmcyrnYfjUhshzmaZLXYe3FfysQAsq96hGq-TH7xEhmvNRBKxKwfe12v_OQvNy97koPABp2vj0xo7FwdHeOzTsjngxlVx5uvyPN45PH6odFlosELSukIMA-L7DIJ0vHxdcpRKKGQGfvX1voYbPzTm5I64ODAFVCwge9lG-KecRRkQUWtO0rd-SKVnvH4MshPaA48k4dpdUupUO9mo-whPyBUft8HRwv2s3Hb3LYcq4MuGLkYWGnFJflDE0VyxIFzt7pZYplU0DVikWKAxTFqARdpFOoD1WB0O1aM36IeezbUf8oZGfgUQdtv4JaGu7wcpq34zTvRRVwSEmbztEaZcDknQB77m5O9S-ldW7K_basKHcZMVZMDT7Y-yNKUCzpYlpvYgNRrdFefKvbp1sGtPTKLk1-oTrOv6hNuzE-A3Nl5lVfqHu7oeynx-a2Bl95F-s_jxjulOLvUJMUy-fGsl2C1bz2r6RPO1Ac8uErg16Xm-x6381cA8aV-8S9h-FGBcxL6_FCeqhzZUMl1zFCfob5g3vkpnUWedLyjy_HUdB64jFfs64dgM6kBP6i6AwF8AvuNdpIkt2wYnmohmrMZXDgHdOzwoBgvloM7OCH9t4FNjZcI5qqzRPq7Ft-YqqY7qg1liVNuXzerfkSfqHkVIdu1aJn-umhAJcN5FRThQDGLWGrcvI5PsGU4RLpGLkjagvVkAsgLSGIaqrrXKaZorMYIKTOwltvUAtA4TKgxV4IplML17B1_HaCr7xT207KfDln_pKuqoE_lUpDvF6bgR6FKNTIot8PFLtatq1InqJv7JvbtwMyhpFkQ4gJioy6axRy-fyHWSotHEkg9EtBvInjFNRXV_VpMVGaqwQAc9-SckK7eezIbhSwpyLI8RPDxFqXYoR0pMN7vEnE63U594icp6oW_BV5x68qaNO1YgjnHXCNvfINHW7lp3HQK-aAkNhVqN
+
