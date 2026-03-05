@@ -1,0 +1,42 @@
+Weboldal:
+
+Vásárlás: zene
+
+- helyben:
+	- spontán látogató: vesz egyet -> csökken a darabszám -> admin módosítja
+
+	- regisztrált felhasználó: vesz egyet -> csökken a darabszám -> admin módosítja
+
+
+- online:
+	- spontán látogató: kell csinálni fiókot -> regisztrál -> beteszi a kosárba -> rendelés elküldése -> ha elküldi a rendelést akkor kiírja az oldal, hogy rendelését befogadtuk, küldtek egy emailt -> emailben benne lesz a rendelő személy vezetékneve, keresztneve, email címe, meg hogy mit rendelt, továbbá oda lesz írva, hogy a nyitvatartási napokon be tud menni, át tudja venni -> csökken a darabszám -> elmegy -> megmutatja az emailt -> admin odaadja a zenét 
+
+	- regisztrált felhasználó: ugyanez, csak neki ugye már van fiókja
+
+
+Emailben benne lesz hogy ha nem megy el átvenni 7 napon belül, akkor törlik a rendelést, és megemelik a darabszámot.
+
+
+
+Foglalás: film és sorozat
+
+- helyben:
+	- spontán látogató: bemegy -> mondja hogy ez meg ez kell neki -> a foglaláshoz kell csinálni fiókot, hogy nyomon tudja követni az admin és maga a felhasználó is, hogy mit/miket foglalt mettől meddig -> ott helyben egy tableten megcsinálja -> beírja vezetéknevét, keresztnevét, az email címet, jelszót, megvan a fiók -> aztán ott a tableten csinálja meg a foglalást is -> bemegy a sorozatokhoz, keres valamit, beteszi a kosárba -> filmeknél ugyanez -> ez egy másik kosár, foglalási kosár, ahova csak a sorozatok, filmek mennek -> kosarat megtekintheti hogy miket tett bele, módosíthatja, törölheti -> ha ezzel megvan, akkor a kosárban lesz egy foglalás gomb, amit ha megnyom, akkor megkérdezi a rendszer, hogy helyben vagy online foglal, most ugye helyben -> felhasználó választ, és utána a rendszer automatikusan beírja neki a mai napot a foglalás kezdetének, a jelenlegi időt a foglalás kezdeti idejének, illetve az üzlet zárási idejét a foglalás vég idejéhez. A foglalás végét (dátumot) azt a felhasználó adja meg, oda ő maga tud időpontot választani -> kiválasztja hogy meddig akarja foglalni -> 2 hétre lehet foglalni max -> ha ezzel megvan, megnyomja a foglalás elküldése gombot -> az oldal kiírja, hogy a foglalás rögzítve lett, kap emailt, melyben látja a vezetéknevét, keresztnevét, email címét, amit foglalt, és a foglalási intervallumot. Továbbá ide ki lesz írva, hogy ha nem megy el érte időben átvenni, akkor a foglalását töröljük, illetve, hogy ha nem hozza vissza időben, akkor késedelmi díjat kell fizetnie naponta. Ebben a lefoglalt intervallumban jöhet el érte, tehát például január 1 kezdőidőtől már át is veheti, és január 5 18:00-ig (üzlet zárási ideje) kell visszavinnie -> darabszám csökkent
+
+	- regisztrált felhasználó: ugyanez, csak van fiókja
+
+
+- online: 
+	- spontán látogató: kell fiókot csinálni a foglaláshoz -> megcsinálja, és ugyanaz a folyamat, kivéve az, hogy a foglalás kezdő dátumát, végdátumát, és kezdőidejét (csak az üzlet nyitvatartási idejéhez képest lehet választani: 10:00 - 18:00 között) maga a felhasználó választja ki -> itt is ugyanúgy érvényes a max 2 hétig lehet foglalni szabály 
+
+	- regisztrált felhasználó: van fiókja, ugyanaz a folyamat
+
+
+Foglaláshoz: 
+Lesz egy saját foglalások menüpont, ahol látja hogy miket foglalt, mettől meddig. 
+Ha nem megy el az intervallumban, akkor törlik a foglalást és megemelődik a darabszám.
+Aki nem viszi vissza időben, az naponta késedelmi díjat fizet. Erről már nem én gondoskodok.
+
+
+
+
