@@ -1,0 +1,75 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36" version="29.6.0">
+  <diagram name="1 oldal" id="5ie0YO-XJux9yWSS5-b-">
+    <mxGraphModel dx="4943" dy="1425" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="hvbcKJDpl0265rjGCo3l-1480" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="480" width="1347" x="-1880" y="173.99999999999997" as="geometry" />
+        </mxCell>
+        <mxCell id="hvbcKJDpl0265rjGCo3l-1481" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="120" width="1347" x="-1880" y="173.99999999999997" as="geometry" />
+        </mxCell>
+        <mxCell id="hvbcKJDpl0265rjGCo3l-1482" edge="1" parent="1" source="hvbcKJDpl0265rjGCo3l-1483" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-1073" y="634.0033536783855" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hvbcKJDpl0265rjGCo3l-1483" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Footer (C)" vertex="1">
+          <mxGeometry height="20" width="1347" x="-1880" y="634" as="geometry" />
+        </mxCell>
+        <mxCell id="hvbcKJDpl0265rjGCo3l-1485" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Zenék" vertex="1">
+          <mxGeometry height="60" width="110" x="-1670" y="203.99999999999997" as="geometry" />
+        </mxCell>
+        <mxCell id="hvbcKJDpl0265rjGCo3l-1487" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Filmek" vertex="1">
+          <mxGeometry height="60" width="110" x="-1540" y="204.00335367838548" as="geometry" />
+        </mxCell>
+        <mxCell id="hvbcKJDpl0265rjGCo3l-1489" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Sorozatok" vertex="1">
+          <mxGeometry height="60" width="110" x="-1410" y="204.00335367838548" as="geometry" />
+        </mxCell>
+        <mxCell id="hvbcKJDpl0265rjGCo3l-1490" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="340" width="1217" x="-1820" y="294" as="geometry" />
+        </mxCell>
+        <mxCell id="hvbcKJDpl0265rjGCo3l-1492" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Logo (opcionális)" vertex="1">
+          <mxGeometry height="60" width="67" x="-1870" y="203.99999999999997" as="geometry" />
+        </mxCell>
+        <mxCell id="hvbcKJDpl0265rjGCo3l-1501" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Kapcsolat" vertex="1">
+          <mxGeometry height="60" width="100" x="-870" y="203.99999999999997" as="geometry" />
+        </mxCell>
+        <mxCell id="hvbcKJDpl0265rjGCo3l-1504" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Kosár" vertex="1">
+          <mxGeometry height="60" width="130" x="-1010" y="203.99999999999997" as="geometry" />
+        </mxCell>
+        <mxCell id="hvbcKJDpl0265rjGCo3l-1508" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Rendelési kosár" vertex="1">
+          <mxGeometry height="145" width="240" x="-1570" y="391.50335367838545" as="geometry" />
+        </mxCell>
+        <mxCell id="hvbcKJDpl0265rjGCo3l-1509" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Foglalási kosár" vertex="1">
+          <mxGeometry height="145" width="240" x="-1160" y="391.50335367838545" as="geometry" />
+        </mxCell>
+        <mxCell id="hvbcKJDpl0265rjGCo3l-1511" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="margin" vertex="1">
+          <mxGeometry height="340" width="60" x="-1880" y="294" as="geometry" />
+        </mxCell>
+        <mxCell id="hvbcKJDpl0265rjGCo3l-1512" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="margin" vertex="1">
+          <mxGeometry height="340" width="70" x="-603" y="294" as="geometry" />
+        </mxCell>
+        <mxCell id="hvbcKJDpl0265rjGCo3l-1513" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Foglalás" vertex="1">
+          <mxGeometry height="60" width="110" x="-1280" y="203.99999999999997" as="geometry" />
+        </mxCell>
+        <mxCell id="hvbcKJDpl0265rjGCo3l-1514" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Saját foglalások" vertex="1">
+          <mxGeometry height="60" width="120" x="-1150" y="203.99999999999997" as="geometry" />
+        </mxCell>
+        <mxCell id="hvbcKJDpl0265rjGCo3l-1515" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Profil" vertex="1">
+          <mxGeometry height="60" width="100" x="-750" y="203.99999999999997" as="geometry" />
+        </mxCell>
+        <mxCell id="hvbcKJDpl0265rjGCo3l-1516" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Kijelentkezés" vertex="1">
+          <mxGeometry height="60" width="100" x="-640" y="203.99999999999997" as="geometry" />
+        </mxCell>
+        <mxCell id="hvbcKJDpl0265rjGCo3l-1517" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Kezdőlap" vertex="1">
+          <mxGeometry height="60" width="100" x="-1790" y="203.99999999999997" as="geometry" />
+        </mxCell>
+        <mxCell id="hvbcKJDpl0265rjGCo3l-1519" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Kosár" vertex="1">
+          <mxGeometry height="60" width="120" x="-1310" y="308.66999999999996" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
