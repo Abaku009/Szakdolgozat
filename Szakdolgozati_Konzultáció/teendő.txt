@@ -2,12 +2,13 @@
 
 teszt miatt képeket is rakjak
 
-gomb hogy továbbiak ajánlása az ajánlórendszereknél
+gomb hogy továbbiak ajánlása az ajánlórendszereknél (fejlesztési lehetőség)
 
-kiterjeszthető
 
-unit tesztek, integrációs tesztek
 
-teljes funkcionalitásra tesztek
 
-node js keretrendszer, tesztek készítése, 100 teszt
+
+
+
+
+
