@@ -33,13 +33,13 @@ TARTALOMJEGYZÉK
 4.2.5 Funkcionális követelmények					kész								
 4.2.6 Nem-funkcionális követelmények					kész					
 			
-5 Technológiai háttér												
-5.1 Felhasznált technológiák											
-5.1.1 Frontend													
-5.1.2 Backend														
-5.1.3 Adatbázis								
-5.2 Fejlesztési környezet és eszközök					
-5.3 Verziókezelés, deployment lehetőségek				
+5 Technológiai háttér							kész										
+5.1 Felhasznált technológiák						kész								
+5.1.1 Frontend								kész						
+5.1.2 Backend								kész						
+5.1.3 Adatbázis								kész
+5.2 Fejlesztési környezet és eszközök					kész
+5.3 Verziókezelés							kész
 	
 6 A rendszer megvalósítása	
 6.1 Backend megvalósítása	
