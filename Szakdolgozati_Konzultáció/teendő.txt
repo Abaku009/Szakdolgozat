@@ -4,6 +4,8 @@ teszt miatt képeket is rakjak
 
 gomb hogy továbbiak ajánlása az ajánlórendszereknél (fejlesztési lehetőség)
 
+diagramokhoz, táblázatokhoz, képekhez rakni hivatkozást
+
 
 
 

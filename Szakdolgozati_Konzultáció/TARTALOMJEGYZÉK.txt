@@ -41,17 +41,16 @@ TARTALOMJEGYZÉK
 5.2 Fejlesztési környezet és eszközök					kész
 5.3 Verziókezelés							kész
 	
-6 A rendszer megvalósítása	
-6.1 Backend megvalósítása	
-6.2 Felhasználói funkciók	
-6.3 Ajánlórendszer megvalósítása		
-6.4 Frontend implementáció	
+6 A rendszer megvalósítása						kész	
+6.1 Adatbázis								kész
+6.2 Kódrészletek							kész	
+6.3 Felhasználói felületek						kész			
 	
-7 Tesztelés és validálás	
-7.1 Maunális tesztelés	
-7.2 Hibakezelés, biztonsági szempontok	
-7.3 Szcenáriók, tesztesetek	
-7.4 Teljesítmény és skálázhatóság
+7 Rendszer tesztelése							kész
+7.1 Tesztelési módszerek						kész
+7.2 Unit tesztek							kész
+7.3 Integrációs tesztek							kész
+7.4 Összegzés								kész
 	
 8 Összegzés és fejlesztési lehetőségek	
 8.1 A fejlesztés eredményei	
