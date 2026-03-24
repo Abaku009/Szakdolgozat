@@ -1,16 +1,23 @@
-1000 darab tétel generálás teszthez a zenékhez, filmekhez, sorozatokhoz
+- diagramokhoz, táblázatokhoz, képekhez rakni hivatkozást, ábrajegyzék meg táblázatjegyzék nem kell					KÉSZ
 
-teszt miatt képeket is rakjak
+- kódok táblázatba másolható szöveg legyen, mindegyik kódrészletnél, 1x1es táblázatba							KÉSZ
 
-gomb hogy továbbiak ajánlása az ajánlórendszereknél (fejlesztési lehetőség)
+- mindegyik nagy fejezet után oldaltörés												KÉSZ	
+																		
+- 2es és 3as fejezet összevonása													KÉSZ
 
-diagramokhoz, táblázatokhoz, képekhez rakni hivatkozást
-
-
-
-
+- követelmények táblázatoknál megjegyzés oszlopot kivenni és magyarázó szöveget helyette, egészet elmenteni, hogy meglegyen azért	KÉSZ
 
 
 
+
+
+- rendszer tesztelése helyett eredmények, teljesítménymérték, teljesítmény eredmények, végrehajtás ideje, átlagosan mennyi ideig tart válaszolni kérésre
+
+- integrációs tesztek képek 
+
+- több könyv az irodalmi áttekintés részhez
+
+- 8adik fejezet: miről szólt a szakdolgozat, milyen eredmények, összefoglalás, végeredmény, jövőbeli fejlesztés
 
 
