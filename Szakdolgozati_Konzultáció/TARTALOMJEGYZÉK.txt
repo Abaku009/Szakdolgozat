@@ -1,4 +1,4 @@
-TARTALOMJEGYZÉK
+TARTALOMJEGYZÉK								kész
 
 1 Bevezetés								kész
 1.1 A téma bemutatása							kész
@@ -52,13 +52,11 @@ TARTALOMJEGYZÉK
 7.3 Integrációs tesztek							kész
 7.4 Összegzés								kész
 	
-8 Összegzés és fejlesztési lehetőségek	
-8.1 A fejlesztés eredményei	
-8.2 A rendszer korlátai	
-8.3 További fejlesztési lehetőségek	
-8.4 Reflexió	
+8 Összegzés és fejlesztési lehetőségek					kész
+8.1 Összegzés								kész
+8.2 Fejlesztési lehetőségek						kész
 
-9 Felhasznált források	
+9 Felhasznált források							kész
 
 
 

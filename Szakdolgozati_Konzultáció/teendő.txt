@@ -1,23 +1,21 @@
-- diagramokhoz, táblázatokhoz, képekhez rakni hivatkozást, ábrajegyzék meg táblázatjegyzék nem kell					KÉSZ
+- diagramokhoz, táblázatokhoz, képekhez rakni hivatkozást, ábrajegyzék meg táblázatjegyzék nem kell						KÉSZ
 
-- kódok táblázatba másolható szöveg legyen, mindegyik kódrészletnél, 1x1es táblázatba							KÉSZ
+- kódok táblázatba másolható szöveg legyen, mindegyik kódrészletnél, 1x1es táblázatba								KÉSZ
 
-- mindegyik nagy fejezet után oldaltörés												KÉSZ	
+- mindegyik nagy fejezet után oldaltörés													KÉSZ	
 																		
-- 2es és 3as fejezet összevonása													KÉSZ
+- 2es és 3as fejezet összevonása														KÉSZ
 
-- követelmények táblázatoknál megjegyzés oszlopot kivenni és magyarázó szöveget helyette, egészet elmenteni, hogy meglegyen azért	KÉSZ
+- követelmények táblázatoknál megjegyzés oszlopot kivenni és magyarázó szöveget helyette, egészet elmenteni, hogy meglegyen azért		KÉSZ
+
+- több könyv az irodalmi áttekintés részhez													KÉSZ
+
+- 8adik fejezet: miről szólt a szakdolgozat, milyen eredmények, összefoglalás, végeredmény, jövőbeli fejlesztés					KÉSZ
+
+- tesztelésnél eredmények, teljesítménymérték, teljesítmény eredmények, végrehajtás ideje, átlagosan mennyi ideig tart válaszolni kérésre	KÉSZ
+
+- integrációs tesztek képek 															KÉSZ
 
 
-
-
-
-- rendszer tesztelése helyett eredmények, teljesítménymérték, teljesítmény eredmények, végrehajtás ideje, átlagosan mennyi ideig tart válaszolni kérésre
-
-- integrációs tesztek képek 
-
-- több könyv az irodalmi áttekintés részhez
-
-- 8adik fejezet: miről szólt a szakdolgozat, milyen eredmények, összefoglalás, végeredmény, jövőbeli fejlesztés
 
 
