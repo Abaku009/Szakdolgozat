@@ -1,0 +1,26 @@
+@startuml
+package "Frontend" {
+    rectangle "React\n(Felhasználói felület)" as React
+}
+
+package "Backend" {
+    rectangle "NodeJS + Express\n(Üzleti logika, API)" as NodeJS_Express
+    rectangle "EmailService\n(E-mail küldés)" as EmailService
+}
+
+package "Adatbázis" {
+    rectangle "PostgreSQL\n(Adatok tárolása)" as PostgreSQL
+}
+
+React --> NodeJS_Express : API hívások
+NodeJS_Express --> PostgreSQL : Adatlekérés és írás
+NodeJS_Express --> EmailService : E-mail küldés
+@enduml
+
+
+
+
+https://www.plantuml.com/plantuml/png/RP31IiD048Rl-nH3Juhs1Jn8AxIWY5Hx5MJCZkcoazsokoqIyKsyvDX3JrwzxOkvcmYf8O50mdp_npypym5Ts5KijbXeB0acIsTD82Cdy24WFOwAWARaD7eYBCApELiIRz3N9ZOSlnMy4SSVfd0-0VJGGk9JzCQRz34kVB2IxjPm0OlthIFlapj-rKn10TjIQRo4-UgsytRionyvD2qgLBmcjrS59SjYclz1fruo7dndE6N-5PnB3A-ngPKVwRYoFfIEre_toPj9go74nbcEZSVEt3FPsru0fjFhGMUuojl09XxtAMgr68npeZTbMc9Wql7WqWxGlaUNecF1q-LIT700CICZTnN_0W00
+
+
+

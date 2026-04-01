@@ -1,0 +1,75 @@
+@startuml
+
+skinparam componentStyle rectangle
+skinparam shadowing false
+skinparam packageStyle rectangle
+
+actor Felhasználó
+
+package "Frontend (Felhasználói felület)" {
+    [Webes felület]
+}
+
+package "Backend (Alkalmazás logika)" {
+
+    [Autentikációs modul]
+    [Zenei rendelési modul]
+    [Foglalási modul]
+    [Ajánlórendszer]
+    [Admin modul]
+
+    package "E-mail szolgáltatás" {
+        [Rendelés visszaigazolás]
+        [Foglalás visszaigazolás]
+        [Foglalás törlés értesítés]
+    }
+}
+
+database "Adatbázis" {
+    [Felhasználók]
+    [Zenei rendelések]
+    [Foglalások]
+    [Médiatartalmak]
+}
+
+Felhasználó --> [Webes felület]
+
+[Webes felület] --> [Autentikációs modul]
+[Webes felület] --> [Zenei rendelési modul]
+[Webes felület] --> [Foglalási modul]
+[Webes felület] --> [Ajánlórendszer]
+[Webes felület] --> [Admin modul]
+
+[Autentikációs modul] --> [Felhasználók]
+
+[Zenei rendelési modul] --> [Zenei rendelések]
+[Zenei rendelési modul] --> [Médiatartalmak]
+
+[Foglalási modul] --> [Foglalások]
+[Foglalási modul] --> [Médiatartalmak]
+
+[Ajánlórendszer] --> [Felhasználók]
+[Ajánlórendszer] --> [Médiatartalmak]
+[Ajánlórendszer] --> [Zenei rendelések]
+[Ajánlórendszer] --> [Foglalások]
+
+[Admin modul] --> [Felhasználók]
+[Admin modul] --> [Médiatartalmak]
+[Admin modul] --> [Zenei rendelések]
+[Admin modul] --> [Foglalások]
+
+' E-mail kapcsolatok
+[Zenei rendelési modul] --> [Rendelés visszaigazolás]
+[Foglalási modul] --> [Foglalás visszaigazolás]
+[Admin modul] --> [Foglalás törlés értesítés]
+
+@enduml
+
+
+
+
+https://www.plantuml.com/plantuml/png/ZPInZXCn48PxFuLr3L3a5T05YNGqK221hfZipkqPpzgHFG6nw1vconHKaQZe_68ucsmKPx1oMrdZRtxzC__Azv4XyBOdfQ8rRWC1UjtuVkCTElx4Fmbrm8R1TOGNI7o2rlymhjEFGF7oPWEDXGwlMnKqx8DU8Jr175mQAUsLEi7wRXMyOtIjVbqGHZyYfR-4_EPE_r8wVry_unhZkVwWdYzatkN3fB8a2zJ3aCQeoNV6mYHmL5Xk6HqRcyR6f7tKlM-tz72y-u8EZGvP12djeYakLxuZe3HUbPVVqkYosqDN733CvROtRWQdqjdd-qKFXdGSF7LvK0REelE4K_F7sO7-Rc8Sm7IGuKmTnGixBsCu_GcJODe5nfX-SzgToEV34bjWM4FCxfRvk4xZOE9vwKKgzl-xGdkz9ZzNFgHTQu0Xy24LEuLMIEh5ugsCLbrN9goINmMMWTPfcN25av5NkF8Vg3YVKB5Y9QmNk5p-ZGQHWHBJJcIPdu3gSc8fbS44LrEKO7rqYSfHL157pPn0f2_1I4k2acvUwTCpO67JH4_0tjx8iFugt0vJjjGTrfyBTPyjR7lw1m00
+
+
+
+
