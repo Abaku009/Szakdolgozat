@@ -1,3 +1,4 @@
+
 - diagramokhoz, táblázatokhoz, képekhez rakni hivatkozást, ábrajegyzék meg táblázatjegyzék nem kell						KÉSZ
 
 - kódok táblázatba másolható szöveg legyen, mindegyik kódrészletnél, 1x1es táblázatba								KÉSZ
@@ -15,6 +16,37 @@
 - tesztelésnél eredmények, teljesítménymérték, teljesítmény eredmények, végrehajtás ideje, átlagosan mennyi ideig tart válaszolni kérésre	KÉSZ
 
 - integrációs tesztek képek 															KÉSZ
+
+- oldalszámok bevezetéstől															KÉSZ
+
+- rendszer tervezése egy fejezetben legyen													KÉSZ
+
+- táblázatokat mellékletbe betenni (funkcionális, nem funkcionális követelmények)								KÉSZ
+
+- mellékletbe táblázatokat címsorokba ugyanúgy leírni												KÉSZ
+
+- filmek sorozatok use case diagram módosítás, legyen olvashatóbb a screenshot									KÉSZ
+
+- er diagram módosítás, húzzam összébb, legyen olvashatóbb a screenshot										KÉSZ
+
+- táblázatokat módosítani úgy, hogy a legfontosabbak legyenek csak, 1 követelményhez 1 mondat, és 1 oldalas táblázat legyen mindkettő		KÉSZ
+
+- rendszertervezéshez komponensdiagram														KÉSZ
+
+- deploymentről írni, 4es fejezetbe														KÉSZ
+
+- deplyomenthez komponensdiagram, hogy melyik komponensek milyen keretrendszerben lettek megvalósítva						KÉSZ
+
+- egyes unit tesztekhez leírni, hogy azok miket tesztelnek, integrációsnál is szintén ugyanígy							KÉSZ
+
+- felhasználó felület képeknél böngésző ablakot kisebbre rakni és úgy screenelni, hogy olvashatóbb legyen					KÉSZ
+
+- kódoknál, például async részeknél jobbnan kifejteni a működést										KÉSZ
+
+- irodalmi áttekintéshez mehet még hivatkozás													KÉSZ
+
+
+
 
 
 

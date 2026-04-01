@@ -1,3 +1,4 @@
+
 TARTALOMJEGYZÉK								kész
 
 1 Bevezetés								kész
@@ -57,7 +58,7 @@ TARTALOMJEGYZÉK								kész
 8.2 Fejlesztési lehetőségek						kész
 
 9 Felhasznált források							kész
-
+10 Mellékletek								kész
 
 
 
