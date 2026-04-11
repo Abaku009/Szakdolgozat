@@ -1,27 +1,32 @@
 @startuml
+left to right direction
 
 skinparam componentStyle rectangle
 skinparam shadowing false
 skinparam packageStyle rectangle
+skinparam nodesep 50
+skinparam ranksep 40
 
 actor Felhasználó
 
-package "Frontend (Felhasználói felület)" {
+package "Frontend" {
     [Webes felület]
 }
 
 package "Backend (Alkalmazás logika)" {
 
-    [Autentikációs modul]
-    [Zenei rendelési modul]
-    [Foglalási modul]
-    [Ajánlórendszer]
-    [Admin modul]
+    package "Fő modulok" {
+        [Autentikáció]
+        [Rendelés]
+        [Foglalás]
+        [Ajánlórendszer]
+        [Admin]
+    }
 
-    package "E-mail szolgáltatás" {
+    package "Értesítések" {
         [Rendelés visszaigazolás]
         [Foglalás visszaigazolás]
-        [Foglalás törlés értesítés]
+        [Foglalás törlés]
     }
 }
 
@@ -34,41 +39,41 @@ database "Adatbázis" {
 
 Felhasználó --> [Webes felület]
 
-[Webes felület] --> [Autentikációs modul]
-[Webes felület] --> [Zenei rendelési modul]
-[Webes felület] --> [Foglalási modul]
+[Webes felület] --> [Autentikáció]
+[Webes felület] --> [Rendelés]
+[Webes felület] --> [Foglalás]
 [Webes felület] --> [Ajánlórendszer]
-[Webes felület] --> [Admin modul]
+[Webes felület] --> [Admin]
 
-[Autentikációs modul] --> [Felhasználók]
+[Autentikáció] --> [Felhasználók]
 
-[Zenei rendelési modul] --> [Zenei rendelések]
-[Zenei rendelési modul] --> [Médiatartalmak]
+[Rendelés] --> [Zenei rendelések]
+[Rendelés] --> [Médiatartalmak]
 
-[Foglalási modul] --> [Foglalások]
-[Foglalási modul] --> [Médiatartalmak]
+[Foglalás] --> [Foglalások]
+[Foglalás] --> [Médiatartalmak]
 
 [Ajánlórendszer] --> [Felhasználók]
-[Ajánlórendszer] --> [Médiatartalmak]
 [Ajánlórendszer] --> [Zenei rendelések]
 [Ajánlórendszer] --> [Foglalások]
+[Ajánlórendszer] --> [Médiatartalmak]
 
-[Admin modul] --> [Felhasználók]
-[Admin modul] --> [Médiatartalmak]
-[Admin modul] --> [Zenei rendelések]
-[Admin modul] --> [Foglalások]
+[Admin] --> [Felhasználók]
+[Admin] --> [Zenei rendelések]
+[Admin] --> [Foglalások]
+[Admin] --> [Médiatartalmak]
 
-' E-mail kapcsolatok
-[Zenei rendelési modul] --> [Rendelés visszaigazolás]
-[Foglalási modul] --> [Foglalás visszaigazolás]
-[Admin modul] --> [Foglalás törlés értesítés]
+[Rendelés] --> [Rendelés visszaigazolás]
+[Foglalás] --> [Foglalás visszaigazolás]
+[Admin] --> [Foglalás törlés]
 
 @enduml
 
 
 
 
-https://www.plantuml.com/plantuml/png/ZPInZXCn48PxFuLr3L3a5T05YNGqK221hfZipkqPpzgHFG6nw1vconHKaQZe_68ucsmKPx1oMrdZRtxzC__Azv4XyBOdfQ8rRWC1UjtuVkCTElx4Fmbrm8R1TOGNI7o2rlymhjEFGF7oPWEDXGwlMnKqx8DU8Jr175mQAUsLEi7wRXMyOtIjVbqGHZyYfR-4_EPE_r8wVry_unhZkVwWdYzatkN3fB8a2zJ3aCQeoNV6mYHmL5Xk6HqRcyR6f7tKlM-tz72y-u8EZGvP12djeYakLxuZe3HUbPVVqkYosqDN733CvROtRWQdqjdd-qKFXdGSF7LvK0REelE4K_F7sO7-Rc8Sm7IGuKmTnGixBsCu_GcJODe5nfX-SzgToEV34bjWM4FCxfRvk4xZOE9vwKKgzl-xGdkz9ZzNFgHTQu0Xy24LEuLMIEh5ugsCLbrN9goINmMMWTPfcN25av5NkF8Vg3YVKB5Y9QmNk5p-ZGQHWHBJJcIPdu3gSc8fbS44LrEKO7rqYSfHL157pPn0f2_1I4k2acvUwTCpO67JH4_0tjx8iFugt0vJjjGTrfyBTPyjR7lw1m00
+
+https://www.plantuml.com/plantuml/png/ZPEnRne_5CTt_nLMbbyo86NuTQrYag8Y0bG1jH8LW-4UXti-6zccLQzYo9YnQxSRCtIArAcRrV-hFYZb1HkfDvtV-_fzFtxFlhAE6xSk9P6mSDHfQaI-T3GJ1kPEQ4M8BOHQSSDBEjVbIYjGRkG-Iw2DWgjS0fBO9S_q9w5okk3IuioApmkUm-cjIcTWOKLVNAAWuQfeWlzV4iBdJXlQ0RdajbA-blw9aFzegzMYdRlXOFngSDCio1ydUjOnMZbGsHdzGcZuth-36LYw0Eb_Id1JijdlRxFhNhIz7Nx2RdhEPC5boIjVMofrBWf-qPJSrZoO_VfAIvsjfIxsVbjFjdQWd2XyFHV-QNf8t8NQWUJHebX7vv9BN-CO--1h5SvgWjvMO70gAuNQhJT7EFx1EB3-kmi6W8YmCVqehAsuo7cbaIa6-JUDyp_CuIIRGr_P3Hkt_VsaEsgM9EEEpxWDU2pypdnT2VjtECy6MqntmGae4DJiYM4NHzvw7-dxnqo4-iOriohGS7lipVLeUCl6mnuzxtS7tRw_l-sEs82E9lvX_Df_cxnb5rl0PmmXyZA-C-GuqiZYCQTKgFLf0JfNMf2w3KdT_cgGOx0c6_UQ8B96aMnyf8bQJX3_JeBd56VZ0l7vqi1fNHexbiPeQL6QiEbi6WibqomuZm1m9kqQzVxq8puzX5YBRTCFcbm5etKfVmC0
 
 
 
