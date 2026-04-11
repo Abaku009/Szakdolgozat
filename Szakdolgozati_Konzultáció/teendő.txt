@@ -45,6 +45,23 @@
 
 - irodalmi áttekintéshez mehet még hivatkozás													KÉSZ
 
+- use case diagramon (kölcsönzés) csoportokat (package-eket) elnevezni										KÉSZ
+
+- komponensdiagram függőlegbe, package-ekbe rakni												KÉSZ
+
+- oszlopot felvenni funkcionális és nem funkcionális követelményekbe, hogy azonosító, és a mezőkbe pedig req1, req2, stb ...			KÉSZ
+
+- kódoknál ne táblázat legyen a címke, hanem kód - tehát a felirat beszúrásnál új, legyen a neve, hogy kód, és arra kereszthivatkozás		KÉSZ
+
+- mellékletre hivatkozni eddigiek szerint, hogy felirat beszúrása a táblázatoknak (M1, M2 táblázat), és kereszthivatkozással hivatkozni rájuk	KÉSZ
+
+
+
+
+
+- hivatkozásokból még kb 10 db, könyvek, stb ..., internetes ne legyen
+
+
 
 
 
