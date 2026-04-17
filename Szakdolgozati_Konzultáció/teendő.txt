@@ -55,14 +55,13 @@
 
 - mellékletre hivatkozni eddigiek szerint, hogy felirat beszúrása a táblázatoknak (M1, M2 táblázat), és kereszthivatkozással hivatkozni rájuk	KÉSZ
 
+- hivatkozásokból mehet még, könyvek, stb ..., internetes ne legyen										KÉSZ
 
+	- distilled uml tankönyv az uml részekhez pl												KÉSZ
 
+	- react tankönyv react in a nutshell a 4es fejezethez											KÉSZ
 
-
-- hivatkozásokból még kb 10 db, könyvek, stb ..., internetes ne legyen
-
-
-
+	- express tankönyv, express in a nutshell a 4es fejezethez										KÉSZ
 
 
 
