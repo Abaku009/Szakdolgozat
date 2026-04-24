@@ -1,14 +1,31 @@
+.own-reservations-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-bottom: 50px;
+}
+
+.own-reservations-page h1 {
+  font-size: 26px;
+  margin-bottom: 25px;
+}
+
 .own-reservation-card {
   background: #fafafa;
   border: 1px solid #e6e6e6;
   border-radius: 10px;
-  padding: 15px 20px;
-  margin-bottom: 20px;
+  padding: 16px 18px;
+  margin-bottom: 18px;
   box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.own-reservation-card:hover {
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
 }
 
 .own-reservation-card h3 {
-  font-size: 20px;
+  font-size: 18px;
   margin-bottom: 10px;
   border-left: 5px solid #222; 
   padding-left: 10px;
@@ -17,30 +34,26 @@
 
 .own-reservation-card p {
   margin: 4px 0;
-  font-size: 15px;
+  font-size: 14px;
   color: #555;
 }
 
 .own-reservation-card ul {
   margin-top: 10px;
-  padding-left: 20px;
+  padding-left: 18px;
   list-style-type: disc;
 }
 
 .own-reservation-card li {
   margin-bottom: 6px;
-  font-size: 15px;
+  font-size: 14px;
   color: #333;
 }
 
 .own-reservations-no-reservations {
-  font-size: 20px;
+  font-size: 18px;
   color: #c0392b;
   font-weight: bold;
   margin-top: 30px;
-}
-
-.own-reservations-page {
-  padding-bottom: 40px;
 }
 
