@@ -1,68 +1,76 @@
 .admin-reservations-page {
-  padding-bottom: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-bottom: 50px;
+}
+
+.admin-reservations-page h1 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 25px;
 }
 
 .admin-reservations-card {
   background: #fafafa;
   border: 1px solid #e6e6e6;
   border-radius: 10px;
-  padding: 15px 20px;
-  margin-bottom: 50px;
+  padding: 16px 18px;
+  margin-bottom: 35px;
   box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.admin-reservations-card:hover {
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
 }
 
 .admin-reservations-card h2 {
-  font-size: 22px;
-  margin-bottom: 15px;
-  border-left: 5px solid #222;
-  padding-left: 10px;
-  color: #222;
-}
-
-.admin-reservations-no-reservations {
   font-size: 18px;
-  color: #c0392b;
-  font-weight: bold;
-  margin-top: 15px;
+  margin-bottom: 12px;
+  color: #222;
+  border-left: none;
 }
 
 .admin-reservation-card {
-  background: #fafafa;
+  background: #fff;
   border: 1px solid #e6e6e6;
   border-radius: 10px;
-  padding: 15px 20px;
-  margin-bottom: 20px;
+  padding: 16px 18px;
+  margin-bottom: 15px;
   box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.admin-reservation-card:hover {
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
 }
 
 .admin-reservation-card h3 {
-  font-size: 20px;
+  font-size: 16px;
   margin-bottom: 10px;
-  border-left: 5px solid #222;
-  padding-left: 10px;
   color: #222;
+  border-left: 5px solid #222; 
+  padding-left: 10px;
 }
 
 .admin-reservation-card p {
   margin: 4px 0;
-  font-size: 15px;
+  font-size: 14px;
   color: #555;
 }
 
 .admin-reservation-card ul {
   margin-top: 10px;
-  padding-left: 20px;
+  padding-left: 18px;
   list-style-type: disc;
 }
 
 .admin-reservation-card li {
   margin-bottom: 6px;
-  font-size: 15px;
+  font-size: 14px;
   color: #333;
-}
-
-.admin-reservation-card li strong {
-  font-weight: 600;
 }
 
 .admin-reservations-delete-button {
@@ -74,7 +82,6 @@
   border-radius: 5px;
   cursor: pointer;
   font-weight: 500;
-  transition: background-color 0.2s;
 }
 
 .admin-reservations-delete-button:hover:not(:disabled) {
@@ -84,5 +91,12 @@
 .admin-reservations-delete-button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+}
+
+.admin-reservations-no-reservations {
+  font-size: 18px;
+  color: #c0392b;
+  font-weight: bold;
+  margin-top: 15px;
 }
 
