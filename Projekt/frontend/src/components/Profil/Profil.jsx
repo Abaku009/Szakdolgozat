@@ -78,7 +78,7 @@ function Profil() {
         <>
             <Navbar/>
 
-            <h1>Profil</h1>
+            <h1 className="profil-header">Profil</h1>
 
             <div className="profil"> 
 
