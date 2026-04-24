@@ -1,3 +1,7 @@
+.kapcsolat-header {
+    text-align: center;
+}
+
 .contacts-container {
     display: flex;
     flex-wrap: wrap;

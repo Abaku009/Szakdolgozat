@@ -66,7 +66,7 @@ function Contacts() {
     return (
         <div>
             <Navbar />
-            <h1>Kapcsolat</h1>
+            <h1 className="kapcsolat-header">Kapcsolat</h1>
             <div className="contacts-container">
                 <div className="contacts">
                     <p>E-mail: mediahaven.contact@gmail.com</p>
