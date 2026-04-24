@@ -1,132 +1,168 @@
 .series-filters {
   display: flex;
-  gap: 15px;
-  margin-bottom: 25px;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 30px;
+  padding: 10px 0;
 }
 
 .series-filters select {
-  padding: 10px;
+  padding: 8px 10px;
   border-radius: 6px;
   border: 1px solid #ccc;
   background: #fff;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .series-no-result {
   margin-top: 30px;
-  font-size: 20px;
+  font-size: 18px;
   color: #c0392b;
   font-weight: bold;
 }
 
+.SeriesList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
 .SeriesCategory {
   margin-bottom: 40px;
+  width: 100%;
 }
 
 .SeriesCategory:last-child {
-  margin-bottom: 80px; 
+  margin-bottom: 70px; 
 }
 
 .SeriesCategory h2 {
-  font-size: 24px;
+  font-size: 22px;
   margin-bottom: 15px;
   border-left: 5px solid #222;
   padding-left: 10px;
+  font-weight: 600;
 }
 
 .SeriesItem {
+  width: 280px;
   background: #fafafa;
   border: 1px solid #e6e6e6;
   border-radius: 10px;
-  padding: 15px 20px;
-  margin-bottom: 12px;
+  padding: 15px 18px;
   box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.SeriesItem:hover {
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
 }
 
 .SeriesItem p {
-  margin: 4px 0;
+  margin: 5px 0;
+  font-size: 14px;
+  color: #444;
 }
 
 .SeriesItem strong {
-  color: #333;
+  color: #222;
 }
 
 .SeriesItem button {
   margin-top: 10px;
-  padding: 8px 12px;
+  padding: 7px 12px;
   background-color: #333;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-weight: 500;
-  transition: background-color 0.2s;
-  display: inline-block;
+  transition: background-color 0.2s, transform 0.1s;
 }
 
 .SeriesItem button:hover {
   background-color: #555;
+  transform: translateY(-1px);
 }
 
 .SeriesItem button:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
+  transform: none;
+}
+
+.series-recommendations {
+  margin-bottom: 50px;
+}
+
+.series-recommendations-header {
+  margin-bottom: 20px;
+  font-size: 24px;
+  border-left: 5px solid #222;
+  padding-left: 10px;
+  font-weight: 600;
+}
+
+.series-recommendations-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 .series-recommendation-item {
+  width: 280px;
   background: #fafafa;
   border: 1px solid #e6e6e6;
   border-radius: 10px;
-  padding: 15px 20px;
-  margin-bottom: 20px;
+  padding: 15px 18px;
   box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.series-recommendation-item:hover {
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
 }
 
 .series-recommendation-item p {
-  margin: 4px 0;
+  margin: 5px 0;
+  font-size: 14px;
+  color: #444;
 }
 
 .series-recommendation-item strong {
-  color: #333;
+  color: #222;
 }
 
 .series-recommendation-item button {
   margin-top: 10px;
-  padding: 8px 12px;
+  padding: 7px 12px;
   background-color: #333;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-weight: 500;
-  transition: background-color 0.2s;
-  display: inline-block;
+  transition: background-color 0.2s, transform 0.1s;
 }
 
 .series-recommendation-item button:hover {
   background-color: #555;
+  transform: translateY(-1px);
 }
 
 .series-recommendation-item button:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
-}
-
-.series-recommendations-header {
-  margin-bottom: 20px;
-  font-size: 26px;
-  border-left: 5px solid #222;
-  padding-left: 10px;
+  transform: none;
 }
 
 .series-offer-header {
   margin-bottom: 20px;
-  font-size: 26px;
+  font-size: 24px;
   border-left: 5px solid #222;
   padding-left: 10px;
-}
-
-.series-recommendations {
-  margin-bottom: 60px;
+  font-weight: 600;
 }
 
