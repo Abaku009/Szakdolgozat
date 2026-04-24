@@ -37,6 +37,8 @@
   border-radius: 6px;
   font-size: 1rem;
   transition: border 0.2s;
+  box-sizing: border-box;
+  height: 42px;
 }
 
 .form input:focus,
