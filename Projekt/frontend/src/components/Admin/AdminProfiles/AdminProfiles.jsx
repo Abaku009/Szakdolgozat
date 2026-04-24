@@ -38,7 +38,7 @@ function AdminProfiles() {
             <Navbar />
 
             <div className="admin-profiles-page">
-                <h1>Felhasználói profilok</h1>
+                <h1>Admin - Felhasználói profilok</h1>
 
                 {profiles.length === 0 && (
                     <p>Nincs megjeleníthető felhasználó.</p>
