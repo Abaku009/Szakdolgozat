@@ -1,18 +1,27 @@
 .OrderCartItem {
+  width: 280px;
   background: #fafafa;
   border: 1px solid #e6e6e6;
   border-radius: 10px;
-  padding: 15px 20px;
+  padding: 15px 18px;
   margin-bottom: 15px;
   box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.OrderCartItem:hover {
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
 }
 
 .OrderCartItem p {
   margin: 5px 0;
+  font-size: 14px;
+  color: #444;
 }
 
 .OrderCartItem strong {
-  color: #333;
+  color: #222;
 }
 
 .OrderCartQuantityControls {
@@ -29,8 +38,6 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-weight: 500;
-  transition: background-color 0.2s;
 }
 
 .OrderCartQuantityControls button:hover {
@@ -50,8 +57,6 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-weight: 500;
-  transition: background-color 0.2s;
 }
 
 .OrderCartItem button.OrderCartRemoveItem:hover {
@@ -60,61 +65,23 @@
 
 .OrderCart {
   margin-bottom: 20px;
-  font-size: 26px;
+  font-size: 24px;
   border-left: 5px solid #222;
   padding-left: 10px;
-}
-
-.order-cart-no-results {
-  margin-top: 30px;
-  font-size: 20px;
-  color: #c0392b;
-  font-weight: bold;
-}
-
-.order-cart-back-to-cart {
-    margin-top: 15px;
-}
-
-.order-cart-back-to-cart a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.order-cart-back-to-cart a:hover {
-    text-decoration: underline;
-}
-
-.order-cart-back-to-cart-button {
-    display: inline-block;
-    padding: 10px 15px;
-    font-size: 16px;
-    font-weight: bold;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    text-align: center;
-}
-
-.order-cart-back-to-cart-button:hover {
-    background-color: #555;
-}
-
-.OrderCartTotalPrice {
-    font-size: 1.4rem;
-    font-weight: bold;
-    margin: 0;
+  font-weight: 600;
 }
 
 .OrderCartHeaderRow {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 20px 0 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0 10px 0;
+}
+
+.OrderCartTotalPrice {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 0;
 }
 
 .OrderCartRendelesLeadas  {
@@ -125,8 +92,6 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-weight: 500;
-  transition: background-color 0.2s;
   display: block;
   margin-left: auto;
 }
@@ -136,38 +101,75 @@
 }
 
 .OrderCartRendelesLeadas:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.order-cart-empty-cart-message {
+  margin: 40px auto;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.order-cart-recommendations {
+  clear: both;
+  width: 100%;
+  margin-top: 60px;
+  padding-bottom: 80px;
+}
+
+.order-cart-recommendations-header {
+  margin-bottom: 20px;
+  font-size: 24px;
+  border-left: 5px solid #222;
+  padding-left: 10px;
+  font-weight: 600;
+}
+
+.order-cart-recommendations-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  width: 100%;
 }
 
 .order-cart-recommendation-item {
+  width: 280px;
   background: #fafafa;
   border: 1px solid #e6e6e6;
   border-radius: 10px;
-  padding: 15px 20px;
-  margin-bottom: 12px;
+  padding: 15px 18px;
   box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.order-cart-recommendation-item:hover {
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
 }
 
 .order-cart-recommendation-item p {
-  margin: 4px 0;
+  margin: 5px 0;
+  font-size: 14px;
+  color: #444;
 }
 
 .order-cart-recommendation-item strong {
-  color: #333;
+  color: #222;
 }
 
 .order-cart-recommendation-item button {
   margin-top: 10px;
-  padding: 8px 12px;
+  padding: 7px 12px;
   background-color: #333;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-weight: 500;
-  transition: background-color 0.2s;
-  display: inline-block;
 }
 
 .order-cart-recommendation-item button:hover {
@@ -179,14 +181,17 @@
   cursor: not-allowed;
 }
 
-.order-cart-recommendations-list:last-child {
-  margin-bottom: 80px; 
+.order-cart-back-to-cart-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
 }
 
-.order-cart-recommendations-header {
-  margin-bottom: 20px;
-  font-size: 26px;
-  border-left: 5px solid #222;
-  padding-left: 10px;
+.order-cart-back-to-cart-button:hover {
+    background-color: #555;
 }
 

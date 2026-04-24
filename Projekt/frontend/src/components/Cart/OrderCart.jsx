@@ -87,6 +87,25 @@ function OrderCart() {
 
     }
 
+
+
+    if(cart.length === 0) {
+        return (
+            <>
+                <Navbar />
+                <div className="order-cart-empty-cart-message">
+                    <h2>A rendelési kosarad üres!</h2>
+                    <h4 className="order-cart-back-to-cart-header">
+                        <Link to="/kosar" className="order-cart-back-to-cart-button">Vissza</Link>
+                    </h4>
+                </div>
+                <Footer />
+            </>
+        );
+    }
+
+
+
     return (
 
         <>
@@ -95,7 +114,7 @@ function OrderCart() {
 
             <h1 className="OrderCart">Rendelési kosár</h1>
 
-            {cart.length > 0 ? (
+            {cart.length > 0 && (
                 cart.map(music => (
                     <div key={music.music_id} className="OrderCartItem">
                         <p><strong>Cím: </strong>{music.title}</p>
@@ -113,10 +132,6 @@ function OrderCart() {
                         <button className="OrderCartRemoveItem" onClick={() => removeItem(music.music_id)}>Törlés</button>
                     </div>
                 ))
-            ) : (
-                <div className="order-cart-no-results">
-                    <p>A kosár jelenleg üres.</p>
-                </div>
             )}
 
             <div className="OrderCartHeaderRow">

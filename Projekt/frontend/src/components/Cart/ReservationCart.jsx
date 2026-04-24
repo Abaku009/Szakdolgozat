@@ -65,6 +65,24 @@ function ReservationCart() {
     }
 
 
+
+    if(cart.length === 0) {
+        return (
+            <>
+                <Navbar />
+                <div className="reservation-cart-empty-cart-message">
+                    <h2>A foglalási kosarad üres!</h2>
+                    <h4 className="reservation-cart-back-to-cart-header">
+                        <Link to="/kosar" className="reservation-cart-back-to-cart-Button">Vissza</Link>
+                    </h4>
+                </div>
+                <Footer />
+            </>
+        );
+    }
+
+
+
     return (
 
         <>
@@ -74,7 +92,7 @@ function ReservationCart() {
 
             <h1 className="reservation-cart-header">Foglalási kosár</h1>
 
-            {cart.length > 0 ? (
+            {cart.length > 0 && (
                 cart.map(item => (
                     <div key={`${item.type}-${item.id}`} className="ReservationCartItem">
                         <p><strong>Cím: </strong>{item.title}</p>
@@ -96,15 +114,11 @@ function ReservationCart() {
                         <button className="ReservationCartRemoveFromCart" onClick={() => removeItem(item.id, item.type)}>Törlés</button>
                     </div>
                 ))
-            ) : (
-                <div className="ReservationCartNoResult">
-                    <p>A kosár jelenleg üres.</p>
-                </div>
             )}
 
             <div className="ReservationCartOsszegzes">
                 <h4 className="ReservationCartVisszaKosarhoz">
-                    <Link to="/kosar" className="ReservationCartVisszaKosarhozGomb">Vissza</Link>
+                    <Link to="/kosar" className="reservation-cart-back-to-cart-Button">Vissza</Link>
                 </h4>
 
                 {cart.length > 0 && (
