@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "test:integration": "cross-env NODE_ENV=test jest tests/integration --runInBand",
-    "test:unit": "jest tests/unit"
+    "test:unit": "cross-env NODE_ENV=test jest tests/unit"
   },
   "keywords": [],
   "author": "",
