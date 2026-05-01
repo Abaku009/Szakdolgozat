@@ -165,16 +165,26 @@ function Films() {
                 <div className="film-recommendations">
                     <h2 className="film-recommendations-header">Ajánlott filmek a foglalásaid alapján</h2>
 
-                    <div className="film-recommendations-list">
+                    <div className="film-recommendations-list film-grid">
                         {recommendations.map(rec => (
                             <div key={rec.film_id} className="film-recommendation-item">
-                                <p><strong>Cím: </strong>{rec.title}</p>
-                                <p><strong>Rendező: </strong>{rec.director}</p>
-                                <p><strong>Nyelv: </strong>{rec.languagename}</p>
-                                <p><strong>Formátum: </strong>{rec.format}</p>
-                                <p><strong>Ár: </strong>{rec.price} Ft</p>
-                                <p><strong>Darabszám: </strong>{rec.stock}</p>
-                                <p><button disabled={rec.stock === 0} onClick={() => moveToCart(rec)}>Kosárba helyezés</button></p>
+
+                                <div className="info-group">
+                                    <p className="title-text">{rec.title}</p>
+                                    <p className="director-text">{rec.director}</p>
+                                    <p style={{fontSize: '0.7rem', color: '#aaa'}}>{rec.format} | {rec.languagename}</p>
+                                </div>
+
+                                <div className="action-group">
+                                    <p className="price-tag">{rec.price} Ft</p>
+                                    <p className="stock-text">Készleten: {rec.stock}</p>
+                                    <button
+                                        disabled={rec.stock === 0}
+                                        onClick={() => moveToCart(rec)}
+                                    >
+                                        Kosárba helyezés
+                                    </button>
+                                </div>
                             </div>
                         ))}
                     </div>
@@ -191,17 +201,29 @@ function Films() {
                             .map(category => (
                                 <div key={category} className="FilmCategory">
                                     <h2>{category}</h2>
-                                    {filtered[category].map(film => (
-                                        <div key={film.film_id} className="FilmItem">
-                                            <p><strong>Cím: </strong>{film.title}</p>
-                                            <p><strong>Rendező: </strong> {film.director}</p>
-                                            <p><strong>Nyelv: </strong>{film.languagename}</p>
-                                            <p><strong>Formátum: </strong>{film.format}</p>
-                                            <p><strong>Ár: </strong>{film.price} Ft</p>
-                                            <p><strong>Darabszám: </strong>{film.stock}</p>
-                                            <p><button disabled={film.stock === 0} onClick={() => moveToCart(film)}>Kosárba helyezés</button></p>
-                                        </div>
-                                    ))}
+                                    <div className="FilmList">
+                                        {filtered[category].map(film => (
+                                            <div key={film.film_id} className="FilmItem">
+
+                                                <div className="info-group">
+                                                    <p className="title-text">{film.title}</p>
+                                                    <p className="director-text">{film.director}</p>
+                                                    <p style={{fontSize: '0.7rem', color: '#aaa'}}>{film.format} | {film.languagename}</p>
+                                                </div>
+
+                                                <div className="action-group">
+                                                    <p className="price-tag">{film.price} Ft</p>
+                                                    <p className="stock-text">Készleten: {film.stock}</p>
+                                                    <button 
+                                                        disabled={film.stock === 0} 
+                                                        onClick={() => moveToCart(film)}
+                                                    >
+                                                        Kosárba helyezés
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
                             ))}
                     </div>
