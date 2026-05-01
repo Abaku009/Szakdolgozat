@@ -160,16 +160,26 @@ function Music() {
                 <div className="music-recommendations">
                     <h2 className="music-recommendations-header">Ajánlott zenék a rendeléseid alapján</h2>
 
-                    <div className="music-recommendations-list">
+                    <div className="music-recommendations-list music-grid">
                         {recommendations.map(rec => (
                             <div key={rec.music_id} className="music-recommendation-item">
-                                <p><strong>Cím: </strong>{rec.title}</p>
-                                <p><strong>Előadó: </strong>{rec.performer}</p>
-                                <p><strong>Nyelv: </strong>{rec.languagename}</p>
-                                <p><strong>Formátum: </strong>{rec.format}</p>
-                                <p><strong>Ár: </strong>{rec.price} Ft</p>
-                                <p><strong>Darabszám: </strong>{rec.stock}</p>
-                                <p><button disabled={rec.stock === 0} onClick={() => addToCart(rec)}>Kosárba helyezés</button></p>
+
+                                <div className="info-group">
+                                    <p className="title-text">{rec.title}</p>
+                                    <p className="performer-text">{rec.performer}</p>
+                                    <p style={{fontSize: '0.7rem', color: '#aaa'}}>{rec.format} | {rec.languagename}</p>
+                                </div>
+
+                                <div className="action-group">
+                                    <p className="price-tag">{rec.price} Ft</p>
+                                    <p className="stock-text">Készleten: {rec.stock}</p>
+                                    <button
+                                        disabled={rec.stock === 0}
+                                        onClick={() => addToCart(rec)}
+                                    >
+                                        Kosárba helyezés
+                                    </button>
+                                </div>
                             </div>
                         ))}
                     </div>
@@ -181,24 +191,34 @@ function Music() {
                     <h2 className="music-offer-header">Zene kínálat</h2>
 
                     <div className="MusicList">
-                        {Object.keys(filteredMusic)
-                            .filter(category => filteredMusic[category].length > 0)
-                            .map(category => (
-                                <div key={category} className="MusicCategory">
-                                    <h2>{category}</h2>
+                        {Object.keys(filteredMusic).map(category => (
+                            <div key={category} className="MusicCategory">
+                                <h2>{category}</h2>
+                                <div className="MusicList">
                                     {filteredMusic[category].map(mus => (
                                         <div key={mus.music_id} className="MusicItem">
-                                            <p><strong>Cím: </strong>{mus.title}</p>
-                                            <p><strong>Előadó: </strong>{mus.performer}</p>
-                                            <p><strong>Nyelv: </strong>{mus.languagename}</p>
-                                            <p><strong>Formátum: </strong>{mus.format}</p>
-                                            <p><strong>Ár: </strong>{mus.price} Ft</p>
-                                            <p><strong>Darabszám: </strong>{mus.stock}</p>
-                                            <p><button disabled={mus.stock === 0} onClick={() => moveToCart(mus)}>Kosárba helyezés</button></p>
+                    
+                                            <div className="info-group">
+                                                <p className="title-text">{mus.title}</p>
+                                                <p className="performer-text">{mus.performer}</p>
+                                                <p style={{fontSize: '0.7rem', color: '#aaa'}}>{mus.format} | {mus.languagename}</p>
+                                            </div>
+
+                                            <div className="action-group">
+                                                <p className="price-tag">{mus.price} Ft</p>
+                                                <p className="stock-text">Készleten: {mus.stock}</p>
+                                                <button 
+                                                    disabled={mus.stock === 0} 
+                                                    onClick={() => moveToCart(mus)}
+                                                >
+                                                    Kosárba helyezés
+                                                </button>
+                                            </div>
                                         </div>
                                     ))}
                                 </div>
-                            ))}
+                            </div>
+                        ))}
                     </div>
                 </>
             )}

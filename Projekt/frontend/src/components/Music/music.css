@@ -1,168 +1,200 @@
+:root {
+  --accent: #333;
+  --bg-main: #fafafa;
+  --bg-secondary: #ffffff;
+  --text-dark: #222;
+  --text-gray: #444;
+  --card-shadow: 0px 2px 5px rgba(0,0,0,0.05);
+  --radius: 10px;
+}
+
+.MusicList,
+.music-recommendations-list,
+.music-grid {
+  display: grid;
+  gap: 15px;
+}
+
+@media (min-width: 768px) {
+  .MusicList {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .music-recommendations-list {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .music-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 .music-filters {
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 30px;
-  padding: 10px 0;
+  justify-content: center;
+  gap: 15px;
+  padding: 30px 0;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 .music-filters select {
-  padding: 8px 10px;
-  border-radius: 6px;
+  appearance: none;
+  background-color: #fff;
   border: 1px solid #ccc;
-  background: #fff;
-  font-size: 14px;
-}
-
-.music-no-results {
-  margin-top: 30px;
-  font-size: 18px;
-  color: #c0392b;
-  font-weight: bold;
-}
-
-.MusicList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
-.MusicCategory { 
-  margin-bottom: 40px; 
-  width: 100%;
-}
-
-.MusicCategory:last-child { 
-  margin-bottom: 70px; 
-}
-
-.MusicCategory h2 {
-  font-size: 22px;
-  margin-bottom: 15px;
-  border-left: 5px solid #222;
-  padding-left: 10px;
-  font-weight: 600;
-}
-
-.MusicItem {
-  width: 280px;
-  background: #fafafa;
-  border: 1px solid #e6e6e6;
-  border-radius: 10px;
-  padding: 15px 18px;
-  box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
-  transition: box-shadow 0.2s ease, transform 0.15s ease;
-}
-
-.MusicItem:hover {
-  box-shadow: 0px 4px 10px rgba(0,0,0,0.08);
-  transform: translateY(-2px);
-}
-
-.MusicItem p {
-  margin: 5px 0;
-  font-size: 14px;
-  color: #444;
-}
-
-.MusicItem strong {
-  color: #222;
-}
-
-.MusicItem button {
-  margin-top: 10px;
-  padding: 7px 12px;
-  background-color: #333;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 0.9rem;
   font-weight: 500;
-  transition: background-color 0.2s, transform 0.1s;
+  color: #222;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-.MusicItem button:hover {
-  background-color: #555;
-  transform: translateY(-1px);
+.music-filters select:hover {
+  background-color: #e8e8ed;
 }
 
-.MusicItem button:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
-  transform: none;
+.music-offer-header,
+.music-recommendations-header {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 30px;
+  color: var(--text-dark);
 }
 
 .music-recommendations {
-  margin-bottom: 50px;
+  background-color: #fafafa;
+  padding: 40px 20px;
+  border-radius: 20px;
+  margin-bottom: 60px;
 }
 
-.music-recommendations-header {
-  margin-bottom: 20px;
+.music-no-results {
+  text-align: center;
+  padding: 60px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius);
+  color: #c0392b;
+  font-weight: bold;
   font-size: 24px;
-  border-left: 5px solid #222;
-  padding-left: 10px;
-  font-weight: 600;
 }
 
-.music-recommendations-list {
+.MusicCategory {
+  margin-bottom: 60px;
+  padding: 0 10px;
+}
+
+.MusicCategory h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 25px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
+  align-items: center;
+  gap: 10px;
 }
 
+.MusicCategory h2::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+
+.MusicItem,
 .music-recommendation-item {
-  width: 280px;
-  background: #fafafa;
-  border: 1px solid #e6e6e6;
-  border-radius: 10px;
-  padding: 15px 18px;
-  box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
-  transition: box-shadow 0.2s ease, transform 0.15s ease;
+  background: var(--bg-main);
+  border: 1px solid #f0f0f0;
+  border-radius: 12px;
+  padding: 12px 20px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+
+  column-gap: 40px;
+  row-gap: 4px;
+
+  align-items: center;
+  transition: 0.2s ease;
 }
 
+.MusicItem:hover,
 .music-recommendation-item:hover {
-  box-shadow: 0px 4px 10px rgba(0,0,0,0.08);
-  transform: translateY(-2px);
+  background: var(--bg-secondary);
+  transform: translateX(5px);
+  border-color: black;
 }
 
-.music-recommendation-item p {
-  margin: 5px 0;
-  font-size: 14px;
-  color: #444;
+.info-group {
+  display: contents;
 }
 
-.music-recommendation-item strong {
-  color: #222;
+.title-text {
+  grid-column: 1;
+  grid-row: 1;
+  font-weight: 700;
 }
 
+.performer-text {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.info-group p:last-child {
+  grid-column: 1;
+  grid-row: 3;
+  font-size: 0.7rem;
+  color: #aaa;
+}
+
+.action-group {
+  display: contents;
+}
+
+.price-tag {
+  grid-column: 2;
+  grid-row: 1;
+  text-align: right;
+}
+
+.stock-text {
+  grid-column: 2;
+  grid-row: 2;
+  text-align: right;
+}
+
+.action-group button {
+  grid-column: 2;
+  grid-row: 3;
+  justify-self: end;
+}
+
+.MusicItem button,
 .music-recommendation-item button {
   margin-top: 10px;
-  padding: 7px 12px;
+  padding: 8px 15px;
+  font-size: 0.8rem;
+  border-radius: 20px;
+  border: none;
   background-color: #333;
   color: white;
-  border: none;
-  border-radius: 5px;
   cursor: pointer;
-  font-weight: 500;
-  transition: background-color 0.2s, transform 0.1s;
+  transition: 0.2s;
 }
 
-.music-recommendation-item button:hover {
+.MusicItem button:hover:not(:disabled),
+.music-recommendation-item button:hover:not(:disabled) {
   background-color: #555;
-  transform: translateY(-1px);
+  opacity: 1;
 }
 
+.MusicItem button:disabled,
 .music-recommendation-item button:disabled {
-  background-color: #cccccc;
+  background: #eee;
+  color: #aaa;
   cursor: not-allowed;
-  transform: none;
-}
-
-.music-offer-header {
-  margin-bottom: 20px;
-  font-size: 24px;
-  border-left: 5px solid #222;
-  padding-left: 10px;
-  font-weight: 600;
 }
 
