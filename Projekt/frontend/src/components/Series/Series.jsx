@@ -168,16 +168,26 @@ function Series() {
                 <div className="series-recommendations">
                     <h2 className="series-recommendations-header">Ajánlott sorozatok a foglalásaid alapján</h2>
 
-                    <div className="series-recommendations-list">
+                    <div className="series-recommendations-list series-grid">
                         {recommendations.map(rec => (
                             <div key={rec.series_id} className="series-recommendation-item">
-                                <p><strong>Cím: </strong>{rec.title}</p>
-                                <p><strong>Alkotó: </strong>{rec.creator}</p>
-                                <p><strong>Nyelv: </strong>{rec.languagename}</p>
-                                <p><strong>Formátum: </strong>{rec.format}</p>
-                                <p><strong>Ár: </strong>{rec.price} Ft</p>
-                                <p><strong>Darabszám: </strong>{rec.stock}</p>
-                                <p><button disabled={rec.stock === 0} onClick={() => moveToCart(rec)}>Kosárba helyezés</button></p>
+
+                                <div className="info-group">
+                                    <p className="title-text">{rec.title}</p>
+                                    <p className="creator-text">{rec.creator}</p>
+                                    <p style={{fontSize: '0.7rem', color: '#aaa'}}>{rec.format} | {rec.languagename}</p>
+                                </div>
+
+                                <div className="action-group">
+                                    <p className="price-tag">{rec.price} Ft</p>
+                                    <p className="stock-text">Készleten: {rec.stock}</p>
+                                    <button
+                                        disabled={rec.stock === 0}
+                                        onClick={() => moveToCart(rec)}
+                                    >
+                                        Kosárba helyezés
+                                    </button>
+                                </div>
                             </div>
                         ))}
                     </div>
@@ -194,17 +204,29 @@ function Series() {
                             .map(category => (
                                 <div key={category} className="SeriesCategory">
                                     <h2>{category}</h2>
-                                    {filtered[category].map(serie => (
-                                        <div key={serie.series_id} className="SeriesItem">
-                                            <p><strong>Cím: </strong>{serie.title}</p>
-                                            <p><strong>Alkotó: </strong> {serie.creator}</p>
-                                            <p><strong>Nyelv: </strong>{serie.languagename}</p>
-                                            <p><strong>Formátum: </strong>{serie.format}</p>
-                                            <p><strong>Ár: </strong>{serie.price} Ft</p>
-                                            <p><strong>Darabszám: </strong>{serie.stock}</p>
-                                            <p><button disabled={serie.stock === 0} onClick={() => moveToCart(serie)}>Kosárba helyezés</button></p>
-                                        </div> 
-                                    ))}
+                                    <div className="SeriesList">
+                                        {filtered[category].map(serie => (
+                                            <div key={serie.series_id} className="SeriesItem">
+
+                                                <div className="info-group">
+                                                    <p className="title-text">{serie.title}</p>
+                                                    <p className="creator-text">{serie.creator}</p>
+                                                    <p style={{fontSize: '0.7rem', color: '#aaa'}}>{serie.format} | {serie.languagename}</p>
+                                                </div>
+
+                                                <div className="action-group">
+                                                    <p className="price-tag">{serie.price} Ft</p>
+                                                    <p className="stock-text">Készleten: {serie.stock}</p>
+                                                    <button 
+                                                        disabled={serie.stock === 0} 
+                                                        onClick={() => moveToCart(serie)}
+                                                    >
+                                                        Kosárba helyezés
+                                                    </button>
+                                                </div>
+                                            </div> 
+                                        ))}
+                                    </div>
                                 </div>
                             ))}
                     </div>
