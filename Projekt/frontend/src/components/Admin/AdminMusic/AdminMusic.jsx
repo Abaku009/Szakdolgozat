@@ -282,50 +282,60 @@ function AdminMusic() {
                 .map(category => (
                     <div key={category} className="AdminMusicCategory">
                         <h2>{category}</h2>
-                        {filteredMusic[category].map(mus => (
-                            <div key={mus.music_id} className="AdminMusicItem">
-                                <p><strong>Cím:</strong> {mus.title}</p>
-                                <p><strong>Előadó:</strong> {mus.performer}</p>
-                                <p><strong>Nyelv:</strong> {mus.languagename}</p>
-                                <p><strong>Formátum:</strong> {mus.format}</p>
-                                <p><strong>Ár:</strong> {mus.price} Ft</p>
-                                <p><strong>Darabszám:</strong> {mus.stock}</p>
-                                {mus.is_active ? (
-                                    <>
-                                        <button onClick={() => handleDeactivate(mus.music_id)} className="admin-music-delete-button" disabled={isDeleting}>
-                                            Deaktiválás
-                                        </button>
-                                    </>
-                                ) : (
-                                    <>
-                                        <button onClick={() => handleRestore(mus.music_id)} className="admin-music-delete-button" disabled={isDeleting}>
-                                            Visszaállítás
-                                        </button>
-                                    </>
-                                )}
-                                <button className="admin-music-delete-button" onClick={() => handleDelete(mus.music_id)} disabled={isDeleting}>Törlés</button>
-                                <button className="admin-music-delete-button" onClick={async () => {
-                                            try {
-                                                const res = await fetch(`${ADMINMUSICAPI}/${mus.music_id}/has_order`);
-                                                const data = await res.json();
+                        <div className="AdminMusicList">
+                            {filteredMusic[category].map(mus => (
+                                <div key={mus.music_id} className="AdminMusicItem">
 
-                                                if (data.hasOrder) {
-                                                    alert("Ez a zene nem szerkeszthető, mert rendelés tartozik hozzá!");
-                                                    return;
-                                                }
+                                    <div className="info-group">
+                                        <p className="title-text">{mus.title}</p>
+                                        <p className="performer-text">{mus.performer}</p>
+                                        <p style={{fontSize: '0.7rem', color: '#aaa'}}>{mus.format} | {mus.languagename}</p>
+                                    </div>
 
-                                                setEditingMusic(mus);
+                                    <div className="action-group">
+                                        <p className="price-tag">{mus.price} Ft</p>
+                                        <p className="stock-text">Készleten: {mus.stock}</p>
 
-                                            } catch (err) {
-                                                console.error(err);
-                                                alert("Hiba az ellenőrzés során!");
-                                            }
-                                        }}
-                                >
-                                    Szerkesztés
-                                </button>
-                            </div>
-                        ))}
+                                        <div className="buttons-group">
+                                            {mus.is_active ? (
+                                                <>
+                                                    <button onClick={() => handleDeactivate(mus.music_id)} disabled={isDeleting}>
+                                                        Deaktiválás
+                                                    </button>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <button onClick={() => handleRestore(mus.music_id)} disabled={isDeleting}>
+                                                        Visszaállítás
+                                                    </button>
+                                                </>
+                                            )}
+                                            <button onClick={() => handleDelete(mus.music_id)} disabled={isDeleting}>Törlés</button>
+                                            <button onClick={async () => {
+                                                        try {
+                                                            const res = await fetch(`${ADMINMUSICAPI}/${mus.music_id}/has_order`);
+                                                            const data = await res.json();
+
+                                                            if (data.hasOrder) {
+                                                                alert("Ez a zene nem szerkeszthető, mert rendelés tartozik hozzá!");
+                                                                return;
+                                                            }
+
+                                                            setEditingMusic(mus);
+
+                                                        } catch (err) {
+                                                            console.error(err);
+                                                            alert("Hiba az ellenőrzés során!");
+                                                        }
+                                                    }}
+                                            >
+                                                Szerkesztés
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 ))}
             </div>
