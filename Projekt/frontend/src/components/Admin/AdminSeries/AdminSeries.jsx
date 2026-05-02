@@ -282,50 +282,60 @@ function AdminSeries() {
                 .map(category => (
                     <div key={category} className="AdminSeriesCategory">
                         <h2>{category}</h2>
-                        {filtered[category].map(serie => (
-                            <div key={serie.series_id} className="AdminSeriesItem">
-                                <p><strong>Cím: </strong>{serie.title}</p>
-                                <p><strong>Alkotó: </strong>{serie.creator}</p>
-                                <p><strong>Nyelv: </strong>{serie.languagename}</p>
-                                <p><strong>Formátum: </strong>{serie.format}</p>
-                                <p><strong>Ár: </strong>{serie.price} Ft</p>
-                                <p><strong>Darabszám: </strong>{serie.stock}</p>
-                                {serie.is_active ? (
-                                    <>
-                                        <button onClick={() => handleDeactivate(serie.series_id)} className="admin-series-delete-button" disabled={isDeleting}>
-                                            Deaktiválás
-                                        </button>
-                                    </>
-                                ) : (
-                                    <>
-                                        <button onClick={() => handleRestore(serie.series_id)} className="admin-series-delete-button" disabled={isDeleting}>
-                                            Visszaállítás
-                                        </button>
-                                    </>
-                                )}
-                                <button className="admin-series-delete-button" onClick={() => handleDelete(serie.series_id)} disabled={isDeleting}>Törlés</button>
-                                <button className="admin-series-delete-button" onClick={async () => {
-                                            try {
-                                                const res = await fetch(`${ADMINSERIESAPI}/${serie.series_id}/has_order`);
-                                                const data = await res.json();
+                        <div className="AdminSeriesList">
+                            {filtered[category].map(serie => (
+                                <div key={serie.series_id} className="AdminSeriesItem">
 
-                                                if (data.hasOrder) {
-                                                    alert("Ez a sorozat nem szerkeszthető, mert foglalás tartozik hozzá!");
-                                                    return;
-                                                }
+                                    <div className="info-group">
+                                        <p className="title-text">{serie.title}</p>
+                                        <p className="creator-text">{serie.creator}</p>
+                                        <p style={{fontSize: '0.7rem', color: '#aaa'}}>{serie.format} | {serie.languagename}</p>
+                                    </div>
 
-                                                setEditingSerie(serie);
+                                    <div className="action-group">
+                                        <p className="price-tag">{serie.price} Ft</p>
+                                        <p className="stock-text">Készleten: {serie.stock}</p>
 
-                                            } catch (err) {
-                                                console.error(err);
-                                                alert("Hiba az ellenőrzés során!");
-                                            }
-                                        }}
-                                >
-                                    Szerkesztés
-                                </button>
-                            </div>
-                        ))}
+                                        <div className="buttons-group">
+                                            {serie.is_active ? (
+                                                <>
+                                                    <button onClick={() => handleDeactivate(serie.series_id)} disabled={isDeleting}>
+                                                        Deaktiválás
+                                                    </button>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <button onClick={() => handleRestore(serie.series_id)} disabled={isDeleting}>
+                                                        Visszaállítás
+                                                    </button>
+                                                </>
+                                            )}
+                                            <button onClick={() => handleDelete(serie.series_id)} disabled={isDeleting}>Törlés</button>
+                                            <button onClick={async () => {
+                                                        try {
+                                                            const res = await fetch(`${ADMINSERIESAPI}/${serie.series_id}/has_order`);
+                                                            const data = await res.json();
+
+                                                            if (data.hasOrder) {
+                                                                alert("Ez a sorozat nem szerkeszthető, mert foglalás tartozik hozzá!");
+                                                                return;
+                                                            }
+
+                                                            setEditingSerie(serie);
+
+                                                        } catch (err) {
+                                                            console.error(err);
+                                                            alert("Hiba az ellenőrzés során!");
+                                                        }
+                                                    }}
+                                            >
+                                                Szerkesztés
+                                            </button>
+                                        </div>
+                                    </div> 
+                                </div>
+                            ))}
+                        </div> 
                     </div>
                 ))}
             </div>

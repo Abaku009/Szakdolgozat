@@ -1,115 +1,178 @@
-.admin-series-filters {
+:root {
+  --accent: #333;
+  --bg-main: #fafafa;
+  --bg-secondary: #ffffff;
+  --text-dark: #222;
+  --text-gray: #444;
+  --border-light: #e5e5e5;
+  --border-soft: #f0f0f0;
+  --radius: 10px;
+  --transition: 0.2s ease;
+}
+
+.AdminSeriesList {
+  display: grid;
+  gap: 15px;
+}
+
+@media (min-width: 768px) {
+  .AdminSeriesList {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.admin-series-filters,
+.admin-series-actions {
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 30px;
-  padding: 10px 0;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px 0;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.admin-series-filters {
+  padding-top: 30px;
 }
 
 .admin-series-filters select {
-  padding: 8px 10px;
-  border-radius: 6px;
+  appearance: none;
+  padding: 10px 20px;
   border: 1px solid #ccc;
+  border-radius: 20px;
   background: #fff;
-  font-size: 14px;
+  color: var(--text-dark);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.admin-series-filters select:hover {
+  background-color: #e8e8ed;
 }
 
 .admin-series-no-results {
-  margin-top: 30px;
-  font-size: 18px;
+  text-align: center;
+  padding: 60px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius);
   color: #c0392b;
+  font-size: 24px;
   font-weight: bold;
 }
 
 .AdminSeriesCategory {
-  margin-bottom: 40px;
-  width: 100%;
-}
-
-.AdminSeriesCategory:last-child {
-  margin-bottom: 70px;
+  margin-bottom: 60px;
+  padding: 0 10px;
 }
 
 .AdminSeriesCategory h2 {
-  font-size: 24px;
-  margin-bottom: 15px;
-  border-left: 5px solid #222;
-  padding-left: 10px;
-  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--text-dark);
 }
 
-.AdminSeriesList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
+.AdminSeriesCategory h2::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
 }
 
 .AdminSeriesItem {
-  width: 280px;
-  background: #fafafa;
-  border: 1px solid #e6e6e6;
-  border-radius: 10px;
-  padding: 15px 18px;
-  box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
-  transition: box-shadow 0.2s ease, transform 0.15s ease;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px 30px;
+  align-items: center;
+  padding: 12px 20px;
+  background: var(--bg-main);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  transition: var(--transition);
 }
 
 .AdminSeriesItem:hover {
-  box-shadow: 0px 4px 10px rgba(0,0,0,0.08);
-  transform: translateY(-2px);
+  background: var(--bg-secondary);
+  border-color: black;
+  transform: translateX(5px);
 }
 
-.AdminSeriesItem p {
-  margin: 5px 0;
-  font-size: 14px;
-  color: #444;
-}
-
-.AdminSeriesItem strong {
-  color: #222;
-}
-
-.admin-series-delete-button {
-  margin-top: 10px;
-  padding: 7px 12px;
-  background-color: #333;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background-color 0.2s, transform 0.1s;
-  margin-right: 5px;
-}
-
-.admin-series-delete-button:hover:not(:disabled) {
-  background-color: #555;
-  transform: translateY(-1px);
-}
-
-.admin-series-delete-button:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
-  transform: none;
-}
-
-.admin-series-actions {
-  margin: 15px 0 30px 0;
+.info-group {
   display: flex;
-  gap: 8px;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title-text {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.creator-text {
+  font-size: 0.9rem;
+  color: var(--text-gray);
+}
+
+.info-group p:last-child {
+  font-size: 0.75rem;
+  color: #aaa;
+}
+
+.action-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.buttons-group {
+  display: flex;
   flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.price-tag {
+  font-weight: 600;
+}
+
+.stock-text {
+  font-size: 0.85rem;
+  color: var(--text-gray);
+}
+
+.admin-series-actions button,
+.AdminSeriesItem button {
+  padding: 8px 15px;
+  border: 1px solid var(--accent);
+  border-radius: 20px;
+  background: var(--accent);
+  color: white;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition);
 }
 
 .admin-series-actions button {
-  padding: 8px 14px;
-  background-color: #333;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  padding: 10px 20px;
+  font-size: 0.9rem;
 }
 
-.admin-series-actions button:hover {
-  background-color: #555;
+.admin-series-actions button:hover,
+.AdminSeriesItem button:hover:not(:disabled) {
+  background: #555;
+  transform: translateY(-1px);
+}
+
+.AdminSeriesItem button:disabled {
+  background: #eee;
+  border-color: #eee;
+  color: #aaa;
+  cursor: not-allowed;
 }
 
