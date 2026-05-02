@@ -282,50 +282,60 @@ function AdminFilms() {
                 .map(category => (
                     <div key={category} className="AdminFilmCategory">
                         <h2>{category}</h2>
-                        {filtered[category].map(film => (
-                            <div key={film.film_id} className="AdminFilmItem">
-                                <p><strong>Cím: </strong>{film.title}</p>
-                                <p><strong>Rendező: </strong>{film.director}</p>
-                                <p><strong>Nyelv: </strong>{film.languagename}</p>
-                                <p><strong>Formátum: </strong>{film.format}</p>
-                                <p><strong>Ár: </strong>{film.price} Ft</p>
-                                <p><strong>Darabszám: </strong>{film.stock}</p>
-                                {film.is_active ? (
-                                    <>
-                                        <button onClick={() => handleDeactivate(film.film_id)} className="admin-films-delete-button" disabled={isDeleting}>
-                                            Deaktiválás
-                                        </button>
-                                    </>
-                                ) : (
-                                    <>
-                                        <button onClick={() => handleRestore(film.film_id)} className="admin-films-delete-button" disabled={isDeleting}>
-                                            Visszaállítás
-                                        </button>
-                                    </>
-                                )}
-                                <button className="admin-films-delete-button" onClick={() => handleDelete(film.film_id)} disabled={isDeleting}>Törlés</button>
-                                <button className="admin-films-delete-button" onClick={async () => {
-                                            try {
-                                                const res = await fetch(`${ADMINFILMSAPI}/${film.film_id}/has_order`);
-                                                const data = await res.json();
+                        <div className="AdminFilmList">
+                            {filtered[category].map(film => (
+                                <div key={film.film_id} className="AdminFilmItem">
 
-                                                if (data.hasOrder) {
-                                                    alert("Ez a film nem szerkeszthető, mert foglalás tartozik hozzá!");
-                                                    return;
-                                                }
+                                    <div className="info-group">
+                                        <p className="title-text">{film.title}</p>
+                                        <p className="director-text">{film.director}</p>
+                                        <p style={{fontSize: '0.7rem', color: '#aaa'}}>{film.format} | {film.languagename}</p>
+                                    </div>
 
-                                                setEditingFilm(film);
+                                    <div className="action-group">
+                                        <p className="price-tag">{film.price} Ft</p>
+                                        <p className="stock-text">Készleten: {film.stock}</p>
 
-                                            } catch (err) {
-                                                console.error(err);
-                                                alert("Hiba az ellenőrzés során!");
-                                            }
-                                        }}
-                                >
-                                    Szerkesztés
-                                </button>
-                            </div>
-                        ))}
+                                        <div className="buttons-group">
+                                            {film.is_active ? (
+                                                <>
+                                                    <button onClick={() => handleDeactivate(film.film_id)} disabled={isDeleting}>
+                                                        Deaktiválás
+                                                    </button>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <button onClick={() => handleRestore(film.film_id)} disabled={isDeleting}>
+                                                        Visszaállítás
+                                                    </button>
+                                                </>
+                                            )}
+                                            <button onClick={() => handleDelete(film.film_id)} disabled={isDeleting}>Törlés</button>
+                                            <button onClick={async () => {
+                                                        try {
+                                                            const res = await fetch(`${ADMINFILMSAPI}/${film.film_id}/has_order`);
+                                                            const data = await res.json();
+
+                                                            if (data.hasOrder) {
+                                                                alert("Ez a film nem szerkeszthető, mert foglalás tartozik hozzá!");
+                                                                return;
+                                                            }
+
+                                                            setEditingFilm(film);
+
+                                                        } catch (err) {
+                                                            console.error(err);
+                                                            alert("Hiba az ellenőrzés során!");
+                                                        }
+                                                    }}
+                                            >
+                                                Szerkesztés
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 ))}
             </div>
