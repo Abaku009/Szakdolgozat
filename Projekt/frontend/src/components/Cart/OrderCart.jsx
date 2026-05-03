@@ -112,26 +112,35 @@ function OrderCart() {
 
             <Navbar />
 
-            <h1 className="OrderCart">Rendelési kosár</h1>
-
             {cart.length > 0 && (
-                cart.map(music => (
-                    <div key={music.music_id} className="OrderCartItem">
-                        <p><strong>Cím: </strong>{music.title}</p>
-                        <p><strong>Előadó: </strong>{music.performer}</p>
-                        <p><strong>Nyelv: </strong>{music.languagename}</p>
-                        <p><strong>Formátum: </strong>{music.format}</p>
-                        <p><strong>Ár: </strong>{music.price * music.qty} Ft</p>
+                <>
+                    <h1 className="OrderCartHeader">Rendelési kosár</h1>
 
-                        <div className="OrderCartQuantityControls">
-                            <button onClick={() => decreaseQty(music.music_id)} disabled={music.qty === 1}>-</button>
-                            {music.qty}
-                            <button onClick={() => increaseQty(music.music_id)} disabled={music.qty === music.stock}>+</button>
-                        </div>
+                    <div className="OrderCartList order-cart-music-grid">
+                        {cart.map(music => (
+                            <div key={music.music_id} className="OrderCartItem">
 
-                        <button className="OrderCartRemoveItem" onClick={() => removeItem(music.music_id)}>Törlés</button>
-                    </div>
-                ))
+                                <div className="info-group">
+                                    <p className="title-text">{music.title}</p>
+                                    <p className="performer-text">{music.performer}</p>
+                                    <p style={{fontSize: '0.7rem', color: '#aaa'}}>{music.format} | {music.languagename}</p>
+                                </div>
+
+                                <div className="action-group">
+                                    <p className="price-tag">{music.price * music.qty} Ft</p>
+
+                                    <div className="OrderCartQuantityControls">
+                                        <button onClick={() => decreaseQty(music.music_id)} disabled={music.qty === 1}>-</button>
+                                            {music.qty}
+                                        <button onClick={() => increaseQty(music.music_id)} disabled={music.qty === music.stock}>+</button>
+                                    </div>
+
+                                    <button className="OrderCartRemoveItem" onClick={() => removeItem(music.music_id)}>Törlés</button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>  
+                </>             
             )}
 
             <div className="OrderCartHeaderRow">
@@ -152,16 +161,26 @@ function OrderCart() {
                 <div className="order-cart-recommendations">
                     <h2 className="order-cart-recommendations-header">Ajánlott zenék a kosarad alapján</h2>
 
-                    <div className="order-cart-recommendations-list">
+                    <div className="order-cart-recommendations-list order-cart-music-grid">
                         {recommendations.map(rec => (
                             <div key={rec.music_id} className="order-cart-recommendation-item">
-                                <p><strong>Cím: </strong>{rec.title}</p>
-                                <p><strong>Előadó: </strong>{rec.performer}</p>
-                                <p><strong>Nyelv: </strong>{rec.languagename}</p>
-                                <p><strong>Formátum: </strong>{rec.format}</p>
-                                <p><strong>Ár: </strong>{rec.price} Ft</p>
-                                <p><strong>Darabszám: </strong>{rec.stock}</p>
-                                <p><button disabled={rec.stock === 0} onClick={() => addToCart(rec)}>Kosárba helyezés</button></p>
+
+                                <div className="info-group">
+                                    <p className="title-text">{rec.title}</p>
+                                    <p className="performer-text">{rec.performer}</p>
+                                    <p style={{fontSize: '0.7rem', color: '#aaa'}}>{rec.format} | {rec.languagename}</p>
+                                </div>
+
+                                <div className="action-group">
+                                    <p className="price-tag">{rec.price} Ft</p>
+                                    <p className="stock-text">Készleten: {rec.stock}</p>
+                                    <button
+                                        disabled={rec.stock === 0}
+                                        onClick={() => addToCart(rec)}
+                                    >
+                                        Kosárba helyezés
+                                    </button>
+                                </div>
                             </div>
                         ))}
                     </div>

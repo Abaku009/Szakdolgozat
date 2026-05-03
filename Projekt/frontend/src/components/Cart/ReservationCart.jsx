@@ -87,33 +87,41 @@ function ReservationCart() {
 
         <>
 
-
             <Navbar />
 
-            <h1 className="reservation-cart-header">Foglalási kosár</h1>
-
             {cart.length > 0 && (
-                cart.map(item => (
-                    <div key={`${item.type}-${item.id}`} className="ReservationCartItem">
-                        <p><strong>Cím: </strong>{item.title}</p>
-                        {item.director ? (
-                            <p><strong>Rendező: </strong>{item.director}</p>
-                        ) : (
-                            <p><strong>Alkotó: </strong>{item.creator}</p>
-                        )}
-                        <p><strong>Nyelv: </strong>{item.languagename}</p>
-                        <p><strong>Formátum: </strong>{item.format}</p>
-                        <p><strong>Ár: </strong>{item.price * item.qty} Ft</p>
+                <>
+                    <h1 className="reservation-cart-header">Foglalási kosár</h1>
 
-                        <div className="ReservationCartQuantityButtons">
-                            <button onClick={() => decreaseQty(item.id, item.type)} disabled={item.qty === 1}>-</button>
-                            {item.qty}
-                            <button onClick={() => increaseQty(item.id, item.type)} disabled={item.qty === item.stock}>+</button>
-                        </div>
+                    <div className="ReservationCartList reservation-cart-grid">
+                        {cart.map(item => (
+                            <div key={`${item.type}-${item.id}`} className="ReservationCartItem">
 
-                        <button className="ReservationCartRemoveFromCart" onClick={() => removeItem(item.id, item.type)}>Törlés</button>
+                                <div className="info-group">
+                                    <p className="title-text">{item.title}</p>
+                                    {item.director ? (
+                                        <p className="director-text">{item.director}</p>
+                                    ) : (
+                                        <p className="creator-text">{item.creator}</p>
+                                    )}
+                                    <p style={{fontSize: '0.7rem', color: '#aaa'}}>{item.format} | {item.languagename}</p>
+                                </div>
+
+                                <div className="action-group">
+                                    <p className="price-tag">{item.price * item.qty} Ft</p>
+                                    
+                                    <div className="ReservationCartQuantityButtons">
+                                        <button onClick={() => decreaseQty(item.id, item.type)} disabled={item.qty === 1}>-</button>
+                                            {item.qty}
+                                        <button onClick={() => increaseQty(item.id, item.type)} disabled={item.qty === item.stock}>+</button>
+                                    </div>
+
+                                    <button className="ReservationCartRemoveFromCart" onClick={() => removeItem(item.id, item.type)}>Törlés</button>
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                ))
+                </>
             )}
 
             <div className="ReservationCartOsszegzes">
@@ -134,20 +142,30 @@ function ReservationCart() {
                 <div className="reservation-cart-recommendations">
                     <h2 className="reservation-cart-recommendations-header">Ajánlott termékek a kosarad alapján</h2>
 
-                    <div className="reservation-cart-recommendations-list">
+                    <div className="reservation-cart-recommendations-list reservation-cart-grid">
                         {recommendations.map(rec => (
                             <div key={`${rec.type}-${rec.id}`} className="reservation-cart-recommendation-item">
-                                <p><strong>Cím: </strong>{rec.title}</p>
-                                {rec.director ? (
-                                    <p><strong>Rendező: </strong>{rec.director}</p>
-                                ) : (
-                                    <p><strong>Alkotó: </strong>{rec.creator}</p>
-                                )}
-                                <p><strong>Nyelv: </strong>{rec.languagename}</p>
-                                <p><strong>Formátum: </strong>{rec.format}</p>
-                                <p><strong>Ár: </strong>{rec.price} Ft</p>
-                                <p><strong>Darabszám: </strong>{rec.stock}</p>
-                                <p><button disabled={rec.stock === 0} onClick={() => addToCart(rec)}>Kosárba helyezés</button></p>
+
+                                <div className="info-group">
+                                    <p className="title-text">{rec.title}</p>
+                                    {rec.director ? (
+                                        <p className="director-text">{rec.director}</p>
+                                    ) : (
+                                        <p className="creator-text">{rec.creator}</p>
+                                    )}
+                                    <p style={{fontSize: '0.7rem', color: '#aaa'}}>{rec.format} | {rec.languagename}</p>
+                                </div>
+                                
+                                <div className="action-group">
+                                    <p className="price-tag">{rec.price} Ft</p>
+                                    <p className="stock-text">Készleten: {rec.stock}</p>
+                                    <button 
+                                        disabled={rec.stock === 0} 
+                                        onClick={() => addToCart(rec)}
+                                    >
+                                        Kosárba helyezés
+                                    </button>
+                                </div>
                             </div>
                         ))}
                     </div>

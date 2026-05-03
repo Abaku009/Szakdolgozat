@@ -1,27 +1,137 @@
-.ReservationCartItem {
-  width: 280px;
-  background: #fafafa;
-  border: 1px solid #e6e6e6;
-  border-radius: 10px;
-  padding: 15px 18px;
-  margin-bottom: 15px;
-  box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
-  transition: box-shadow 0.2s ease, transform 0.15s ease;
+:root {
+  --accent: #333;
+  --bg-main: #fafafa;
+  --bg-secondary: #ffffff;
+  --text-dark: #222;
+  --text-gray: #444;
+  --card-shadow: 0px 2px 5px rgba(0,0,0,0.05);
+  --radius: 10px;
 }
 
-.ReservationCartItem:hover {
-  box-shadow: 0px 4px 10px rgba(0,0,0,0.08);
-  transform: translateY(-2px);
+.ReservationCartList,
+.reservation-cart-recommendations-list,
+.reservation-cart-grid {
+  display: grid;
+  gap: 15px;
 }
 
-.ReservationCartItem p {
-  margin: 5px 0;
-  font-size: 14px;
-  color: #444;
+@media (min-width: 768px) {
+  .ReservationCartList,
+  .reservation-cart-recommendations-list {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .reservation-cart-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
-.ReservationCartItem strong {
-  color: #222;
+.reservation-cart-header,
+.reservation-cart-recommendations-header {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 30px;
+  color: var(--text-dark);
+}
+
+.reservation-cart-recommendations {
+  background-color: var(--bg-main);
+  padding: 40px 20px;
+  border-radius: 20px;
+  margin-bottom: 60px;
+}
+
+.ReservationCartItem,
+.reservation-cart-recommendation-item {
+  background: var(--bg-main);
+  border: 1px solid #f0f0f0;
+  border-radius: 12px;
+  padding: 12px 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  column-gap: 40px;
+  row-gap: 4px;
+  align-items: center;
+  transition: 0.2s ease;
+}
+
+.ReservationCartItem:hover,
+.reservation-cart-recommendation-item:hover {
+  background: var(--bg-secondary);
+  transform: translateX(5px);
+  border-color: black;
+}
+
+.info-group {
+  display: contents;
+}
+
+.title-text {
+  grid-column: 1;
+  grid-row: 1;
+  font-weight: 700;
+}
+
+.director-text,
+.creator-text {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.info-group p:last-child {
+  grid-column: 1;
+  grid-row: 3;
+  font-size: 0.7rem;
+  color: #aaa;
+}
+
+.action-group {
+  display: contents;
+}
+
+.price-tag {
+  grid-column: 2;
+  grid-row: 1;
+  text-align: right;
+}
+
+.stock-text {
+  grid-column: 2;
+  grid-row: 2;
+  text-align: right;
+}
+
+.action-group button {
+  grid-column: 2;
+  grid-row: 3;
+  justify-self: end;
+}
+
+button {
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.reservation-cart-recommendation-item button {
+  margin-top: 10px;
+  padding: 8px 15px;
+  font-size: 0.8rem;
+  border-radius: 20px;
+  border: none;
+  background-color: var(--accent);
+  color: white;
+}
+
+.reservation-cart-recommendation-item button:hover:not(:disabled) {
+  background-color: #555;
+}
+
+.reservation-cart-recommendation-item button:disabled {
+  background: #eee;
+  color: #aaa;
+  cursor: not-allowed;
 }
 
 .ReservationCartQuantityButtons {
@@ -33,11 +143,10 @@
 
 .ReservationCartQuantityButtons button {
   padding: 6px 10px;
-  background-color: #333;
+  background-color: var(--accent);
   color: white;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
 }
 
 .ReservationCartQuantityButtons button:hover {
@@ -45,65 +154,43 @@
 }
 
 .ReservationCartQuantityButtons button:disabled {
-  background-color: #cccccc;
+  background-color: #ccc;
   cursor: not-allowed;
 }
 
-.ReservationCartItem button.ReservationCartRemoveFromCart {
+.ReservationCartItem .ReservationCartRemoveFromCart {
   margin-top: 10px;
   padding: 8px 12px;
   background-color: #c0392b;
   color: white;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
 }
 
-.ReservationCartItem button.ReservationCartRemoveFromCart:hover {
+.ReservationCartItem .ReservationCartRemoveFromCart:hover {
   background-color: #e74c3c;
-}
-
-.reservation-cart-header {
-  margin-bottom: 20px;
-  font-size: 24px;
-  border-left: 5px solid #222;
-  padding-left: 10px;
-  font-weight: 600;
-}
-
-.reservation-cart-empty-cart-message {
-  margin: 40px auto;
-  max-width: 600px;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  text-align: center;
 }
 
 .ReservationCartOsszegzes {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 20px 0 10px 0;
+  margin: 20px 0 10px;
 }
 
 .ReservationCartTeljesAr {
   font-size: 1.3rem;
   font-weight: bold;
-  margin: 0;
 }
 
 .ReservationCartFoglalasElkuldes {
-  margin-bottom: 60px;
+  display: block;
+  margin: 0 0 60px auto;
   padding: 10px 18px;
-  background-color: #333;
+  background-color: var(--accent);
   color: white;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
-  display: block;
-  margin-left: auto;
 }
 
 .ReservationCartFoglalasElkuldes:hover:not(:disabled) {
@@ -115,85 +202,27 @@
   cursor: not-allowed;
 }
 
-
-
-.reservation-cart-recommendations {
-  clear: both;
-  width: 100%;
-  margin-top: 60px;
-  padding-bottom: 80px;
-}
-
-.reservation-cart-recommendations-header {
-  margin-bottom: 20px;
-  font-size: 24px;
-  border-left: 5px solid #222;
-  padding-left: 10px;
-  font-weight: 600;
-}
-
-.reservation-cart-recommendations-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  width: 100%;
-}
-
-.reservation-cart-recommendation-item {
-  width: 280px;
-  background: #fafafa;
-  border: 1px solid #e6e6e6;
-  border-radius: 10px;
-  padding: 15px 18px;
-  box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
-  transition: box-shadow 0.2s ease, transform 0.15s ease;
-}
-
-.reservation-cart-recommendation-item:hover {
-  box-shadow: 0px 4px 10px rgba(0,0,0,0.08);
-  transform: translateY(-2px);
-}
-
-.reservation-cart-recommendation-item p {
-  margin: 5px 0;
-  font-size: 14px;
-  color: #444;
-}
-
-.reservation-cart-recommendation-item strong {
-  color: #222;
-}
-
-.reservation-cart-recommendation-item button {
-  margin-top: 10px;
-  padding: 7px 12px;
-  background-color: #333;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.reservation-cart-recommendation-item button:hover {
-  background-color: #555;
-}
-
-.reservation-cart-recommendation-item button:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
+.reservation-cart-empty-cart-message {
+  margin: 40px auto;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  text-align: center;
 }
 
 .reservation-cart-back-to-cart-Button {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 8px 16px;
-    background-color: #333;
-    color: white;
-    border-radius: 5px;
-    text-decoration: none;
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: var(--accent);
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
 }
 
 .reservation-cart-back-to-cart-Button:hover {
-    background-color: #555;
+  background-color: #555;
 }
 
