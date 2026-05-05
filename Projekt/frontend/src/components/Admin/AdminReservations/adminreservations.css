@@ -5,16 +5,17 @@
 }
 
 .admin-reservations-page h1 {
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 600;
   margin-bottom: 25px;
 }
 
 .admin-reservations-card {
-  background: #fafafa;
-  border: 1px solid #e6e6e6;
-  border-radius: 10px;
-  padding: 16px 18px;
+  background: linear-gradient(to right, #f9f9f9, #ffffff);
+  border: 1px solid #e2e2e2;
+  border-left: 6px solid #222;
+  border-radius: 12px;
+  padding: 20px;
   margin-bottom: 35px;
   box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
   transition: box-shadow 0.2s ease, transform 0.15s ease;
@@ -22,43 +23,64 @@
 
 .admin-reservations-card:hover {
   box-shadow: 0px 4px 10px rgba(0,0,0,0.08);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .admin-reservations-card h2 {
+  font-size: 19px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 16px;
+  letter-spacing: 0.3px;
+}
+
+.admin-user-email {
+  font-size: 13px;
+  font-weight: 400;
+  color: #666;
+}
+
+.admin-reservations-no-reservations {
   font-size: 18px;
-  margin-bottom: 12px;
-  color: #222;
-  border-left: none;
+  color: #c0392b;
+  font-weight: bold;
+  margin-top: 15px;
 }
 
 .admin-reservation-card {
   background: #fff;
   border: 1px solid #e6e6e6;
   border-radius: 10px;
+  border-left: 4px solid #444;
   padding: 16px 18px;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
   box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
   transition: box-shadow 0.2s ease, transform 0.15s ease;
 }
 
 .admin-reservation-card:hover {
   box-shadow: 0px 4px 10px rgba(0,0,0,0.08);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .admin-reservation-card h3 {
   font-size: 16px;
-  margin-bottom: 10px;
-  color: #222;
-  border-left: 5px solid #222; 
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 8px;
   padding-left: 10px;
+  border-left: 4px solid #222;
 }
 
 .admin-reservation-card p {
   margin: 4px 0;
   font-size: 14px;
   color: #555;
+}
+
+.admin-reservation-card p:first-of-type {
+  font-weight: 500;
+  color: #333;
 }
 
 .admin-reservation-card ul {
@@ -91,12 +113,5 @@
 .admin-reservations-delete-button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
-}
-
-.admin-reservations-no-reservations {
-  font-size: 18px;
-  color: #c0392b;
-  font-weight: bold;
-  margin-top: 15px;
 }
 

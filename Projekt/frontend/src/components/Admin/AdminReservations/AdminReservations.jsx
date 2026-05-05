@@ -140,7 +140,7 @@ function AdminReservations() {
             <Navbar />
 
             <div className="admin-reservations-page">
-                <h1>Admin – Felhasználók foglalásai</h1>
+                <h1>Admin - Felhasználók foglalásai</h1>
 
                 {reservations.length === 0 && (
                     <p className="admin-reservations-no-reservations">Nincsenek foglalások.</p>
@@ -148,7 +148,9 @@ function AdminReservations() {
 
                 {reservations.map(user => (
                     <div key={user.user_id} className="admin-reservations-card">
-                        <h2>{user.last_name} {user.first_name} ({user.email})</h2>
+                        <h2>{user.last_name} {user.first_name}
+                            <span className="admin-user-email"> ({user.email})</span> 
+                        </h2>
 
                         {user.reservations.length === 0 ? (
                             <p className="admin-reservations-no-reservations">Nincs foglalása.</p>
