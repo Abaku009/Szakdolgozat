@@ -84,9 +84,9 @@ function Profil() {
 
                 <div className="profil-adatok">
                     <h3>Személyes adatok</h3>
-                    <h4>Név: {user.last_name + " " + user.first_name}</h4>
-                    <h4>E-mail cím: {user.email}</h4>
-                    <h4>Regisztráció dátuma: {new Date(user.created_at).toLocaleDateString("hu-HU")}</h4>
+                    <h4 className="profil-name"><strong>Név:</strong> {user.last_name + " " + user.first_name}</h4>
+                    <h4><strong>E-mail cím:</strong> {user.email}</h4>
+                    <h4><strong>Regisztráció dátuma:</strong> {new Date(user.created_at).toLocaleDateString("hu-HU")}</h4>
                 </div>
 
                 <div className="profil-jelszomodositas">

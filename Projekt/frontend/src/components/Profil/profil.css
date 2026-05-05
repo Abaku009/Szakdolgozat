@@ -1,5 +1,8 @@
 .profil-header {
     text-align: center;
+    font-size: 30px;
+    font-weight: 600;
+    margin: 20px 0 10px;
 }
 
 .profil {
@@ -16,23 +19,57 @@
 .profil-adatok, 
 .profil-jelszomodositas, 
 .profil-kijelentkezes {
-    background-color: #f9f9f9;
-    padding: 20px 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background: linear-gradient(to right, #f9f9f9, #ffffff);
+    padding: 22px 26px;
+    border-radius: 12px;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0px 2px 6px rgba(0,0,0,0.05);
     flex: 1 1 400px;
+    transition: all 0.2s ease;
 }
 
-.profil-adatok h3,
-.profil-jelszomodositas h3 {
+.profil-adatok:hover,
+.profil-jelszomodositas:hover,
+.profil-kijelentkezes:hover {
+    transform: translateY(-1px);
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.07);
+}
+
+.profil-adatok {
+    border-left: 6px solid #222;
+}
+
+.profil-adatok h3 {
     margin-bottom: 12px;
     color: #444;
 }
 
 .profil-adatok h4 {
-    margin: 8px 0;
+    margin: 6px 0;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 400;
+    color: #555;
+}
+
+.profil-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111;
+}
+
+.profil-adatok strong {
+    font-weight: 600;
+    color: #111;
+    margin-right: 4px;
+}
+
+.profil-jelszomodositas {
+    border-left: 6px solid #444;
+}
+
+.profil-jelszomodositas h3 {
+    margin-bottom: 12px;
+    color: #444;
 }
 
 .profil-jelszomodositas form {
@@ -43,28 +80,34 @@
 .profil-jelszomodositas label {
     margin-top: 10px;
     font-weight: 500;
+    font-size: 16px;
 }
 
 .profil-jelszomodositas input {
-    padding: 8px 10px;
-    margin-top: 4px;
+    padding: 10px 12px;
+    margin-top: 6px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 14px;
-    width: 100%;
-    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+.profil-jelszomodositas input:focus {
+    outline: none;
+    border-color: #666;
+    box-shadow: 0 0 0 2px rgba(0,0,0,0.05);
 }
 
 .profil-jelszomodositas button {
-    margin-top: 15px;
-    padding: 10px 20px;
-    font-size: 16px;
+    margin-top: 18px;
+    padding: 11px 20px;
+    font-size: 15px;
+    font-weight: 500;
     background-color: #333;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: all 0.3s ease;
 }
 
 .profil-jelszomodositas button:hover {
@@ -75,21 +118,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-left: 6px solid #b00020;
+    background: #fff5f5;
 }
 
 .profil-kijelentkezes button {
-    padding: 12px 20px;
-    background-color: #b31e1e;
+    padding: 12px 22px;
+    background-color: #b00020;
     color: white;
-    font-size: 16px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    transition: all 0.3s ease;
 }
 
 .profil-kijelentkezes button:hover {
-    background-color: #d94242;
+    background-color: #d00028;
 }
 
 @media (max-width: 768px) {
