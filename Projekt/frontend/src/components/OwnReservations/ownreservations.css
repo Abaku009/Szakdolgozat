@@ -5,37 +5,50 @@
 }
 
 .own-reservations-page h1 {
-  font-size: 26px;
+  font-size: 28px;
+  font-weight: 600;
   margin-bottom: 25px;
 }
 
 .own-reservation-card {
-  background: #fafafa;
-  border: 1px solid #e6e6e6;
-  border-radius: 10px;
-  padding: 16px 18px;
-  margin-bottom: 18px;
-  box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
-  transition: box-shadow 0.2s ease, transform 0.15s ease;
+  background: linear-gradient(to right, #fafafa, #ffffff);
+  border: 1px solid #e5e5e5;
+  border-left: 5px solid #222;
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.05);
+  transition: all 0.2s ease;
 }
 
 .own-reservation-card:hover {
-  box-shadow: 0px 4px 10px rgba(0,0,0,0.08);
-  transform: translateY(-2px);
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.07);
+  transform: translateY(-1px);
 }
 
 .own-reservation-card h3 {
-  font-size: 18px;
+  font-size: 17px;
+  font-weight: 600;
   margin-bottom: 10px;
-  border-left: 5px solid #222; 
+  border-left: 4px solid #222; 
   padding-left: 10px;
-  color: #222;
+  color: #111;
 }
 
 .own-reservation-card p {
   margin: 4px 0;
   font-size: 14px;
   color: #555;
+}
+
+.own-reservation-card p:first-of-type {
+  font-weight: 500;
+  color: #333;
+}
+
+.own-reservation-card p:nth-of-type(2) {
+  font-size: 13px;
+  color: #777;
 }
 
 .own-reservation-card ul {
