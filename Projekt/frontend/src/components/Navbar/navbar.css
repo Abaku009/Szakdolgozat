@@ -1,16 +1,16 @@
 .Navbar {
     width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
     padding: 15px 0;
+    box-sizing: border-box;
     background-color: #222;
     color: #fff;
     text-align: center;
     font-size: 14px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
-    z-index: 1000;
-    box-sizing: border-box;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
 }
 
 body {
@@ -20,12 +20,12 @@ body {
 .Navbar .Links {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; 
-    gap: 15px; 
+    justify-content: center;
+    gap: 15px;
 }
 
 .Navbar .Links a {
-    color: #fff; 
+    color: #fff;
     text-decoration: none;
     font-weight: 500;
     padding: 5px 10px;
@@ -33,7 +33,7 @@ body {
 }
 
 .Navbar .Links a:hover {
-    background-color: #555; 
+    background-color: #555;
     border-radius: 5px;
 }
 
