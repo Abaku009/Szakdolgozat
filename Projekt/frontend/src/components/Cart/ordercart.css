@@ -35,11 +35,31 @@
   color: var(--text-dark);
 }
 
+.order-cart-recommendations-header {
+  font-size: 2.6rem;
+  font-weight: 800;
+  text-align: center;
+  margin: 0 auto 35px;
+  color: #111;
+  display: table;
+  padding: 4px 12px;
+  border-radius: 6px;
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
 .order-cart-recommendations {
-  background-color: var(--bg-main);
-  padding: 40px 20px;
+  background: linear-gradient(135deg, #f0f0f3, #e9e9ee);
+  padding: 50px 25px;
   border-radius: 20px;
-  margin-bottom: 60px;
+  margin-bottom: 70px;
+  border: 1px solid #ddd;
+  box-shadow: 0px 6px 20px rgba(0,0,0,0.08);
+  transition: all 0.25s ease;
+}
+
+.order-cart-recommendations:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 10px 30px rgba(0,0,0,0.1);
 }
 
 .OrderCartItem,
