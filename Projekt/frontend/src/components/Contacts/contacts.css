@@ -1,5 +1,8 @@
 .kapcsolat-header {
     text-align: center;
+    font-size: 30px;
+    font-weight: 600;
+    margin: 20px 0 10px;
 }
 
 .contacts-container {
@@ -19,11 +22,20 @@
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     flex: 1 1 400px;
+    border-left: 6px solid #222;
 }
 
 .contacts p {
-    margin: 8px 0;
+    margin: 10px 0;
     font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+}
+
+.contacts p strong {
+    font-weight: 600;
+    color: #111;
+    margin-right: 4px;
 }
 
 #contacts-nyitvatartas {
@@ -50,6 +62,7 @@
 .contacts-irjnekunk label {
     margin-top: 10px;
     font-weight: 500;
+    font-size: 16px;
 }
 
 .contacts-irjnekunk input,

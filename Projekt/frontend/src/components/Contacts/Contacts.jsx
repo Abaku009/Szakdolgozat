@@ -69,9 +69,9 @@ function Contacts() {
             <h1 className="kapcsolat-header">Kapcsolat</h1>
             <div className="contacts-container">
                 <div className="contacts">
-                    <p>E-mail: mediahaven.contact@gmail.com</p>
-                    <p>Telefonszám: +36 20 123 4567</p>
-                    <p>Cím: 9700 Szombathely, Fő tér 42. </p>
+                    <p><strong>E-mail:</strong> mediahaven.contact@gmail.com</p>
+                    <p><strong>Telefonszám:</strong> +36 20 123 4567</p>
+                    <p><strong>Cím:</strong> 9700 Szombathely, Fő tér 42. </p>
                     <table id="contacts-nyitvatartas">
                         <thead>
                             <tr>
